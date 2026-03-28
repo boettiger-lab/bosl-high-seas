@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bosl-high-seas
+  labels:
+    app: bosl-high-seas
+spec:
+  type: ClusterIP
+  selector:
+    app: bosl-high-seas
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
