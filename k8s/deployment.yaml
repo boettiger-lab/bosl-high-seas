@@ -20,19 +20,20 @@ spec:
         app: bosl-high-seas
     spec:
       initContainers:
-      - name: git-clone
-        image: alpine/git:2.52.0
+      - name: copy-content
+        image: busybox:1.37
         command:
         - sh
         - -c
         - |
-          git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git /tmp/repo
-          cp /tmp/repo/index.html /usr/share/nginx/html/
-          cp /tmp/repo/layers-input.json /usr/share/nginx/html/
-          cp /tmp/repo/system-prompt.md /usr/share/nginx/html/
+          cp /content/index.html /usr/share/nginx/html/
+          cp /content/layers-input.json /usr/share/nginx/html/
+          cp /content/system-prompt.md /usr/share/nginx/html/
         volumeMounts:
         - name: website-content
           mountPath: /usr/share/nginx/html
+        - name: app-content
+          mountPath: /content
       containers:
       - name: nginx
         image: nginx:alpine
@@ -105,6 +106,9 @@ spec:
       volumes:
       - name: website-content
         emptyDir: {}
+      - name: app-content
+        configMap:
+          name: bosl-high-seas-content
       - name: config-template
         configMap:
           name: bosl-high-seas-config
