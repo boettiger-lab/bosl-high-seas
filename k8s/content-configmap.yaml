@@ -99,7 +99,11 @@ data:
             "center": [0, 0],
             "zoom": 2
         },
-        "default_basemap": "plain",
+        "default_basemap": "natgeo",
+        "custom_basemap": {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+            "label": "Ocean"
+        },
         "llm": {
             "user_provided": true,
             "default_endpoint": "https://openrouter.ai/api/v1",
