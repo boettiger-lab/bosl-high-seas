@@ -141,6 +141,42 @@ data:
         },
         "collections": [
             {
+                "collection_id": "iho-maritime-boundaries",
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/iho/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "eez-pmtiles",
+                        "display_name": "Exclusive Economic Zones (EEZ)",
+                        "group": "Maritime Boundaries",
+                        "visible": false,
+                        "default_style": {
+                            "fill-color": "rgba(0,0,0,0)",
+                            "fill-opacity": 0
+                        },
+                        "outline_style": {
+                            "line-color": "#F57F17",
+                            "line-width": 1
+                        },
+                        "tooltip_fields": ["GEONAME", "SOVEREIGN1", "ISO_SOV1", "TERRITORY1", "POL_TYPE", "AREA_KM2"]
+                    },
+                    {
+                        "id": "high-seas-pmtiles",
+                        "display_name": "High Seas (ABNJ)",
+                        "group": "Maritime Boundaries",
+                        "visible": true,
+                        "default_style": {
+                            "fill-color": "#1565C0",
+                            "fill-opacity": 0.15
+                        },
+                        "outline_style": {
+                            "line-color": "#1565C0",
+                            "line-width": 0.5
+                        },
+                        "tooltip_fields": ["name", "mrgid", "area_km2"]
+                    }
+                ]
+            },
+            {
                 "collection_id": "wdpa-december-2025",
                 "assets": [
                     {
