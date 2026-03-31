@@ -92,31 +92,6 @@
             "assets": [
                 {
                     "id": "wdpa-pmtiles",
-                    "display_name": "All Protected Areas",
-                    "group": "Protected Areas",
-                    "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match",
-                            ["get", "REALM"],
-                            "Marine", "#1565C0",
-                            "Coastal", "#26A69A",
-                            "Terrestrial", "#4CAF50",
-                            "#888888"
-                        ],
-                        "fill-opacity": 0.5
-                    },
-                    "tooltip_fields": [
-                        "NAME_ENG",
-                        "DESIG_ENG",
-                        "IUCN_CAT",
-                        "REALM",
-                        "GIS_AREA",
-                        "STATUS"
-                    ]
-                },
-                {
-                    "id": "wdpa-pmtiles",
                     "alias": "wdpa-marine",
                     "display_name": "Marine Protected Areas",
                     "group": "Protected Areas",
@@ -225,111 +200,31 @@
         {
             "collection_id": "gfw-fishing-effort",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
-            "group": { "name": "Fishing Effort", "collapsed": true },
+            "group": "Fishing Effort",
             "assets": [
                 {
                     "id": "fishing-effort-cog-2024",
-                    "display_name": "Fishing Effort 2024",
+                    "display_name": "Fishing Effort",
                     "visible": true,
                     "colormap": "reds",
                     "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2023",
-                    "display_name": "Fishing Effort 2023",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2022",
-                    "display_name": "Fishing Effort 2022",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2021",
-                    "display_name": "Fishing Effort 2021",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2020",
-                    "display_name": "Fishing Effort 2020",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2019",
-                    "display_name": "Fishing Effort 2019",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2018",
-                    "display_name": "Fishing Effort 2018",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2017",
-                    "display_name": "Fishing Effort 2017",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2016",
-                    "display_name": "Fishing Effort 2016",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2015",
-                    "display_name": "Fishing Effort 2015",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2014",
-                    "display_name": "Fishing Effort 2014",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2013",
-                    "display_name": "Fishing Effort 2013",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
-                },
-                {
-                    "id": "fishing-effort-cog-2012",
-                    "display_name": "Fishing Effort 2012",
-                    "visible": false,
-                    "colormap": "reds",
-                    "rescale": [0, 200],
-                    "legend_label": "Annual fishing hours"
+                    "legend_label": "Annual fishing hours",
+                    "versions": [
+                        { "label": "2024", "asset_id": "fishing-effort-cog-2024" },
+                        { "label": "2023", "asset_id": "fishing-effort-cog-2023" },
+                        { "label": "2022", "asset_id": "fishing-effort-cog-2022" },
+                        { "label": "2021", "asset_id": "fishing-effort-cog-2021" },
+                        { "label": "2020", "asset_id": "fishing-effort-cog-2020" },
+                        { "label": "2019", "asset_id": "fishing-effort-cog-2019" },
+                        { "label": "2018", "asset_id": "fishing-effort-cog-2018" },
+                        { "label": "2017", "asset_id": "fishing-effort-cog-2017" },
+                        { "label": "2016", "asset_id": "fishing-effort-cog-2016" },
+                        { "label": "2015", "asset_id": "fishing-effort-cog-2015" },
+                        { "label": "2014", "asset_id": "fishing-effort-cog-2014" },
+                        { "label": "2013", "asset_id": "fishing-effort-cog-2013" },
+                        { "label": "2012", "asset_id": "fishing-effort-cog-2012" }
+                    ],
+                    "default_version": "2024"
                 }
             ]
         }
