@@ -6,6 +6,11 @@
         "center": [0, 0],
         "zoom": 2
     },
+    "default_basemap": "natgeo",
+    "custom_basemap": {
+        "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+        "label": "Ocean"
+    },
     "llm": {
         "user_provided": true,
         "default_endpoint": "https://openrouter.ai/api/v1",
@@ -37,8 +42,8 @@
         "examples": [
             "Tell me about the datasets you have access to.",
             "Show only marine protected areas on the map.",
-            "How many marine protected areas have IUCN category II designation?",
-            "What is the total marine area covered by no-take zones globally?"
+            "How has total global fishing effort changed from 2012 to 2024?",
+            "Which IUCN protection categories have the most fishing activity inside their marine boundaries in 2024?"
         ]
     },
     "collections": [
@@ -144,6 +149,10 @@
                     ]
                 }
             ]
+        },
+        {
+            "collection_id": "gfw-fishing-effort",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json"
         }
     ]
 }
