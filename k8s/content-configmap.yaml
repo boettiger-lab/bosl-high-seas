@@ -325,7 +325,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2024",
                         "display_name": "Fishing Effort 2024",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": true,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -334,7 +334,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2023",
                         "display_name": "Fishing Effort 2023",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -343,7 +343,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2022",
                         "display_name": "Fishing Effort 2022",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -352,7 +352,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2021",
                         "display_name": "Fishing Effort 2021",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -361,7 +361,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2020",
                         "display_name": "Fishing Effort 2020",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -370,7 +370,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2019",
                         "display_name": "Fishing Effort 2019",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -379,7 +379,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2018",
                         "display_name": "Fishing Effort 2018",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -388,7 +388,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2017",
                         "display_name": "Fishing Effort 2017",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -397,7 +397,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2016",
                         "display_name": "Fishing Effort 2016",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -406,7 +406,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2015",
                         "display_name": "Fishing Effort 2015",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -415,7 +415,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2014",
                         "display_name": "Fishing Effort 2014",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -424,7 +424,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2013",
                         "display_name": "Fishing Effort 2013",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
@@ -433,7 +433,7 @@ data:
                     {
                         "id": "fishing-effort-cog-2012",
                         "display_name": "Fishing Effort 2012",
-                        "group": "Fishing Effort",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
                         "visible": false,
                         "colormap": "reds",
                         "rescale": [0, 200],
