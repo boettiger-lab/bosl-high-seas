@@ -133,12 +133,16 @@ data:
                 }
             ]
         },
+        "links": {
+            "github": "https://github.com/boettiger-lab/bosl-high-seas",
+            "carbon": true
+        },
         "welcome": {
             "message": "Hi! I can help you explore high seas and marine protected area data. Try asking:",
             "examples": [
                 "Tell me about the datasets you have access to.",
                 "Show only marine protected areas on the map.",
-                "How has total global fishing effort changed from 2012 to 2024?",
+                "Show me how fishing effort has changed from 2012 to 2024 by toggling the annual layers.",
                 "Which IUCN protection categories have the most fishing activity inside their marine boundaries in 2024?"
             ]
         },
@@ -247,8 +251,195 @@ data:
                 ]
             },
             {
+                "collection_id": "meow-ecoregions",
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/meow/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "ecoregions-pmtiles",
+                        "display_name": "Marine Ecoregions (MEOW)",
+                        "group": "Ocean Biogeography",
+                        "visible": false,
+                        "default_style": {
+                            "fill-color": [
+                                "match", ["get", "REALM"],
+                                "Arctic", "#1565C0",
+                                "Temperate Northern Atlantic", "#1976D2",
+                                "Tropical Atlantic", "#42A5F5",
+                                "Temperate South America", "#0288D1",
+                                "Temperate Northern Pacific", "#0097A7",
+                                "Tropical Indo-Pacific", "#00897B",
+                                "Temperate Australasia", "#2E7D32",
+                                "Southern Ocean", "#6A1B9A",
+                                "#78909C"
+                            ],
+                            "fill-opacity": 0.4
+                        },
+                        "outline_style": {
+                            "line-color": "#37474F",
+                            "line-width": 0.5
+                        },
+                        "tooltip_fields": ["ECOREGION", "PROVINCE", "REALM", "ECO_CODE"]
+                    }
+                ]
+            },
+            {
+                "collection_id": "rfmo-boundaries",
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "rfb-pmtiles",
+                        "display_name": "RFMO Boundaries",
+                        "group": "Ocean Governance",
+                        "visible": false,
+                        "default_style": {
+                            "fill-color": "rgba(0,0,0,0)",
+                            "fill-opacity": 0
+                        },
+                        "outline_style": {
+                            "line-color": "#E65100",
+                            "line-width": 1.5
+                        },
+                        "tooltip_fields": ["RFB", "SHAPE_AREA"]
+                    },
+                    {
+                        "id": "vme-pmtiles",
+                        "display_name": "VME Closures",
+                        "group": "Ocean Governance",
+                        "visible": false,
+                        "default_style": {
+                            "fill-color": "#7B1FA2",
+                            "fill-opacity": 0.5
+                        },
+                        "outline_style": {
+                            "line-color": "#4A148C",
+                            "line-width": 1
+                        },
+                        "tooltip_fields": ["VME_ID", "LOCAL_NAME", "OWNER", "YEAR"]
+                    }
+                ]
+            },
+            {
                 "collection_id": "gfw-fishing-effort",
-                "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json"
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "fishing-effort-cog-2024",
+                        "display_name": "Fishing Effort 2024",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": true,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2023",
+                        "display_name": "Fishing Effort 2023",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2022",
+                        "display_name": "Fishing Effort 2022",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2021",
+                        "display_name": "Fishing Effort 2021",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2020",
+                        "display_name": "Fishing Effort 2020",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2019",
+                        "display_name": "Fishing Effort 2019",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2018",
+                        "display_name": "Fishing Effort 2018",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2017",
+                        "display_name": "Fishing Effort 2017",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2016",
+                        "display_name": "Fishing Effort 2016",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2015",
+                        "display_name": "Fishing Effort 2015",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2014",
+                        "display_name": "Fishing Effort 2014",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2013",
+                        "display_name": "Fishing Effort 2013",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    },
+                    {
+                        "id": "fishing-effort-cog-2012",
+                        "display_name": "Fishing Effort 2012",
+                        "group": { "name": "Fishing Effort", "collapsed": true },
+                        "visible": false,
+                        "colormap": "reds",
+                        "rescale": [0, 200],
+                        "legend_label": "Annual fishing hours"
+                    }
+                ]
             }
         ]
     }
