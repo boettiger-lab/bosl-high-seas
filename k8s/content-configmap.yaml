@@ -57,7 +57,7 @@ data:
                     <div class="basemap-toggle-group">
                         <button class="basemap-btn"        data-basemap="natgeo"    onclick="window._setBasemap('natgeo')">NatGeo</button>
                         <button class="basemap-btn"         data-basemap="satellite" onclick="window._setBasemap('satellite')">Satellite</button>
-                        <button class="basemap-btn active"  data-basemap="plain"     onclick="window._setBasemap('plain')">Plain</button>
+                        <button class="basemap-btn"         data-basemap="plain"     onclick="window._setBasemap('plain')">Plain</button>
                     </div>
                 </div>
                 <div class="menu-section">
@@ -99,6 +99,7 @@ data:
             "center": [0, 0],
             "zoom": 2
         },
+        "default_basemap": "plain",
         "llm": {
             "user_provided": true,
             "default_endpoint": "https://openrouter.ai/api/v1",
