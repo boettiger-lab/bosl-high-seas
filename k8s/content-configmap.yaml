@@ -140,10 +140,10 @@ data:
         "welcome": {
             "message": "Hi! I can help you explore high seas and marine protected area data. Try asking:",
             "examples": [
-                "Tell me about the datasets you have access to.",
-                "Show only marine protected areas on the map.",
-                "Show me how fishing effort has changed from 2012 to 2024 by toggling the annual layers.",
-                "Which IUCN protection categories have the most fishing activity inside their marine boundaries in 2024?"
+                "How much fishing effort occurs inside marine protected areas vs the high seas in 2024?",
+                "Which IUCN protection categories have the most fishing activity inside their boundaries?",
+                "Show me fishing effort in 2012 vs 2024 — has it shifted toward or away from protected areas?",
+                "Which RFMO regions have the highest fishing effort, and are VME closures being respected?"
             ]
         },
         "collections": [
