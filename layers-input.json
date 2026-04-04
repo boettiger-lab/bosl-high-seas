@@ -198,6 +198,78 @@
             ]
         },
         {
+            "collection_id": "gebco-2025",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json",
+            "assets": [
+                {
+                    "id": "gebco-2025-cog",
+                    "display_name": "Seafloor Bathymetry (GEBCO 2025)",
+                    "group": "Seafloor",
+                    "visible": false,
+                    "colormap": "blues_r",
+                    "rescale": [-6000, 0],
+                    "legend_label": "Depth (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-geomorphology",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-geomorphology/stac-collection.json",
+            "assets": [
+                {
+                    "id": "seafloor-geomorphology-pmtiles",
+                    "display_name": "Seafloor Geomorphology",
+                    "group": "Seafloor",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": [
+                            "match", ["get", "feature_type"],
+                            "Seamounts", "#F57F17",
+                            "Guyots", "#F9A825",
+                            "Plateaus", "#FBC02D",
+                            "Ridges", "#BF360C",
+                            "Spreading_ridges", "#E64A19",
+                            "Rises", "#FF5722",
+                            "Trenches", "#311B92",
+                            "Hadal", "#1A237E",
+                            "Abyss", "#0D47A1",
+                            "Shelf", "#1B5E20",
+                            "Slope", "#2E7D32",
+                            "Canyons", "#4A148C",
+                            "#607D8B"
+                        ],
+                        "fill-opacity": 0.5
+                    },
+                    "outline_style": {
+                        "line-color": "#37474F",
+                        "line-width": 0.3
+                    },
+                    "tooltip_fields": ["feature_type", "Geomorphic", "area_km2"]
+                }
+            ]
+        },
+        {
+            "collection_id": "mpa-candidates",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/mpa-candidates/stac-collection.json",
+            "assets": [
+                {
+                    "id": "mpa-candidates-pmtiles",
+                    "display_name": "High Seas MPA Candidates",
+                    "group": "Conservation Areas",
+                    "visible": true,
+                    "default_style": {
+                        "fill-color": "#00BCD4",
+                        "fill-opacity": 0.3
+                    },
+                    "outline_style": {
+                        "line-color": "#0097A7",
+                        "line-width": 1.5
+                    },
+                    "tooltip_fields": ["MPA", "Status", "Area", "BBNJlead", "Area_categ", "Supporting"]
+                }
+            ]
+        },
+        {
             "collection_id": "gfw-fishing-effort",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
             "group": "Fishing Effort",

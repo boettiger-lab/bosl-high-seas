@@ -10,9 +10,9 @@ Never report areas in "hexes" or "hex counts" — always convert to km² using t
 |---|---|---|
 | 4 | 1,770.3 | — |
 | 5 | 252.9 | GFW fishing effort |
-| 6 | 36.1 | — |
+| 6 | 36.1 | Seafloor geomorphology |
 | 7 | 5.2 | — |
-| 8 | 0.737 | WDPA protected areas, IHO EEZ hex |
+| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, MPA candidates |
 | 9 | 0.105 | — |
 
 Source: https://h3geo.org/docs/core-library/restable#average-area-in-km2
