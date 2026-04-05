@@ -138,12 +138,13 @@ data:
             "carbon": true
         },
         "welcome": {
-            "message": "Hi! I can help you explore high seas and marine protected area data. Try asking:",
+            "message": "Hi! I can help you explore high seas MPA candidates, seafloor geomorphology, and fishing effort data. Try asking:",
             "examples": [
-                "How much fishing effort occurs inside marine protected areas vs the high seas in 2024?",
-                "Which IUCN protection categories have the most fishing activity inside their boundaries?",
-                "Show me fishing effort in 2012 vs 2024 — has it shifted toward or away from protected areas?",
-                "Which RFMO regions have the highest fishing effort, and are VME closures being respected?"
+                "What is the combined area of all high seas MPA candidates? Which candidates fall within the South Atlantic?",
+                "How does 2024 fishing effort vary across different seafloor geomorphological features?",
+                "If all high seas MPA candidates were implemented, how many hours of 2024 fishing effort would fall within their boundaries?",
+                "What are the dominant seafloor geomorphological features within each MPA candidate?",
+                "What percentage of global seamounts deeper than 1000m fall within the Salas y Gomez and Nazca Ridge MPA candidate?"
             ]
         },
         "collections": [
