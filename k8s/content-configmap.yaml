@@ -100,7 +100,7 @@ data:
         "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
         "view": {
             "center": [0, 0],
-            "zoom": 2
+            "zoom": 2.5
         },
         "default_basemap": "natgeo",
         "custom_basemap": {
