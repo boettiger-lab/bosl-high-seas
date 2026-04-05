@@ -382,7 +382,7 @@ data:
                     {
                         "id": "mpa-candidates-pmtiles",
                         "display_name": "High Seas MPA Candidates",
-                        "group": "Conservation Areas",
+                        "group": "Protected Areas",
                         "visible": true,
                         "default_style": {
                             "fill-color": "#00BCD4",
