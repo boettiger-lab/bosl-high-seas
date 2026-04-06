@@ -9,8 +9,8 @@ data:
     \   {\n        \"imports\": {\n            \"@modelcontextprotocol/sdk/client/index.js\":
     \"https://esm.sh/@modelcontextprotocol/sdk@1.12.0/client/index\",\n            \"@modelcontextprotocol/sdk/client/streamableHttp.js\":
     \"https://esm.sh/@modelcontextprotocol/sdk@1.12.0/client/streamableHttp\"\n        }\n
-    \   }\n    </script>\n\n    <!-- MapLibre GL JS -->\n    <script src=\"https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js\"></script>\n
-    \   <link href=\"https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css\" rel=\"stylesheet\"
+    \   }\n    </script>\n\n    <!-- MapLibre GL JS -->\n    <script src=\"https://unpkg.com/maplibre-gl@5.22.0/dist/maplibre-gl.js\"></script>\n
+    \   <link href=\"https://unpkg.com/maplibre-gl@5.22.0/dist/maplibre-gl.css\" rel=\"stylesheet\"
     />\n\n    <!-- PMTiles protocol -->\n    <script src=\"https://unpkg.com/pmtiles@3.0.7/dist/pmtiles.js\"></script>\n\n
     \   <!-- h3-js (for hex grid overlay) -->\n    <script src=\"https://unpkg.com/h3-js@4.1.0/dist/h3-js.umd.js\"></script>\n\n
     \   <!-- Markdown rendering -->\n    <script src=\"https://cdn.jsdelivr.net/npm/marked/marked.min.js\"></script>\n\n
