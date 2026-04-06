@@ -25,6 +25,8 @@ This repo is **private**. The k8s pod does **not** git-clone at startup — it r
 
 ## Deployment
 
+> **If you lack credentials or permissions** to run `kubectl` or `git push`, do not attempt to discover or work around credentials. Instead, provide the user with the exact commands to run.
+
 **Never edit `k8s/content-configmap.yaml` directly** — it is generated from source files.
 
 ```bash
