@@ -10,6 +10,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: bosl-high-seas-config
+  namespace: biodiversity
 data:
   config.template.json: |
     {
@@ -63,6 +64,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: bosl-high-seas-nginx
+  namespace: biodiversity
 data:
   nginx.conf.template: |
     server {
