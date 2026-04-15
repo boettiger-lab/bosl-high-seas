@@ -39,6 +39,7 @@ data:
             "zoom": 2.5,
             "globe": true
         },
+        "draw_enabled": true,
         "default_basemap": "natgeo",
         "custom_basemap": {
             "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
