@@ -16,6 +16,30 @@ spec:
   ingressClassName: haproxy
   tls:
     - hosts:
+        - high-seas.nrp-nautilus.io
+  rules:
+    - host: high-seas.nrp-nautilus.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bosl-high-seas
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bosl-high-seas-redirect
+  namespace: biodiversity
+  annotations:
+    haproxy-ingress.github.io/redirect-to: "https://high-seas.nrp-nautilus.io"
+spec:
+  ingressClassName: haproxy
+  tls:
+    - hosts:
         - bosl-high-seas.nrp-nautilus.io
   rules:
     - host: bosl-high-seas.nrp-nautilus.io
