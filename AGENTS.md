@@ -1,8 +1,8 @@
 # AI Agent Guide — bosl-high-seas
 
-## ⚠ PRIVATE REPO — ConfigMap deployment
+## Deployment model: public repo, git-clone initContainer
 
-This repo is **private**. The k8s pod does **not** git-clone at startup — it reads content from a k8s ConfigMap. Do not apply public-repo deployment patterns here.
+This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.yaml`) runs `git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git` on each pod start and copies `index.html`, `layers-input.json`, and `system-prompt.md` into the nginx html dir. Pod content tracks `main`. The `k8s/configmap.yaml` ConfigMap holds only the LLM model list and the nginx reverse-proxy template — **not** website content.
 
 ## Repo relationship
 
@@ -27,21 +27,18 @@ This repo is **private**. The k8s pod does **not** git-clone at startup — it r
 
 > **If you lack credentials or permissions** to run `kubectl` or `git push`, do not attempt to discover or work around credentials. Instead, provide the user with the exact commands to run.
 
-**Never edit `k8s/content-configmap.yaml` directly** — it is generated from source files.
-
 ```bash
 # 1. Edit source files (index.html, layers-input.json, system-prompt.md)
-# 2. Regenerate the ConfigMap
-bash scripts/generate-configmap.sh
-# 3. Apply and restart
-kubectl apply -f k8s/content-configmap.yaml -n <namespace>
-kubectl rollout restart deployment/bosl-high-seas -n <namespace>
-kubectl rollout status deployment/bosl-high-seas -n <namespace>
-# 4. Commit and push
-git add <source-files> k8s/content-configmap.yaml && git commit -m "<message>" && git push
+# 2. Commit and push to main — the initContainer clones from GitHub
+git add <source-files> && git commit -m "<message>" && git push
+# 3. Restart the deployment so a new pod re-clones the latest main
+kubectl rollout restart deployment/bosl-high-seas -n biodiversity
+kubectl rollout status deployment/bosl-high-seas -n biodiversity
 ```
 
 The git push does **not** update running pods — step 3 does.
+
+If you change `k8s/configmap.yaml` (LLM model list or nginx template), apply it before the rollout: `kubectl apply -f k8s/configmap.yaml -n biodiversity`. Routine content edits don't need this.
 
 ### CDN versioning
 
