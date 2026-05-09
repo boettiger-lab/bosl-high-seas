@@ -16,17 +16,17 @@ data:
     {
         "mcp_server_url": "${MCP_SERVER_URL}",
         "mcp_auth_token": "${MCP_AUTH_TOKEN}",
-        "llm_model": "qwen3",
+        "llm_model": "glm-5",
         "llm_models": [
             {
-                "value": "nemotron",
-                "label": "NRP Nemotron",
+                "value": "glm-5",
+                "label": "NRP GLM-5",
                 "endpoint": "/api/llm",
                 "api_key": "unused"
             },
             {
-                "value": "glm-4.7",
-                "label": "NRP GLM-4.7",
+                "value": "nemotron",
+                "label": "NRP Nemotron",
                 "endpoint": "/api/llm",
                 "api_key": "unused"
             },
