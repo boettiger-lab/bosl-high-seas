@@ -53,6 +53,12 @@ data:
                 "label": "NRP MiniMax M2.5",
                 "endpoint": "/api/llm",
                 "api_key": "unused"
+            },
+            {
+                "value": "claude-sonnet-4-6",
+                "label": "Claude Sonnet 4.6",
+                "endpoint": "/api/llm",
+                "api_key": "unused"
             }
         ]
     }
