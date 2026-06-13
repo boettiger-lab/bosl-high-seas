@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — BOSL High Seas Explorer</title>
+<style>
+:root {
+    --ink: #0d2538;
+    --ink-soft: #43586a;
+    --paper: #f7fafc;
+    --rule: #dbe4ea;
+    --accent: #1565c0;
+    --accent-dark: #0d3c75;
+    --accent-soft: #e3eef9;
+    --link: #1565c0;
+    --max: 880px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+header.hero {
+    background: linear-gradient(135deg, #062a4d 0%, var(--accent) 100%);
+    color: #fff;
+    padding: 3.5rem 1.5rem 2.5rem;
+    border-bottom: 1px solid var(--rule);
+}
+.hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+}
+.hero h1 {
+    font-size: 2.1rem;
+    margin: 0 0 0.4rem 0;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+.hero .tag {
+    font-size: 1.05rem;
+    opacity: 0.92;
+    margin: 0 0 1.4rem 0;
+    max-width: 60ch;
+}
+.hero .cta {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    padding: 0.55rem 1.1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.35);
+    font-weight: 500;
+    transition: background 0.15s;
+}
+.hero .cta:hover { background: rgba(255,255,255,0.28); text-decoration: none; }
+.hero .badge {
+    display: inline-block;
+    margin-left: 0.6rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    vertical-align: middle;
+}
+
+main {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+section { margin-bottom: 2.8rem; }
+
+h2 {
+    font-size: 1.45rem;
+    color: var(--accent-dark);
+    border-bottom: 2px solid var(--accent-soft);
+    padding-bottom: 0.4rem;
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+}
+h3 {
+    font-size: 1.12rem;
+    color: var(--ink);
+    margin: 1.4rem 0 0.5rem 0;
+    font-weight: 600;
+}
+p { margin: 0.5rem 0 0.9rem; }
+p.lede { font-size: 1.05rem; color: var(--ink-soft); }
+
+.layer-group {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 0.9rem 0;
+}
+.layer-group h3 {
+    margin-top: 0;
+    color: var(--accent-dark);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.layer-group h3::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 1.1em;
+    background: var(--accent);
+    border-radius: 2px;
+}
+.layer {
+    padding: 0.55rem 0;
+    border-top: 1px solid var(--rule);
+}
+.layer:first-of-type { border-top: 0; padding-top: 0; }
+.layer .name {
+    font-weight: 600;
+    color: var(--ink);
+}
+.layer .source {
+    color: var(--ink-soft);
+    font-size: 0.93rem;
+    margin: 0.1rem 0 0.15rem;
+}
+.layer .links {
+    font-size: 0.88rem;
+}
+.layer .links a { margin-right: 0.9rem; }
+.lic {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent-dark);
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 0.05rem 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.97rem;
+}
+.callout.green {
+    background: #e8f3ea;
+    border-left-color: #2e7d32;
+}
+
+.foot {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+}
+.foot .partners {
+    display: flex;
+    justify-content: center;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+    margin: 0.6rem 0 1rem;
+    font-weight: 500;
+    color: var(--ink);
+}
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    main { padding: 1.5rem 1rem 3rem; }
+    h2 { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="hero-inner">
+        <h1>BOSL High Seas Explorer
+            <span class="badge">work in progress</span>
+        </h1>
+        <p class="tag">An interactive map and AI assistant for exploring marine protected area candidates, fishing effort, seafloor geomorphology, and ocean governance across the high seas — the ocean beyond national jurisdiction.</p>
+        <a href="/" class="cta">← Open the App</a>
+    </div>
+</header>
+
+<main>
+
+<section>
+    <h2>About this project</h2>
+    <p class="lede">A research project of the <a href="https://www.carlboettiger.info" target="_blank" rel="noopener">Boettiger Lab</a> in the Department of Environmental Science, Policy, and Management at <a href="https://espm.berkeley.edu" target="_blank" rel="noopener">UC Berkeley</a>.</p>
+    <p>Roughly two-thirds of the ocean lies beyond any country's Exclusive Economic Zone — the <strong>high seas</strong>, or Areas Beyond National Jurisdiction (ABNJ). Under the 2023 <a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">BBNJ "High Seas Treaty"</a>, the global community can now establish marine protected areas in these waters for the first time. This app lets researchers, negotiators, and the public explore candidate MPA boundaries alongside the data that matters for evaluating them: fishing effort, seafloor habitat, existing protections, ecoregions, and the patchwork of regional fisheries governance.</p>
+    <p>Toggle layers on and off, hover any feature for its live attributes, draw an area of interest, or simply ask the assistant a question in plain English. This is a <strong>work in progress</strong> — layers, models, and capabilities are being added and refined.</p>
+</section>
+
+<section>
+    <h2>How it works</h2>
+    <p>This app is built on <a href="https://boettiger-lab.github.io/geo-agent/" target="_blank" rel="noopener"><strong>geo-agent</strong></a>, the Boettiger Lab's open-source framework for AI-assisted geospatial exploration. The map renders open datasets directly from cloud-native formats (PMTiles, Cloud-Optimized GeoTIFFs, GeoParquet) hosted on the <a href="https://nrp.ai" target="_blank" rel="noopener">National Research Platform</a>. No tile server is involved — your browser fetches only the bytes it needs to render the current view.</p>
+    <p>The AI assistant translates plain-English questions into SQL using <a href="https://duckdb.org" target="_blank" rel="noopener">DuckDB</a> over the same Parquet files, with column schemas and dataset descriptions discovered automatically through a <a href="https://stacspec.org" target="_blank" rel="noopener">SpatioTemporal Asset Catalog (STAC)</a>. The full stack — map, chat, MCP tool server, and STAC catalog — is open-source: see the <a href="https://github.com/boettiger-lab/bosl-high-seas" target="_blank" rel="noopener">application repository</a> and the <a href="https://github.com/boettiger-lab/geo-agent" target="_blank" rel="noopener">geo-agent core library</a>, and the <a href="https://boettiger-lab.github.io/geo-agent/docs/" target="_blank" rel="noopener">geo-agent documentation</a>.</p>
+
+    <div class="callout green">
+        <strong>🌱 Low-carbon, open models.</strong> Be patient. While I'm much faster than most humans 😉 I make use of more environmentally-friendly AI models. (Check out the <a href="https://carbon-dashboard.nrp-nautilus.io" target="_blank" rel="noopener">carbon dashboard 🌱</a> to see the CO₂/energy use of this deployment.) The assistant runs primarily on open-weight large language models served by the <strong>NRP open-llm-proxy</strong>, a shared university inference service on hardware powered substantially by renewable energy. Compared to large commercial inference services, this reduces both the energy and the data-privacy footprint of every conversation.
+    </div>
+</section>
+
+<section>
+    <h2>Working with the Data Assistant</h2>
+    <div class="callout">
+        <strong>If you wish the app could do something — just ask the assistant.</strong> Things people often reach for a settings menu to do (adjust transparency, export a CSV, filter a layer, run a cross-dataset query) the assistant can already do in plain language. If it can't, it will say so and usually suggest the closest thing it can.
+    </div>
+    <p>A few of the actions people most often ask for:</p>
+    <ul>
+        <li><strong>Run an analytical query:</strong> <em>"What is the combined area of all high seas MPA candidates?"</em>, <em>"How does 2024 fishing effort vary across seafloor geomorphological features?"</em>, <em>"If all MPA candidates were implemented, how many hours of 2024 fishing effort would fall within their boundaries?"</em> — the assistant writes the spatial SQL and shows the result.</li>
+        <li><strong>Adjust layer styling and transparency:</strong> <em>"Make fishing effort 50% transparent"</em>, <em>"Color marine protected areas by IUCN category."</em></li>
+        <li><strong>Show, hide, or filter layers:</strong> <em>"Turn on Marine Ecoregions and turn off Fishing Effort"</em>, <em>"Show only no-take protected areas."</em></li>
+        <li><strong>Step through time:</strong> Fishing Effort covers 2012–2024 — <em>"Show me fishing effort in 2015."</em></li>
+        <li><strong>Export query results:</strong> <em>"Give me a CSV of MPA candidates in the South Atlantic"</em> — the assistant returns a downloadable table.</li>
+    </ul>
+
+    <div class="callout">
+        <strong>✏️ Draw your own area of interest.</strong> Use the <strong>draw tool</strong> on the map to sketch a polygon — a proposed reserve, a region you care about, anywhere on the globe — then ask the assistant about it: <em>"How many hours of fishing effort fall inside the area I drew?"</em>, <em>"What seafloor features does this polygon contain?"</em>, <em>"What share of this area overlaps existing marine protected areas?"</em> The assistant treats your drawn shape as a live spatial filter for any query.
+    </div>
+
+    <p>And a few interface tips that aren't visually obvious:</p>
+    <ul>
+        <li>The Data Assistant panel is <strong>resizable</strong> — drag its edge to give chat more or less width, or minimize it to reclaim the full map.</li>
+        <li>The basemap can be switched between National Geographic and an ocean basemap, and the view supports a 3D <strong>globe</strong> projection — handy for the high seas, which wrap the whole planet.</li>
+        <li>PMTiles layers don't use a fixed legend. <strong>Hover</strong> over any feature for a tooltip with that feature's live attributes — names, categories, areas — direct from the source data.</li>
+        <li>Every tool call the assistant runs is logged in the per-turn timeline — with timings — so you can see what it queried, with what arguments, and what came back.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Data layers &amp; sources</h2>
+    <p>Every layer draws from a public, primary source. Click "STAC" beside any entry to see the full machine-readable metadata — schemas, column descriptions, license, lineage, and download URLs.</p>
+
+    <div class="layer-group">
+        <h3>Protected Areas</h3>
+        <div class="layer">
+            <div class="name">High Seas MPA Candidates</div>
+            <div class="source">Candidate marine protected area boundaries proposed for Areas Beyond National Jurisdiction under the BBNJ Agreement — the primary analytical targets of this app. Each polygon carries the proposal's lead body, status, area category, and supporting parties.</div>
+            <div class="source" style="margin-top:0.5rem;"><strong>About BBNJ proposals:</strong> The 2023 <a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">Agreement on Biodiversity Beyond National Jurisdiction</a> (the "High Seas Treaty"), adopted under UNCLOS, creates the first legal mechanism to establish area-based management tools — including marine protected areas — in the two-thirds of the ocean beyond any country's jurisdiction. Under the treaty, States or groups of States submit proposals delineating candidate areas, the conservation objectives they would serve, and the measures (such as fishing or shipping restrictions) they would carry; proposals are reviewed by a Scientific and Technical Body and decided by the Conference of the Parties. The candidates shown here represent areas that have been advanced or identified through this and allied scientific prioritization efforts.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/mpa-candidates/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">Source: BBNJ Agreement</a></div>
+            <span class="lic">BBNJ proposals — compiled from publicly proposed candidate areas</span>
+        </div>
+        <div class="layer">
+            <div class="name">Marine Protected Areas (WDPA)</div>
+            <div class="source">World Database on Protected Areas — the most comprehensive global record of marine and terrestrial protected areas, a joint project of UN Environment Programme and IUCN managed by UNEP-WCMC. Filtered here to marine and coastal realms, styled by IUCN management category.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-wdpa/wdpa/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.protectedplanet.net/en/thematic-areas/wdpa" target="_blank" rel="noopener">Source</a><a href="https://www.protectedplanet.net/en/legal" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">Protected Planet terms — non-commercial, attribution (UNEP-WCMC &amp; IUCN)</span>
+        </div>
+    </div>
+
+    <div class="layer-group">
+        <h3>Fishing Effort</h3>
+        <div class="layer">
+            <div class="name">Global Fishing Watch Apparent Fishing Effort (2012–2024)</div>
+            <div class="source">Annual apparent fishing effort derived from AIS vessel tracking for &gt;190,000 vessels, aggregated to H3 hexagonal cells by gear type (fleet-monthly dataset v3.0, released March 2025). Selectable year-by-year from 2012 through 2024.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-gfw/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://globalfishingwatch.org" target="_blank" rel="noopener">Source</a><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">CC BY-NC 4.0</span>
+        </div>
+    </div>
+
+    <div class="layer-group">
+        <h3>Maritime Boundaries</h3>
+        <div class="layer">
+            <div class="name">High Seas (ABNJ) &amp; Exclusive Economic Zones (EEZ)</div>
+            <div class="source">IHO / Marine Regions World EEZ v12 and World High Seas v2. EEZs define 200-nautical-mile zones under national jurisdiction; the High Seas layer is the complementary ocean area beyond any national EEZ — the foundational reference for distinguishing ABNJ from national waters.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/iho/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.marineregions.org/" target="_blank" rel="noopener">Source</a><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">CC BY 4.0 — Flanders Marine Institute (VLIZ)</span>
+        </div>
+    </div>
+
+    <div class="layer-group">
+        <h3>Ocean Governance</h3>
+        <div class="layer">
+            <div class="name">RFMO Boundaries &amp; VME Closures</div>
+            <div class="source">Food and Agriculture Organization of the UN — Regional Fisheries Management Organization jurisdictional boundaries and Vulnerable Marine Ecosystem closures, where bottom-contact fishing is restricted to protect cold-water corals, sponge grounds, and seamounts. The primary fisheries-governance framework for the high seas.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.fao.org/fishery/en/rfb" target="_blank" rel="noopener">Source</a><a href="https://creativecommons.org/licenses/by-sa/3.0/igo/" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">CC BY-SA 3.0 IGO — FAO</span>
+        </div>
+    </div>
+
+    <div class="layer-group">
+        <h3>Ocean Biogeography</h3>
+        <div class="layer">
+            <div class="name">Marine Ecoregions of the World (MEOW)</div>
+            <div class="source">Spalding et al. 2007 — a bioregionalization of the world's coastal and shelf areas into 232 ecoregions nested within 62 provinces and 12 realms, the standard reference for assessing the representativeness of MPA networks. Covers coastal and shelf waters only.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/meow/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.worldwildlife.org/publications/marine-ecoregions-of-the-world" target="_blank" rel="noopener">Source</a></div>
+            <span class="lic">The Nature Conservancy / WWF — free for non-commercial conservation use</span>
+        </div>
+    </div>
+
+    <div class="layer-group">
+        <h3>Seafloor</h3>
+        <div class="layer">
+            <div class="name">Seafloor Bathymetry (GEBCO 2025)</div>
+            <div class="source">General Bathymetric Chart of the Oceans 2025 Grid — a global terrain model at 15 arc-second (~450 m) resolution, sub-ice variant. Negative values are depth below sea level. Produced by GEBCO / British Oceanographic Data Centre.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://www.gebco.net" target="_blank" rel="noopener">Source</a><a href="https://www.gebco.net/data-products/gridded-bathymetry-data/#licence" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">GEBCO Grid terms — freely available, attribution (doi:10.5285/8896b933-5744-4bdf-862b-43a76c3f91a8)</span>
+        </div>
+        <div class="layer">
+            <div class="name">Seafloor Geomorphology</div>
+            <div class="source">Global Seafloor Geomorphic Features Map (Harris et al. 2014) — 152,079 polygons classifying seamounts, ridges, abyssal plains, trenches, canyons, shelves, and 20 other feature types. Distributed by Blue Habitats / CSIRO.</div>
+            <div class="links"><a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-high-seas/seafloor-geomorphology/stac-collection.json" target="_blank" rel="noopener">STAC</a><a href="https://bluehabitats.org" target="_blank" rel="noopener">Source</a><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">License</a></div>
+            <span class="lic">CC BY 4.0 — Harris et al. 2014, doi:10.1016/j.margeo.2014.01.011</span>
+        </div>
+    </div>
+
+    <p style="margin-top: 1.6rem;">Browse the full STAC catalog at <a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-data/stac/catalog.json" target="_blank" rel="noopener">radiantearth.github.io / stac-browser</a> to explore additional datasets not yet enabled in the app.</p>
+</section>
+
+<div class="foot">
+    <div class="partners">
+        <span>UC Berkeley</span>
+        <span>Boettiger Lab</span>
+        <span>National Research Platform</span>
+    </div>
+    <div>Built with <a href="https://github.com/boettiger-lab/geo-agent" target="_blank" rel="noopener">geo-agent</a> by the <a href="https://github.com/boettiger-lab" target="_blank" rel="noopener">Boettiger Lab</a> at UC Berkeley · <a href="https://github.com/boettiger-lab/bosl-high-seas" target="_blank" rel="noopener">Source on GitHub</a></div>
+    <div style="margin-top:0.4rem;">A work in progress — feedback welcome via <a href="https://github.com/boettiger-lab/bosl-high-seas/issues" target="_blank" rel="noopener">GitHub issues</a>.</div>
+</div>
+
+</main>
+
+</body>
+</html>
