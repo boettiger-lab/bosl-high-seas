@@ -54,10 +54,11 @@
     "welcome": {
         "message": "Hi! I can help you explore high seas MPA candidates, seafloor geomorphology, and fishing effort data. Try asking:",
         "examples": [
-            "What is the combined area of all high seas MPA candidates? Which candidates fall within the South Atlantic?",
-            "How does 2024 fishing effort vary across different seafloor geomorphological features?",
-            "If all high seas MPA candidates were implemented, how many hours of 2024 fishing effort would fall within their boundaries?",
-            "What are the dominant seafloor geomorphological features within each MPA candidate?"        ]
+            "Show only no-take marine protected areas",
+            "Fly to the Sargasso Sea",
+            "How much and what kind of industrial fishing is there in the high seas in an area 200 nautical miles outside of the exclusive economic zone of Nigeria?",
+            "How many seamounts are there in the Sargasso Sea \"Ecologically or Biologically Significant Marine Area\" that was designated on the high seas?"
+        ]
     },
     "collections": [
         {
