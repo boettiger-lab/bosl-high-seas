@@ -207,46 +207,48 @@ p.lede { font-size: 1.05rem; color: var(--ink-soft); }
 
 <section>
     <h2>About this project</h2>
-    <p class="lede">A research project of the <a href="https://www.carlboettiger.info" target="_blank" rel="noopener">Boettiger Lab</a> in the Department of Environmental Science, Policy, and Management at <a href="https://espm.berkeley.edu" target="_blank" rel="noopener">UC Berkeley</a>.</p>
-    <p>Roughly two-thirds of the ocean lies beyond any country's Exclusive Economic Zone — the <strong>high seas</strong>, or Areas Beyond National Jurisdiction (ABNJ). Under the 2023 <a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">BBNJ "High Seas Treaty"</a>, the global community can now establish marine protected areas in these waters for the first time. This app lets researchers, negotiators, and the public explore candidate MPA boundaries alongside the data that matters for evaluating them: fishing effort, seafloor habitat, existing protections, ecoregions, and the patchwork of regional fisheries governance.</p>
-    <p>Toggle layers on and off, hover any feature for its live attributes, draw an area of interest, or simply ask the assistant a question in plain English. This is a <strong>work in progress</strong> — layers, models, and capabilities are being added and refined.</p>
+    <p class="lede">A project of the <a href="https://dse.berkeley.edu" target="_blank" rel="noopener">Eric and Wendy Schmidt Center for Data Science &amp; Environment (DSE)</a> at UC Berkeley, in partnership with the <a href="https://bosl.ucsb.edu" target="_blank" rel="noopener">Benioff Ocean Science Laboratory (BOSL)</a> at UC Santa Barbara.</p>
+    <p>Roughly two-thirds of the ocean lies beyond any country's Exclusive Economic Zone — the <strong>high seas</strong>, or Areas Beyond National Jurisdiction (ABNJ). Under the 2023 <a href="https://www.un.org/bbnj/" target="_blank" rel="noopener">BBNJ "High Seas Treaty"</a>, the global community can now establish marine protected areas in these waters for the first time. BOSL provides spatial and scientific analysis to support States developing <a href="https://bosl.ucsb.edu/bbnj/" target="_blank" rel="noopener">high seas MPA proposals</a>; this app lets researchers, negotiators, and the public explore candidate MPA boundaries alongside the data that matters for evaluating them — fishing effort, seafloor habitat, existing protections, ecoregions, and the patchwork of regional fisheries governance.</p>
+    <p>This is a <strong>work in progress</strong> — layers, models, and capabilities are being added and refined.</p>
 </section>
 
 <section>
     <h2>How it works</h2>
-    <p>This app is built on <a href="https://boettiger-lab.github.io/geo-agent/" target="_blank" rel="noopener"><strong>geo-agent</strong></a>, the Boettiger Lab's open-source framework for AI-assisted geospatial exploration. The map renders open datasets directly from cloud-native formats (PMTiles, Cloud-Optimized GeoTIFFs, GeoParquet) hosted on the <a href="https://nrp.ai" target="_blank" rel="noopener">National Research Platform</a>. No tile server is involved — your browser fetches only the bytes it needs to render the current view.</p>
-    <p>The AI assistant translates plain-English questions into SQL using <a href="https://duckdb.org" target="_blank" rel="noopener">DuckDB</a> over the same Parquet files, with column schemas and dataset descriptions discovered automatically through a <a href="https://stacspec.org" target="_blank" rel="noopener">SpatioTemporal Asset Catalog (STAC)</a>. The full stack — map, chat, MCP tool server, and STAC catalog — is open-source: see the <a href="https://github.com/boettiger-lab/bosl-high-seas" target="_blank" rel="noopener">application repository</a> and the <a href="https://github.com/boettiger-lab/geo-agent" target="_blank" rel="noopener">geo-agent core library</a>, and the <a href="https://boettiger-lab.github.io/geo-agent/docs/" target="_blank" rel="noopener">geo-agent documentation</a>.</p>
+    <p>This app is powered by <a href="https://boettiger-lab.github.io/geo-agent/" target="_blank" rel="noopener"><strong>geo-agent</strong></a>, DSE's open-source framework for AI-assisted geospatial exploration. Open datasets stream straight to your browser from cloud-native formats — no tile server in between — and an AI assistant answers questions by writing live queries against the same data. Full technical details are in the <a href="https://boettiger-lab.github.io/geo-agent/docs/" target="_blank" rel="noopener">geo-agent documentation</a>.</p>
 
     <div class="callout green">
-        <strong>🌱 Low-carbon, open models.</strong> Be patient. While I'm much faster than most humans 😉 I make use of more environmentally-friendly AI models. (Check out the <a href="https://carbon-dashboard.nrp-nautilus.io" target="_blank" rel="noopener">carbon dashboard 🌱</a> to see the CO₂/energy use of this deployment.) The assistant runs primarily on open-weight large language models served by the <strong>NRP open-llm-proxy</strong>, a shared university inference service on hardware powered substantially by renewable energy. Compared to large commercial inference services, this reduces both the energy and the data-privacy footprint of every conversation.
+        <strong>🌱 Low-carbon, open models.</strong> Be patient. While I'm much faster than most humans 😉 I make use of more environmentally-friendly AI models. (Check out the <a href="https://carbon-dashboard.nrp-nautilus.io" target="_blank" rel="noopener">carbon dashboard 🌱</a> to see the CO₂/energy use of this deployment.)
     </div>
 </section>
 
 <section>
-    <h2>Working with the Data Assistant</h2>
-    <div class="callout">
-        <strong>If you wish the app could do something — just ask the assistant.</strong> Things people often reach for a settings menu to do (adjust transparency, export a CSV, filter a layer, run a cross-dataset query) the assistant can already do in plain language. If it can't, it will say so and usually suggest the closest thing it can.
-    </div>
-    <p>A few of the actions people most often ask for:</p>
+    <h2>Exploring the map</h2>
+    <p>The map is built on <a href="https://maplibre.org" target="_blank" rel="noopener">MapLibre GL</a> — the open-source engine behind the familiar Mapbox-style interactive maps. <strong>Scroll or pinch to zoom</strong>, <strong>drag to pan</strong>, and <strong>hold Ctrl and drag</strong> to change the aspect — tilting and rotating the view, which is useful for reading seafloor depth and terrain in 3D. The globe projection lets you spin the whole planet, handy for the high seas, which wrap all the way around it.</p>
+    <p>The <strong>Overlays</strong> panel lists every data layer. <strong>Toggle a layer on or off</strong> with its checkbox, and <strong>hover any feature</strong> for a tooltip of its live attributes — names, categories, areas — straight from the source data. When layers overlap, use the <strong>send-to-back button (↩)</strong> in the Overlays header to drop the topmost layer beneath the others; click it repeatedly to cycle through and peek at whatever is hidden underneath.</p>
+</section>
+
+<section>
+    <h2>Asking the assistant</h2>
+    <p>The Data Assistant understands plain English and does two kinds of things: it can <strong>drive the map</strong> for you, and it can <strong>answer analytical questions</strong> about the data. Just type what you want — if it can't do something, it will say so and usually suggest the closest thing it can.</p>
+
+    <p><strong>Map operations</strong> happen right away on the layers already loaded — no hunting through menus:</p>
     <ul>
-        <li><strong>Run an analytical query:</strong> <em>"What is the combined area of all high seas MPA candidates?"</em>, <em>"How does 2024 fishing effort vary across seafloor geomorphological features?"</em>, <em>"If all MPA candidates were implemented, how many hours of 2024 fishing effort would fall within their boundaries?"</em> — the assistant writes the spatial SQL and shows the result.</li>
-        <li><strong>Adjust layer styling and transparency:</strong> <em>"Make fishing effort 50% transparent"</em>, <em>"Color marine protected areas by IUCN category."</em></li>
-        <li><strong>Show, hide, or filter layers:</strong> <em>"Turn on Marine Ecoregions and turn off Fishing Effort"</em>, <em>"Show only no-take protected areas."</em></li>
-        <li><strong>Step through time:</strong> Fishing Effort covers 2012–2024 — <em>"Show me fishing effort in 2015."</em></li>
-        <li><strong>Export query results:</strong> <em>"Give me a CSV of MPA candidates in the South Atlantic"</em> — the assistant returns a downloadable table.</li>
+        <li><strong>Filter a layer:</strong> <em>"Show only no-take marine protected areas."</em></li>
+        <li><strong>Recolor or restyle a layer:</strong> <em>"Color marine protected areas by IUCN category"</em>, <em>"Make fishing effort 50% transparent."</em></li>
+        <li><strong>Fly somewhere:</strong> <em>"Fly to the Mid-Atlantic Ridge"</em>, <em>"Zoom to the South Pacific."</em></li>
+        <li><strong>Show, hide, or step through time:</strong> <em>"Turn on Marine Ecoregions"</em>, <em>"Show fishing effort in 2015."</em></li>
+    </ul>
+
+    <p><strong>Analytical questions</strong> are answered by writing live spatial queries over the underlying data, returning a number or a downloadable table:</p>
+    <ul>
+        <li><em>"What is the combined area of all high seas MPA candidates?"</em></li>
+        <li><em>"How does 2024 fishing effort vary across seafloor geomorphological features?"</em></li>
+        <li><em>"If every MPA candidate were implemented, how many hours of 2024 fishing effort would fall within their boundaries?"</em></li>
     </ul>
 
     <div class="callout">
-        <strong>✏️ Draw your own area of interest.</strong> Use the <strong>draw tool</strong> on the map to sketch a polygon — a proposed reserve, a region you care about, anywhere on the globe — then ask the assistant about it: <em>"How many hours of fishing effort fall inside the area I drew?"</em>, <em>"What seafloor features does this polygon contain?"</em>, <em>"What share of this area overlaps existing marine protected areas?"</em> The assistant treats your drawn shape as a live spatial filter for any query.
+        <strong>✏️ Draw an area to ask about it.</strong> Use the <strong>draw tool</strong> on the map to sketch a polygon — a proposed reserve, a region you care about, anywhere on the globe — then ask the assistant about it: <em>"How many hours of fishing effort fall inside the area I drew?"</em>, <em>"What seafloor features does this polygon contain?"</em>, <em>"What share of this area overlaps existing marine protected areas?"</em> Your drawn shape becomes a live spatial filter for any query.
     </div>
-
-    <p>And a few interface tips that aren't visually obvious:</p>
-    <ul>
-        <li>The Data Assistant panel is <strong>resizable</strong> — drag its edge to give chat more or less width, or minimize it to reclaim the full map.</li>
-        <li>The basemap can be switched between National Geographic and an ocean basemap, and the view supports a 3D <strong>globe</strong> projection — handy for the high seas, which wrap the whole planet.</li>
-        <li>PMTiles layers don't use a fixed legend. <strong>Hover</strong> over any feature for a tooltip with that feature's live attributes — names, categories, areas — direct from the source data.</li>
-        <li>Every tool call the assistant runs is logged in the per-turn timeline — with timings — so you can see what it queried, with what arguments, and what came back.</li>
-    </ul>
 </section>
 
 <section>
@@ -331,11 +333,10 @@ p.lede { font-size: 1.05rem; color: var(--ink-soft); }
 
 <div class="foot">
     <div class="partners">
-        <span>UC Berkeley</span>
-        <span>Boettiger Lab</span>
-        <span>National Research Platform</span>
+        <span><a href="https://dse.berkeley.edu" target="_blank" rel="noopener">Schmidt Center for Data Science &amp; Environment</a></span>
+        <span><a href="https://bosl.ucsb.edu" target="_blank" rel="noopener">Benioff Ocean Science Laboratory</a></span>
     </div>
-    <div>Built with <a href="https://github.com/boettiger-lab/geo-agent" target="_blank" rel="noopener">geo-agent</a> by the <a href="https://github.com/boettiger-lab" target="_blank" rel="noopener">Boettiger Lab</a> at UC Berkeley · <a href="https://github.com/boettiger-lab/bosl-high-seas" target="_blank" rel="noopener">Source on GitHub</a></div>
+    <div>A partnership of DSE at UC Berkeley and BOSL at UC Santa Barbara, built with <a href="https://github.com/boettiger-lab/geo-agent" target="_blank" rel="noopener">geo-agent</a> · <a href="https://github.com/boettiger-lab/bosl-high-seas" target="_blank" rel="noopener">Source on GitHub</a></div>
     <div style="margin-top:0.4rem;">A work in progress — feedback welcome via <a href="https://github.com/boettiger-lab/bosl-high-seas/issues" target="_blank" rel="noopener">GitHub issues</a>.</div>
 </div>
 
