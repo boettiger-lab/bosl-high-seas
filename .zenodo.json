@@ -15,6 +15,7 @@
   "description": "An interactive marine conservation decision-support tool for the high seas — the areas of the ocean beyond national jurisdiction. Built on the geo-agent agentic framework, it pairs a MapLibre interface with a natural-language agent that discovers datasets and runs SQL queries over H3-indexed ocean data through MCP tools. Users can explore candidate high seas marine protected areas, exclusive economic zone (EEZ) boundaries, seafloor geomorphology, GEBCO bathymetry, World Database on Protected Areas (WDPA) coverage, and Global Fishing Watch fishing-effort data to support marine spatial planning and high seas governance. It supports multiple open-weights language models for reproducible, extensible ocean conservation analytics.",
   "access_right": "open",
   "license": "bsd-2-clause",
+  "doi": "10.5281/zenodo.20674176",
   "upload_type": "software",
   "grants": [
     {
