@@ -22,7 +22,7 @@ Only if `h3_cell_area` is unavailable, fall back to `COUNT(DISTINCT hN)` × the 
 | 5 | 252.9 | — |
 | 6 | 36.1 | GFW fishing effort, Seafloor geomorphology |
 | 7 | 5.2 | — |
-| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, MPA candidates, EBSAs |
+| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, EBSAs |
 | 9 | 0.105 | — |
 
 Source: https://h3geo.org/docs/core-library/restable#average-area-in-km2
@@ -34,18 +34,17 @@ Always round to a sensible number of significant figures and label units clearly
 H3 hex is for **computation** (joins, area, zonal stats) — there it is ideal. For **visual display** on the map, building a hex tileset (`register_hex_tiles`) is a **last resort**, not the default; prefer the native rendering path:
 
 - **Raster-native field** already in the catalog (e.g. fishing effort, bathymetry) → show the existing **COG layer** (titiler). Do not re-bin it to hex — that is lossy and can introduce dateline/empty-tile artifacts.
-- **Vector features** colored by an attribute already in their **PMTiles** (EEZ, MPAs, candidates) → style the existing layer with a data-driven paint/filter expression; don't rebuild it as hex.
+- **Vector features** colored by an attribute already in their **PMTiles** (EEZ, MPAs) → style the existing layer with a data-driven paint/filter expression; don't rebuild it as hex.
 - **`register_hex_tiles` only** when you must display a **derived per-area value that exists in no layer** — e.g. a zonal-stats or vector×raster join result, or a computed classification.
 
 When the user asks to "show" a dataset that is already a configured layer, use that layer rather than constructing a new hex tileset.
 
-## EBSAs vs. MPAs vs. MPA candidates
+## EBSAs vs. MPAs
 
-These three layers are easy to conflate but mean different things — be precise:
+These two layers are easy to conflate but mean different things — be precise:
 
 - **EBSAs** (`ebsa`) are *scientific descriptions* of ecologically or biologically significant areas under the Convention on Biological Diversity. They carry **no legal protection or management measures** — describing an EBSA does not restrict any activity. Treat them as a biodiversity-significance reference, not a protected area.
 - **Marine Protected Areas** (`wdpa`) are *legally established* protected areas already in force, with management objectives (and, per `IUCN_CAT` / `NO_TAKE`, varying levels of restriction).
-- **High Seas MPA Candidates** (`mpa-candidates`) are *proposed* areas under consideration for future protection via the BBNJ Agreement — not yet legally established.
 
 When a user asks about "protection," clarify which of these they mean, and never describe an EBSA as protected.
 

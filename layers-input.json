@@ -52,7 +52,7 @@
         "carbon": true
     },
     "welcome": {
-        "message": "Hi! I can help you explore high seas MPA candidates, seafloor geomorphology, and fishing effort data. Try asking:",
+        "message": "Hi! I can help you explore marine protected areas, seafloor geomorphology, and fishing effort data. Try asking:",
         "examples": [
             "Show only no-take marine protected areas",
             "Fly to the Sargasso Sea",
@@ -61,27 +61,6 @@
         ]
     },
     "collections": [
-        {
-            "collection_id": "mpa-candidates",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/mpa-candidates/stac-collection.json",
-            "assets": [
-                {
-                    "id": "mpa-candidates-pmtiles",
-                    "display_name": "High Seas MPA Candidates",
-                    "group": "MPA Candidates",
-                    "visible": true,
-                    "default_style": {
-                        "fill-color": "#00BCD4",
-                        "fill-opacity": 0.3
-                    },
-                    "outline_style": {
-                        "line-color": "#0097A7",
-                        "line-width": 1.5
-                    },
-                    "tooltip_fields": ["MPA", "Status", "Area", "BBNJlead", "Area_categ", "Supporting"]
-                }
-            ]
-        },
         {
             "collection_id": "gfw-fishing-effort",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
