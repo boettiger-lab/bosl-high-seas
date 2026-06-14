@@ -341,13 +341,21 @@
                     "group": "Marine Megafauna",
                     "visible": false,
                     "default_style": {
-                        "fill-color": "#AD1457",
-                        "fill-opacity": 0.3
+                        "fill-color": [
+                            "match", ["get", "Taxon"],
+                            "Birds", "#4E79A7",
+                            "Cetaceans", "#59A14F",
+                            "Fishes", "#76B7B2",
+                            "Penguins", "#B07AA1",
+                            "Polar bears", "#9C9C9C",
+                            "Seals", "#E15759",
+                            "Sirenians", "#EDC948",
+                            "Turtles", "#F28E2B",
+                            "#BAB0AC"
+                        ],
+                        "fill-opacity": 0.35
                     },
-                    "outline_style": {
-                        "line-color": "#880E4F",
-                        "line-width": 0.5
-                    },
+                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
             ]
@@ -362,13 +370,21 @@
                     "group": "Marine Megafauna",
                     "visible": false,
                     "default_style": {
-                        "fill-color": "#6A1B9A",
-                        "fill-opacity": 0.3
+                        "fill-color": [
+                            "match", ["get", "Taxon"],
+                            "Birds", "#4E79A7",
+                            "Cetaceans", "#59A14F",
+                            "Fishes", "#76B7B2",
+                            "Penguins", "#B07AA1",
+                            "Polar bears", "#9C9C9C",
+                            "Seals", "#E15759",
+                            "Sirenians", "#EDC948",
+                            "Turtles", "#F28E2B",
+                            "#BAB0AC"
+                        ],
+                        "fill-opacity": 0.35
                     },
-                    "outline_style": {
-                        "line-color": "#4A148C",
-                        "line-width": 0.5
-                    },
+                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
             ]
@@ -383,13 +399,21 @@
                     "group": "Marine Megafauna",
                     "visible": false,
                     "default_style": {
-                        "fill-color": "#00695C",
-                        "fill-opacity": 0.3
+                        "fill-color": [
+                            "match", ["get", "Taxon"],
+                            "Birds", "#4E79A7",
+                            "Cetaceans", "#59A14F",
+                            "Fishes", "#76B7B2",
+                            "Penguins", "#B07AA1",
+                            "Polar bears", "#9C9C9C",
+                            "Seals", "#E15759",
+                            "Sirenians", "#EDC948",
+                            "Turtles", "#F28E2B",
+                            "#BAB0AC"
+                        ],
+                        "fill-opacity": 0.35
                     },
-                    "outline_style": {
-                        "line-color": "#004D40",
-                        "line-width": 0.5
-                    },
+                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
             ]
