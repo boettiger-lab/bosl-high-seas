@@ -12,7 +12,7 @@
     "sidebar": {
         "enabled": true,
         "default_width": 460,
-        "title": "High Seas Explorer",
+        "title": "High Seas Navigator",
         "chat_title": "Data Assistant"
     },
     "default_basemap": "natgeo",
