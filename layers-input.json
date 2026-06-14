@@ -12,7 +12,7 @@
     "sidebar": {
         "enabled": true,
         "default_width": 460,
-        "title": "BOSL High Seas Explorer",
+        "title": "High Seas Explorer",
         "chat_title": "Data Assistant"
     },
     "default_basemap": "natgeo",
