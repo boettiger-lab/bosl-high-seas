@@ -1,4 +1,4 @@
-# High Seas Navigator
+# High Seas Explorer
 
 [![DOI](https://zenodo.org/badge/1194160096.svg)](https://doi.org/10.5281/zenodo.20674176)
 
