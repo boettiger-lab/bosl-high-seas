@@ -61,7 +61,9 @@ The catalog holds IUCN Red List spatial data under `public-iucn/`. Two tables ma
 
 **Red List categories** (`latest_category_code`): `CR` (Critically Endangered), `EN` (Endangered), `VU` (Vulnerable) = *threatened*; also `NT`, `LC`, `DD`, `EX`, `EW`. When a user says "endangered/threatened," default to `CR`, `EN`, `VU` and say so.
 
-**Caveats.** (1) "Assessed ≠ mapped" — a species absent from `iucn-ranges-2025` is not necessarily absent from the region; IUCN maps many species only as points or HydroBASINS (not yet ingested), and most plants aren't mapped spatially at all. Surface this when coverage matters. (2) The full ranges **PMTiles is not suitable for display** (136k overlapping polygons) — for visualization use a filtered/marine subset layer or the richness products, not the raw range tiles. (3) For area, use the hex asset with `h3_cell_area`, not polygon-derived areas.
+**Displaying species ranges — hex-on-the-fly (like GBIF).** Do **not** use the `iucn-ranges-2025` PMTiles; it drops features at low zoom and renders nothing usable (slated for removal). Instead, to show species distribution/richness, query the **hex asset** — e.g. `COUNT(DISTINCT id_no)` of the species of interest per cell (filter marine and category as needed) — and build a tile layer **on the fly with `register_hex_tiles`**, then `add_layer` the returned tile URL. This is the same pattern used for GBIF occurrence density. A graduated per-cell count is the right way to show "where the most threatened marine species are."
+
+**Caveats.** (1) "Assessed ≠ mapped" — a species absent from `iucn-ranges-2025` is not necessarily absent from the region; IUCN maps many species only as points or HydroBASINS (not yet ingested), and most plants aren't mapped spatially at all. Surface this when coverage matters. (2) For area, use the hex asset with `h3_cell_area`, not polygon-derived areas.
 
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 

@@ -332,28 +332,6 @@
             ]
         },
         {
-            "collection_id": "iucn-ranges-2025",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
-            "assets": [
-                {
-                    "id": "iucn-ranges-2025-pmtiles",
-                    "display_name": "Threatened Marine Species (IUCN)",
-                    "group": "Species",
-                    "visible": false,
-                    "default_style": {
-                        "fill-color": "#FF1744",
-                        "fill-opacity": 0.1
-                    },
-                    "default_filter": [
-                        "all",
-                        ["match", ["get", "latest_category_code"], ["CR", "EN", "VU"], true, false],
-                        ["match", ["get", "class"], ["CHONDRICHTHYES", "ACTINOPTERYGII", "ANTHOZOA", "HOLOTHUROIDEA", "MYXINI"], true, false]
-                    ],
-                    "tooltip_fields": ["sci_name", "common_name_en", "latest_category_code", "class"]
-                }
-            ]
-        },
-        {
             "collection_id": "megamove-immegas",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/immegas/stac-collection.json",
             "assets": [
@@ -439,6 +417,11 @@
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
             ]
+        },
+        {
+            "collection_id": "iucn-ranges-2025",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
+            "assets": []
         }
     ]
 }
