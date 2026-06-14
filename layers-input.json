@@ -54,7 +54,6 @@
     "welcome": {
         "message": "Hi! I can help you explore marine protected areas, seafloor geomorphology, and fishing effort data. Try asking:",
         "examples": [
-            "Show only no-take marine protected areas",
             "Fly to the Sargasso Sea",
             "How much and what kind of industrial fishing is there in the high seas in an area 200 nautical miles outside of the exclusive economic zone of Nigeria?",
             "How many seamounts are there in the Sargasso Sea \"Ecologically or Biologically Significant Marine Area\" that was designated on the high seas?"
