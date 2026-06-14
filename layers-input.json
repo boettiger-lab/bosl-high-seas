@@ -219,6 +219,27 @@
             ]
         },
         {
+            "collection_id": "ebsa",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "assets": [
+                {
+                    "id": "ebsa-pmtiles",
+                    "display_name": "Significant Marine Areas (EBSAs)",
+                    "group": "Ocean Biogeography",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#43A047",
+                        "fill-opacity": 0.25
+                    },
+                    "outline_style": {
+                        "line-color": "#1B5E20",
+                        "line-width": 1
+                    },
+                    "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
+                }
+            ]
+        },
+        {
             "collection_id": "rfmo-boundaries",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
             "assets": [

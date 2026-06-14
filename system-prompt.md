@@ -22,7 +22,7 @@ Only if `h3_cell_area` is unavailable, fall back to `COUNT(DISTINCT hN)` × the 
 | 5 | 252.9 | — |
 | 6 | 36.1 | GFW fishing effort, Seafloor geomorphology |
 | 7 | 5.2 | — |
-| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, MPA candidates |
+| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, MPA candidates, EBSAs |
 | 9 | 0.105 | — |
 
 Source: https://h3geo.org/docs/core-library/restable#average-area-in-km2
@@ -38,6 +38,18 @@ H3 hex is for **computation** (joins, area, zonal stats) — there it is ideal. 
 - **`register_hex_tiles` only** when you must display a **derived per-area value that exists in no layer** — e.g. a zonal-stats or vector×raster join result, or a computed classification.
 
 When the user asks to "show" a dataset that is already a configured layer, use that layer rather than constructing a new hex tileset.
+
+## EBSAs vs. MPAs vs. MPA candidates
+
+These three layers are easy to conflate but mean different things — be precise:
+
+- **EBSAs** (`ebsa`) are *scientific descriptions* of ecologically or biologically significant areas under the Convention on Biological Diversity. They carry **no legal protection or management measures** — describing an EBSA does not restrict any activity. Treat them as a biodiversity-significance reference, not a protected area.
+- **Marine Protected Areas** (`wdpa`) are *legally established* protected areas already in force, with management objectives (and, per `IUCN_CAT` / `NO_TAKE`, varying levels of restriction).
+- **High Seas MPA Candidates** (`mpa-candidates`) are *proposed* areas under consideration for future protection via the BBNJ Agreement — not yet legally established.
+
+When a user asks about "protection," clarify which of these they mean, and never describe an EBSA as protected.
+
+**EBSA coverage is incomplete.** The layer holds 203 EBSAs from 9 of the ~15 CBD regional workshops; it does **not** include the North-East Atlantic, Baltic, Black & Caspian Seas, Seas of East Asia, or North Indian Ocean. The absence of an EBSA from a region does **not** mean none was described — when a query overlaps an un-covered region, say so. Join EBSA hex to other hex layers on `h0` (+ finer `hN`); the Sargasso Sea EBSA is `GLOBAL_ID = 'WC_13'`. Do **not** use `Area_sqKm_EBSA` / `Shape_Area` (computed in Web Mercator and grossly distorted) — derive area from `h3_cell_area` over the hex cells.
 
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 
