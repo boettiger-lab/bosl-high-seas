@@ -62,17 +62,23 @@
     },
     "collections": [
         {
-            "collection_id": "gebco-2025",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json",
+            "collection_id": "mpa-candidates",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/mpa-candidates/stac-collection.json",
             "assets": [
                 {
-                    "id": "gebco-2025-cog",
-                    "display_name": "Seafloor Bathymetry (GEBCO 2025)",
-                    "group": "Seafloor",
-                    "visible": false,
-                    "colormap": "blues_r",
-                    "rescale": "-6000,0",
-                    "legend_label": "Depth (m)"
+                    "id": "mpa-candidates-pmtiles",
+                    "display_name": "High Seas MPA Candidates",
+                    "group": "MPA Candidates",
+                    "visible": true,
+                    "default_style": {
+                        "fill-color": "#00BCD4",
+                        "fill-opacity": 0.3
+                    },
+                    "outline_style": {
+                        "line-color": "#0097A7",
+                        "line-width": 1.5
+                    },
+                    "tooltip_fields": ["MPA", "Status", "Area", "BBNJlead", "Area_categ", "Supporting"]
                 }
             ]
         },
@@ -151,7 +157,7 @@
                     "id": "wdpa-pmtiles",
                     "alias": "wdpa-marine",
                     "display_name": "Marine Protected Areas",
-                    "group": "Protected Areas",
+                    "group": "Designated Areas",
                     "visible": true,
                     "default_style": {
                         "fill-color": [
@@ -187,13 +193,34 @@
             ]
         },
         {
+            "collection_id": "ebsa",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "assets": [
+                {
+                    "id": "ebsa-pmtiles",
+                    "display_name": "Significant Marine Areas (EBSAs)",
+                    "group": "Designated Areas",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#43A047",
+                        "fill-opacity": 0.25
+                    },
+                    "outline_style": {
+                        "line-color": "#1B5E20",
+                        "line-width": 1
+                    },
+                    "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
+                }
+            ]
+        },
+        {
             "collection_id": "meow-ecoregions",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/meow/stac-collection.json",
             "assets": [
                 {
                     "id": "ecoregions-pmtiles",
                     "display_name": "Marine Ecoregions (MEOW)",
-                    "group": "Ocean Biogeography",
+                    "group": "Biogeography",
                     "visible": false,
                     "default_style": {
                         "fill-color": [
@@ -219,59 +246,17 @@
             ]
         },
         {
-            "collection_id": "ebsa",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "collection_id": "gebco-2025",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json",
             "assets": [
                 {
-                    "id": "ebsa-pmtiles",
-                    "display_name": "Significant Marine Areas (EBSAs)",
-                    "group": "Ocean Biogeography",
+                    "id": "gebco-2025-cog",
+                    "display_name": "Seafloor Bathymetry (GEBCO 2025)",
+                    "group": "Seafloor",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "#43A047",
-                        "fill-opacity": 0.25
-                    },
-                    "outline_style": {
-                        "line-color": "#1B5E20",
-                        "line-width": 1
-                    },
-                    "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
-                }
-            ]
-        },
-        {
-            "collection_id": "rfmo-boundaries",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
-            "assets": [
-                {
-                    "id": "rfb-pmtiles",
-                    "display_name": "RFMO Boundaries",
-                    "group": "Ocean Governance",
-                    "visible": false,
-                    "default_style": {
-                        "fill-color": "rgba(0,0,0,0)",
-                        "fill-opacity": 0
-                    },
-                    "outline_style": {
-                        "line-color": "#E65100",
-                        "line-width": 1.5
-                    },
-                    "tooltip_fields": ["RFB", "SHAPE_AREA"]
-                },
-                {
-                    "id": "vme-pmtiles",
-                    "display_name": "VME Closures",
-                    "group": "Ocean Governance",
-                    "visible": false,
-                    "default_style": {
-                        "fill-color": "#7B1FA2",
-                        "fill-opacity": 0.5
-                    },
-                    "outline_style": {
-                        "line-color": "#4A148C",
-                        "line-width": 1
-                    },
-                    "tooltip_fields": ["VME_ID", "LOCAL_NAME", "OWNER", "YEAR"]
+                    "colormap": "blues_r",
+                    "rescale": "-6000,0",
+                    "legend_label": "Depth (m)"
                 }
             ]
         },
@@ -312,23 +297,122 @@
             ]
         },
         {
-            "collection_id": "mpa-candidates",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/mpa-candidates/stac-collection.json",
+            "collection_id": "hydrothermal-vents",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/hydrothermal-vents/stac-collection.json",
             "assets": [
                 {
-                    "id": "mpa-candidates-pmtiles",
-                    "display_name": "High Seas MPA Candidates",
-                    "group": "Protected Areas",
-                    "visible": true,
+                    "id": "hydrothermal-vents-pmtiles",
+                    "display_name": "Hydrothermal Vents (InterRidge)",
+                    "group": "Seafloor",
+                    "visible": false,
+                    "layer_type": "circle",
                     "default_style": {
-                        "fill-color": "#00BCD4",
+                        "circle-color": "#FF6F00",
+                        "circle-radius": 3.5,
+                        "circle-stroke-color": "#FFFFFF",
+                        "circle-stroke-width": 0.5,
+                        "circle-opacity": 0.85
+                    },
+                    "tooltip_fields": ["name", "activity", "max_temperature_c", "max_depth_m", "tectonic_setting", "region", "ocean"]
+                }
+            ]
+        },
+        {
+            "collection_id": "rfmo-boundaries",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
+            "assets": [
+                {
+                    "id": "rfb-pmtiles",
+                    "display_name": "RFMO Boundaries",
+                    "group": "Ocean Governance",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "rgba(0,0,0,0)",
+                        "fill-opacity": 0
+                    },
+                    "outline_style": {
+                        "line-color": "#E65100",
+                        "line-width": 1.5
+                    },
+                    "tooltip_fields": ["RFB", "SHAPE_AREA"]
+                },
+                {
+                    "id": "vme-pmtiles",
+                    "display_name": "VME Closures",
+                    "group": "Ocean Governance",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#7B1FA2",
+                        "fill-opacity": 0.5
+                    },
+                    "outline_style": {
+                        "line-color": "#4A148C",
+                        "line-width": 1
+                    },
+                    "tooltip_fields": ["VME_ID", "LOCAL_NAME", "OWNER", "YEAR"]
+                }
+            ]
+        },
+        {
+            "collection_id": "megamove-immegas",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/immegas/stac-collection.json",
+            "assets": [
+                {
+                    "id": "immegas-pmtiles",
+                    "display_name": "Important Marine Megafauna Areas (IMMegAs)",
+                    "group": "Marine Megafauna",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#AD1457",
                         "fill-opacity": 0.3
                     },
                     "outline_style": {
-                        "line-color": "#0097A7",
-                        "line-width": 1.5
+                        "line-color": "#880E4F",
+                        "line-width": 0.5
                     },
-                    "tooltip_fields": ["MPA", "Status", "Area", "BBNJlead", "Area_categ", "Supporting"]
+                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
+                }
+            ]
+        },
+        {
+            "collection_id": "megamove-corridors",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/corridors/stac-collection.json",
+            "assets": [
+                {
+                    "id": "corridors-pmtiles",
+                    "display_name": "Migratory Corridors (MegaMove)",
+                    "group": "Marine Megafauna",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#6A1B9A",
+                        "fill-opacity": 0.3
+                    },
+                    "outline_style": {
+                        "line-color": "#4A148C",
+                        "line-width": 0.5
+                    },
+                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
+                }
+            ]
+        },
+        {
+            "collection_id": "megamove-residencies",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/residencies/stac-collection.json",
+            "assets": [
+                {
+                    "id": "residencies-pmtiles",
+                    "display_name": "Residence Areas (MegaMove)",
+                    "group": "Marine Megafauna",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#00695C",
+                        "fill-opacity": 0.3
+                    },
+                    "outline_style": {
+                        "line-color": "#004D40",
+                        "line-width": 0.5
+                    },
+                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
             ]
         }
