@@ -50,6 +50,19 @@ When a user asks about "protection," clarify which of these they mean, and never
 
 **EBSA coverage is incomplete.** The layer holds 203 EBSAs from 9 of the ~15 CBD regional workshops; it does **not** include the North-East Atlantic, Baltic, Black & Caspian Seas, Seas of East Asia, or North Indian Ocean. The absence of an EBSA from a region does **not** mean none was described — when a query overlaps an un-covered region, say so. Join EBSA hex to other hex layers on `h0` (+ finer `hN`); the Sargasso Sea EBSA is `GLOBAL_ID = 'WC_13'`. Do **not** use `Area_sqKm_EBSA` / `Shape_Area` (computed in Web Mercator and grossly distorted) — derive area from `h3_cell_area` over the hex cells.
 
+## IUCN Red List species ranges
+
+The catalog holds IUCN Red List spatial data under `public-iucn/`. Two tables matter for queries:
+
+- **`iucn-ranges-2025`** — per-species **range polygons** (98,574 species / 135,986 polygons). GeoParquet: `s3://public-iucn/iucn-ranges-2025.parquet`; H3 hex (size-stratified, Hive-partitioned by `h0`): `s3://public-iucn/iucn-ranges-2025/hex/h0=*/data_0.parquet`. Key columns: `id_no`, `sci_name`, `class`/`order`/`family`, `latest_category_code` (Red List status), `presence`, `origin`, `seasonal`, `geometry`. **Multiple polygons per species** — always `COUNT(DISTINCT id_no)` to count species.
+- **`iucn-taxonomy-2025`** — one row per assessed taxon (179,277). Parquet: `s3://public-iucn/taxonomy/iucn-taxonomy.parquet`. Join key `sis_taxon_id = ranges.id_no`. Carries `systems`, `realm`, `habitat_codes`, `latest_category_code`, `depth_lower_m`/`depth_upper_m`, etc.
+
+**There is no "marine" flag in the ranges table.** To restrict to marine species, JOIN to taxonomy and filter `systems LIKE '%Marine%'` (≈17.3k marine species have polygons; ≈1,337 of those are threatened). `systems` values: `Terrestrial`, `Freshwater (=Inland waters)`, `Marine`, and `|`-delimited combinations.
+
+**Red List categories** (`latest_category_code`): `CR` (Critically Endangered), `EN` (Endangered), `VU` (Vulnerable) = *threatened*; also `NT`, `LC`, `DD`, `EX`, `EW`. When a user says "endangered/threatened," default to `CR`, `EN`, `VU` and say so.
+
+**Caveats.** (1) "Assessed ≠ mapped" — a species absent from `iucn-ranges-2025` is not necessarily absent from the region; IUCN maps many species only as points or HydroBASINS (not yet ingested), and most plants aren't mapped spatially at all. Surface this when coverage matters. (2) The full ranges **PMTiles is not suitable for display** (136k overlapping polygons) — for visualization use a filtered/marine subset layer or the richness products, not the raw range tiles. (3) For area, use the hex asset with `h3_cell_area`, not polygon-derived areas.
+
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 
 The Pacific Islands Heritage Marine National Monument (PIHMNM, formerly the Pacific Remote Islands MNM / PRIMNM) and similar US Pacific monuments are delineated by **US Exclusive Economic Zone units**, not by the WDPA protected-areas layer. For questions about monument extent, no-take radii, distance-from-island buffers, or "out to N nautical miles / to the EEZ limit", build the footprint from the **EEZ hex asset** (`iho-maritime-boundaries`), selecting the US units via `MRGID_EEZ` / `SOVEREIGN1 = 'United States'`, and measure distance from each island with `h3_great_circle_distance`. Do **not** reconstruct the monument from WDPA.
