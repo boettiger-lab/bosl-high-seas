@@ -128,6 +128,27 @@
             ]
         },
         {
+            "collection_id": "ecs-extended-continental-shelf",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ecs/stac-collection.json",
+            "assets": [
+                {
+                    "id": "ecs-pmtiles",
+                    "display_name": "Extended Continental Shelf (ECS)",
+                    "group": "Maritime Boundaries",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#8E24AA",
+                        "fill-opacity": 0.2
+                    },
+                    "outline_style": {
+                        "line-color": "#4A148C",
+                        "line-width": 1
+                    },
+                    "tooltip_fields": ["GEONAME", "POL_TYPE", "SOVEREIGN1", "TERRITORY1", "AREA_KM2"]
+                }
+            ]
+        },
+        {
             "collection_id": "wdpa",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-wdpa/wdpa/stac-collection.json",
             "assets": [
@@ -220,6 +241,27 @@
                         "line-width": 0.5
                     },
                     "tooltip_fields": ["ECOREGION", "PROVINCE", "REALM", "ECO_CODE"]
+                }
+            ]
+        },
+        {
+            "collection_id": "longhurst-provinces",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/longhurst/stac-collection.json",
+            "assets": [
+                {
+                    "id": "provinces-pmtiles",
+                    "display_name": "Longhurst Provinces",
+                    "group": "Biogeography",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": "#00897B",
+                        "fill-opacity": 0.25
+                    },
+                    "outline_style": {
+                        "line-color": "#004D40",
+                        "line-width": 0.5
+                    },
+                    "tooltip_fields": ["ProvCode", "ProvDescr"]
                 }
             ]
         },
