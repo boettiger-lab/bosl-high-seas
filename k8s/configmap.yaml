@@ -13,7 +13,7 @@ data:
   config.template.json: |
     {
         "mcp_server_url": "${MCP_SERVER_URL}",
-        "llm_model": "qwen3",
+        "llm_model": "qwen",
         "llm_models": [
             {
                 "value": "glm-5",
