@@ -22,8 +22,8 @@ data:
                 "api_key": "unused"
             },
             {
-                "value": "nemotron",
-                "label": "NRP Nemotron",
+                "value": "qwen",
+                "label": "DSE-nimbus",
                 "endpoint": "/api/llm",
                 "api_key": "unused"
             },
