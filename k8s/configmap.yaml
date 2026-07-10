@@ -52,8 +52,8 @@ data:
                 "api_key": "unused"
             },
             {
-                "value": "claude-sonnet-4-6",
-                "label": "Claude Sonnet 4.6",
+                "value": "anthropic/claude-sonnet-5",
+                "label": "Claude Sonnet 5",
                 "endpoint": "/api/llm",
                 "api_key": "unused"
             }
