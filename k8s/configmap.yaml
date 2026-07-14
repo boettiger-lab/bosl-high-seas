@@ -13,8 +13,14 @@ data:
   config.template.json: |
     {
         "mcp_server_url": "${MCP_SERVER_URL}",
-        "llm_model": "qwen",
+        "llm_model": "z-ai/glm-5.2",
         "llm_models": [
+            {
+                "value": "z-ai/glm-5.2",
+                "label": "GLM-5.2 (OpenRouter)",
+                "endpoint": "/api/llm",
+                "api_key": "unused"
+            },
             {
                 "value": "glm-5",
                 "label": "NRP GLM-5",
