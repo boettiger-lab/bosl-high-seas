@@ -1,6 +1,6 @@
 {
     "catalog": "https://minio.carlboettiger.info/public-data/stac/catalog.json",
-    "titiler_url": "https://titiler.nrp-nautilus.io",
+    "titiler_url": "https://titiler.carlboettiger.info",
     "mcp_url": "https://duckdb-mcp.carlboettiger.info/mcp",
     "view": {
         "center": [0, 0],
