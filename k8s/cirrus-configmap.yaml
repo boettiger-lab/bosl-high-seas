@@ -1,0 +1,91 @@
+# Cirrus (local k3s) variant of configmap.yaml.
+#
+# Differences from the NRP config:
+#   - The model picker has a single entry: the self-hosted vLLM qwen3-6
+#     (cyankiwi/Qwen3.6-35B-A3B-AWQ-4bit) running in the `vllm` namespace.
+#     No OpenRouter, no NRP open-llm-proxy — nothing leaves the cluster.
+#   - nginx proxies /api/llm/ to vllm-qwen3-6-service and injects the
+#     VLLM_API_KEY server-side, exactly as the NRP config does with PROXY_KEY.
+#     The browser only ever sees the relative /api/llm endpoint.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bosl-high-seas-config
+  namespace: high-seas
+data:
+  config.template.json: |
+    {
+        "mcp_server_url": "${MCP_SERVER_URL}",
+        "llm_model": "qwen3-6",
+        "llm_models": [
+            {
+                "value": "qwen3-6",
+                "label": "Qwen3.6 35B (self-hosted)",
+                "endpoint": "/api/llm",
+                "api_key": "unused"
+            }
+        ]
+    }
+
+---
+# Nginx configuration — reverse-proxies /api/llm/ to the in-cluster vLLM
+# server and injects the Authorization header from ${PROXY_KEY} at
+# container start.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bosl-high-seas-nginx
+  namespace: high-seas
+data:
+  nginx.conf.template: |
+    server {
+        listen 80;
+        server_name _;
+
+        root /usr/share/nginx/html;
+        index index.html;
+
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods "GET, POST, OPTIONS";
+        add_header Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Accept";
+
+        # ── Reverse proxy to the self-hosted vLLM server ─────────────
+        # Clients POST to /api/llm/chat/completions with a dummy bearer
+        # token; nginx rewrites the Authorization header using the
+        # ${PROXY_KEY} substituted in at container startup (sourced from
+        # the vllm-api-key secret). The browser never receives the key.
+        #
+        # Upstream is the ClusterIP service in the `vllm` namespace, not its
+        # public hostname (qwen3-cirrus.carlboettiger.info) — same rationale as
+        # geo-agent-ops#73 on NRP: keep the hop inside the cluster so the
+        # request never round-trips through Traefik and the public IP.
+        # vLLM already serves an OpenAI-compatible /v1, so the path maps
+        # straight across.
+        location /api/llm/ {
+            proxy_pass http://vllm-qwen3-6-service.vllm.svc.cluster.local:8000/v1/;
+            proxy_set_header Authorization "Bearer ${PROXY_KEY}";
+
+            # Allow long agent loops (multi-turn tool use). 600s matches the
+            # geo-agent client default (app/agent.js _llmTimeoutMs) and the
+            # Traefik ServersTransport in cirrus-ingress.yaml, so no hop in the
+            # chain cuts off a slow decode earlier than the others.
+            proxy_read_timeout 600s;
+            proxy_send_timeout 600s;
+
+            # Don't buffer streaming responses
+            proxy_buffering off;
+        }
+
+        location / {
+            try_files $uri $uri/ /index.html;
+            add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+            add_header Pragma "no-cache";
+            add_header Expires "0";
+        }
+
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+            add_header Content-Type text/plain;
+        }
+    }

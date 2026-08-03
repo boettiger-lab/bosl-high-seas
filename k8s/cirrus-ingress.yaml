@@ -1,0 +1,52 @@
+# Cirrus ingress. On NRP the CORS policy and long timeouts are HAProxy
+# annotations (ingress.yaml); Traefik expresses the same behaviour as
+# first-class CRDs referenced from the ingress.
+#
+# NOTE: assumes cert-manager (letsencrypt-production ClusterIssuer) and
+# external-dns (Cloudflare, carlboettiger.info zone) are configured on cirrus.
+# external-dns provisions the A record from spec.rules.host; cert-manager mints
+# the TLS cert into bosl-high-seas-tls. Same recipe as
+# mcp-data-server/k8s/cirrus-ingress.yaml.
+---
+# Long backend timeouts. The app's nginx proxies /api/llm to vLLM with a 600s
+# read timeout; without a matching ServersTransport, Traefik's own
+# responseHeaderTimeout would cut off a long agent turn before nginx does.
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: high-seas-long-timeout
+  namespace: high-seas
+spec:
+  forwardingTimeouts:
+    dialTimeout: 30s
+    idleConnTimeout: 600s
+    readIdleTimeout: 600s
+    responseHeaderTimeout: 600s
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bosl-high-seas-ingress
+  namespace: high-seas
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    # <namespace>-<name>@kubernetescrd
+    traefik.ingress.kubernetes.io/service.servertransport: high-seas-high-seas-long-timeout@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: high-seas.carlboettiger.info
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bosl-high-seas
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - high-seas.carlboettiger.info
+      secretName: bosl-high-seas-tls

@@ -4,6 +4,53 @@
 
 This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.yaml`) runs `git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git` on each pod start and copies `index.html`, `layers-input.json`, and `system-prompt.md` into the nginx html dir. Pod content tracks `main`. The `k8s/configmap.yaml` ConfigMap holds only the LLM model list and the nginx reverse-proxy template — **not** website content.
 
+## Two deployments
+
+| | NRP Nautilus (prod) | cirrus (local k3s) |
+|---|---|---|
+| Manifests | `k8s/{configmap,deployment,service,ingress}.yaml` | `k8s/cirrus-*.yaml` |
+| Namespace | `biodiversity` | `high-seas` |
+| URL | https://high-seas.nrp-nautilus.io | https://high-seas.carlboettiger.info |
+| Layer config | `layers-input.json` (s3-west.nrp-nautilus.io) | `layers-input.cirrus.json` (minio.carlboettiger.info) |
+| MCP server | `duckdb-mcp.nrp-nautilus.io` | `duckdb-mcp.carlboettiger.info` (`mcp` ns) |
+| LLM | open-llm-proxy → OpenRouter + NRP models | in-cluster vLLM `qwen3-6` only (`vllm` ns) |
+| Ingress | HAProxy annotations | Traefik CRDs + cert-manager + external-dns |
+
+**`layers-input.cirrus.json` is a committed copy of `layers-input.json`** with the S3
+and MCP hosts rewritten — `config.json` can override `mcp_server_url` but *not* the
+STAC catalog/collection URLs, so the layer file itself has to differ. **Any edit to
+`layers-input.json` must be mirrored there:**
+
+```bash
+sed -e 's|https://s3-west\.nrp-nautilus\.io|https://minio.carlboettiger.info|g' \
+    -e 's|https://duckdb-mcp\.nrp-nautilus\.io/mcp|https://duckdb-mcp.carlboettiger.info/mcp|g' \
+    layers-input.json > layers-input.cirrus.json
+```
+
+The cirrus initContainer copies it over `layers-input.json` in the nginx html dir.
+`titiler_url` still points at NRP — cirrus has no titiler.
+
+### Deploying to cirrus
+
+One-time setup (namespace + a copy of the vLLM API key, which nginx injects into
+the `/api/llm/` Authorization header; secrets can't be read across namespaces):
+
+```bash
+kubectl create namespace high-seas
+kubectl create secret generic vllm-api-key -n high-seas \
+  --from-literal=api-key="$(kubectl get secret vllm-api-key -n vllm -o jsonpath='{.data.api-key}' | base64 -d)"
+kubectl apply -f k8s/cirrus-configmap.yaml -f k8s/cirrus-service.yaml \
+              -f k8s/cirrus-deployment.yaml -f k8s/cirrus-ingress.yaml
+```
+
+Routine content edits — same two-step as NRP (push, then restart so the pod re-clones):
+
+```bash
+git add <source-files> && git commit -m "<message>" && git push
+kubectl rollout restart deployment/bosl-high-seas -n high-seas
+kubectl rollout status deployment/bosl-high-seas -n high-seas
+```
+
 ## Repo relationship
 
 | Repo | Purpose |
