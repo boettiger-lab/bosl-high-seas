@@ -192,11 +192,11 @@
             ]
         },
         {
-            "collection_id": "ebsa",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "collection_id": "ebsa-2023",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023/stac-collection.json",
             "assets": [
                 {
-                    "id": "ebsa-pmtiles",
+                    "id": "ebsa-2023-pmtiles",
                     "display_name": "Significant Marine Areas (EBSAs)",
                     "group": "Designated Areas",
                     "visible": false,
@@ -464,6 +464,621 @@
             "collection_id": "iucn-ranges-2025",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
             "assets": []
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-thetao-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "thetao-mean-cog",
+                    "display_name": "Sea Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-1,25",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-so-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/so-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "so-mean-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "32.5,35.5",
+                    "legend_label": "Salinity (PSU)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-sws-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "sws-mean-cog",
+                    "display_name": "Current Velocity",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "0,0.1",
+                    "legend_label": "Current speed (m/s)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-o2-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "o2-mean-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "blues",
+                    "rescale": "80,320",
+                    "legend_label": "Dissolved O2 (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-ph-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "ph-mean-cog",
+                    "display_name": "pH",
+                    "visible": false,
+                    "colormap": "rdbu",
+                    "rescale": "7.65,8.1",
+                    "legend_label": "pH"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-no3-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "no3-mean-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,40",
+                    "legend_label": "Nitrate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-po4-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "po4-mean-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,3",
+                    "legend_label": "Phosphate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-si-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/si-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "si-mean-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,175",
+                    "legend_label": "Silicate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-dfe-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "dfe-mean-cog",
+                    "display_name": "Dissolved Iron",
+                    "visible": false,
+                    "colormap": "copper",
+                    "rescale": "0,0.004",
+                    "legend_label": "Dissolved iron (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-phyc-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "phyc-mean-cog",
+                    "display_name": "Primary Productivity",
+                    "visible": false,
+                    "colormap": "ylgn",
+                    "rescale": "0,2",
+                    "legend_label": "Phytoplankton carbon (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-bathymetry-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "bathymetry-mean-cog",
+                    "display_name": "Bathymetry (Bio-ORACLE)",
+                    "visible": false,
+                    "colormap": "blues_r",
+                    "rescale": "-5900,0",
+                    "legend_label": "Depth (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-slope",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/slope/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "slope-cog",
+                    "display_name": "Seafloor Slope",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "0,6",
+                    "legend_label": "Slope (degrees)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-tpi",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tpi/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "tpi-cog",
+                    "display_name": "Topographic Position Index",
+                    "visible": false,
+                    "colormap": "rdbu_r",
+                    "rescale": "-150,150",
+                    "legend_label": "TPI (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-tri",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tri/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "tri-cog",
+                    "display_name": "Terrain Ruggedness Index",
+                    "visible": false,
+                    "colormap": "inferno",
+                    "rescale": "0,470",
+                    "legend_label": "TRI (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-avg",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-avg-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal mean)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,12.426",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-min",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-min-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal minimum)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,3.690",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-max-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal maximum)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,26.907",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-temperature-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "temperature-0m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-1.456,29.393",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "salinity-0m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "29.746,37.074",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "oxygen-0m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "194.215,362.68",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-0m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "90.94,104.163",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "aou-0m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "-6.199,33.413",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "nitrate-0m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "0.038,25.964",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "phosphate-0m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.039,1.816",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-0m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "silicate-0m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "0.725,57.728",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-temperature-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "temperature-200m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-0.479,21.398",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "salinity-200m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "33.729,36.754",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "oxygen-200m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "10.77,300.534",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-200m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "3.094,95.104",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "aou-200m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "13.597,251.936",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "nitrate-200m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "1.674,33.155",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "phosphate-200m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.162,2.527",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-200m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "silicate-200m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "0.932,87.195",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-temperature-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "temperature-1000m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-0.042,8.831",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "salinity-1000m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "34.287,35.422",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "oxygen-1000m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "15.091,292.443",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-1000m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "4.41,85.772",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "aou-1000m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "49.144,306.757",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "nitrate-1000m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "13.297,44.094",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "phosphate-1000m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.932,3.229",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-1000m",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "silicate-1000m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "8.547,143.53",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
         }
     ]
 }
