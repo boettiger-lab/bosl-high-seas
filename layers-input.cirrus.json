@@ -719,6 +719,366 @@
                     "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
                 }
             ]
+        },
+        {
+            "collection_id": "woa23-temperature-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "temperature-0m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-1.456,29.393",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "salinity-0m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "29.746,37.074",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "oxygen-0m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "194.215,362.68",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-0m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "90.94,104.163",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "aou-0m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "-6.199,33.413",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "nitrate-0m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "0.038,25.964",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "phosphate-0m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.039,1.816",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-0m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-0m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 0 m)",
+            "assets": [
+                {
+                    "id": "silicate-0m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "0.725,57.728",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-temperature-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "temperature-200m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-0.479,21.398",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "salinity-200m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "33.729,36.754",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "oxygen-200m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "10.77,300.534",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-200m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "3.094,95.104",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "aou-200m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "13.597,251.936",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "nitrate-200m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "1.674,33.155",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "phosphate-200m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.162,2.527",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-200m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-200m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 200 m)",
+            "assets": [
+                {
+                    "id": "silicate-200m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "0.932,87.195",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-temperature-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "temperature-1000m-cog",
+                    "display_name": "Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-0.042,8.831",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-salinity-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "salinity-1000m-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "34.287,35.422",
+                    "legend_label": "Salinity (PSS-78)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "oxygen-1000m-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "15.091,292.443",
+                    "legend_label": "Dissolved oxygen (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-oxygen-saturation-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "oxygen-saturation-1000m-cog",
+                    "display_name": "Oxygen Saturation",
+                    "visible": false,
+                    "colormap": "cividis",
+                    "rescale": "4.41,85.772",
+                    "legend_label": "Oxygen saturation (%)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-aou-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "aou-1000m-cog",
+                    "display_name": "Apparent Oxygen Utilization",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "49.144,306.757",
+                    "legend_label": "AOU (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-nitrate-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "nitrate-1000m-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "plasma",
+                    "rescale": "13.297,44.094",
+                    "legend_label": "Nitrate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-phosphate-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "phosphate-1000m-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0.932,3.229",
+                    "legend_label": "Phosphate (micromol/kg)"
+                }
+            ]
+        },
+        {
+            "collection_id": "woa23-silicate-1000m",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-1000m/stac-collection.json",
+            "group": "Ocean Properties (WOA23, 1000 m)",
+            "assets": [
+                {
+                    "id": "silicate-1000m-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylorbr",
+                    "rescale": "8.547,143.53",
+                    "legend_label": "Silicate (micromol/kg)"
+                }
+            ]
         }
     ]
 }
