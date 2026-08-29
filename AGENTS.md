@@ -100,4 +100,27 @@ For private data modules (rclone sidecar, oauth2-proxy, private parquet credenti
 
 ---
 
+## Adding a raster (COG) layer: two things that are not in the schema docs
+
+1. **Check whether the COG's declared nodata matches any actual pixel.** geo-agent passes the
+   STAC `raster:bands[0].nodata` straight to titiler, so a declared nodata that no pixel matches
+   masks nothing and the tile comes back **100% opaque** — the layer then covers the basemap
+   across its whole footprint. `ship-density` declares `2147483647` and contains none, so every
+   asset sets `"nodata": 0` to mask the real "nothing recorded" value. `config.nodata` overrides
+   the STAC value per asset. Verify with the tile's alpha channel, not by eye:
+
+   ```bash
+   curl -s -o t.png "$TITILER/cog/tiles/WebMercatorQuad/3/4/2.png?url=$ENCODED&colormap_name=reds&rescale=0,N&nodata=0"
+   python3 -c "import rasterio,numpy as np; a=rasterio.open('t.png').read(); print((a[3]==0).mean())"
+   ```
+
+2. **Set `rescale` from measured percentiles, not from min/max.** These fields are strongly
+   skewed, and geo-agent only supports a **linear** ramp (no log/sqrt expression), so absolute
+   min/max flattens everything to the bottom colour. Compute the percentile at the **overview
+   level the default global view renders from** (roughly 1/16 to 1/64 for a global raster),
+   not at native resolution. Precedents: `seafloor-carbon-flux` uses 2nd-98th percentiles,
+   `ship-density` the 99th percentile of nonzero pixels.
+
+---
+
 For full `layers-input.json` schema, troubleshooting, and configuration reference see the [geo-agent-template AGENTS.md](https://github.com/boettiger-lab/geo-agent-template/blob/main/AGENTS.md) or the [docs](https://boettiger-lab.github.io/geo-agent/docs/).
