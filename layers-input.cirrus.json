@@ -92,6 +92,67 @@
             ]
         },
         {
+            "collection_id": "ship-density",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/ship-density/stac-collection.json",
+            "group": "Ship Density (World Bank / IMF)",
+            "assets": [
+                {
+                    "id": "ship-density-global-cog",
+                    "display_name": "All Vessels",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,13500000",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                },
+                {
+                    "id": "ship-density-commercial-cog",
+                    "display_name": "Commercial",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,13700000",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                },
+                {
+                    "id": "ship-density-fishing-cog",
+                    "display_name": "Fishing Vessels",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,108000",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                },
+                {
+                    "id": "ship-density-oil-gas-cog",
+                    "display_name": "Oil and Gas",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,115000",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                },
+                {
+                    "id": "ship-density-passenger-cog",
+                    "display_name": "Passenger",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,20",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                },
+                {
+                    "id": "ship-density-leisure-cog",
+                    "display_name": "Leisure",
+                    "visible": false,
+                    "colormap": "reds",
+                    "rescale": "0,240000",
+                    "nodata": 0,
+                    "legend_label": "AIS positions (2015-2021)"
+                }
+            ]
+        },
+        {
             "collection_id": "iho-maritime-boundaries",
             "collection_url": "https://minio.carlboettiger.info/public-high-seas/iho/stac-collection.json",
             "assets": [
