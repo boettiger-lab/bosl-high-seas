@@ -464,6 +464,216 @@
             "collection_id": "iucn-ranges-2025",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
             "assets": []
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-thetao-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "thetao-mean-cog",
+                    "display_name": "Sea Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-1,25",
+                    "legend_label": "Temperature (degrees C)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-so-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/so-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "so-mean-cog",
+                    "display_name": "Salinity",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "32.5,35.5",
+                    "legend_label": "Salinity (PSU)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-sws-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "sws-mean-cog",
+                    "display_name": "Current Velocity",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "0,0.1",
+                    "legend_label": "Current speed (m/s)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-o2-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "o2-mean-cog",
+                    "display_name": "Dissolved Oxygen",
+                    "visible": false,
+                    "colormap": "blues",
+                    "rescale": "80,320",
+                    "legend_label": "Dissolved O2 (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-ph-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "ph-mean-cog",
+                    "display_name": "pH",
+                    "visible": false,
+                    "colormap": "rdbu",
+                    "rescale": "7.65,8.1",
+                    "legend_label": "pH"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-no3-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "no3-mean-cog",
+                    "display_name": "Nitrate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,40",
+                    "legend_label": "Nitrate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-po4-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "po4-mean-cog",
+                    "display_name": "Phosphate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,3",
+                    "legend_label": "Phosphate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-si-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/si-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "si-mean-cog",
+                    "display_name": "Silicate",
+                    "visible": false,
+                    "colormap": "ylgnbu",
+                    "rescale": "0,175",
+                    "legend_label": "Silicate (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-dfe-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "dfe-mean-cog",
+                    "display_name": "Dissolved Iron",
+                    "visible": false,
+                    "colormap": "copper",
+                    "rescale": "0,0.004",
+                    "legend_label": "Dissolved iron (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-depthmean-phyc-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
+            "group": "Ocean Environment (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "phyc-mean-cog",
+                    "display_name": "Primary Productivity",
+                    "visible": false,
+                    "colormap": "ylgn",
+                    "rescale": "0,2",
+                    "legend_label": "Phytoplankton carbon (mmol/m3)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-bathymetry-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "bathymetry-mean-cog",
+                    "display_name": "Bathymetry (Bio-ORACLE)",
+                    "visible": false,
+                    "colormap": "blues_r",
+                    "rescale": "-5900,0",
+                    "legend_label": "Depth (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-slope",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/slope/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "slope-cog",
+                    "display_name": "Seafloor Slope",
+                    "visible": false,
+                    "colormap": "magma",
+                    "rescale": "0,6",
+                    "legend_label": "Slope (degrees)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-tpi",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tpi/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "tpi-cog",
+                    "display_name": "Topographic Position Index",
+                    "visible": false,
+                    "colormap": "rdbu_r",
+                    "rescale": "-150,150",
+                    "legend_label": "TPI (m)"
+                }
+            ]
+        },
+        {
+            "collection_id": "bio-oracle-terrain-tri",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tri/stac-collection.json",
+            "group": "Seafloor Terrain (Bio-ORACLE)",
+            "assets": [
+                {
+                    "id": "tri-cog",
+                    "display_name": "Terrain Ruggedness Index",
+                    "visible": false,
+                    "colormap": "inferno",
+                    "rescale": "0,470",
+                    "legend_label": "TRI (m)"
+                }
+            ]
         }
     ]
 }
