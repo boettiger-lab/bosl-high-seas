@@ -20,7 +20,7 @@ Only if `h3_cell_area` is unavailable, fall back to `COUNT(DISTINCT hN)` × the 
 |---|---|---|
 | 4 | 1,770.3 | — |
 | 5 | 252.9 | — |
-| 6 | 36.1 | GFW fishing effort, Seafloor geomorphology |
+| 6 | 36.1 | GFW fishing effort, Seafloor geomorphology, Seafloor carbon flux |
 | 7 | 5.2 | — |
 | 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, EBSAs |
 | 9 | 0.105 | — |

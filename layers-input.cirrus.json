@@ -674,6 +674,51 @@
                     "legend_label": "TRI (m)"
                 }
             ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-avg",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-avg-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal mean)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,12.426",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-min",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-min-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal minimum)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,3.690",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
+        },
+        {
+            "collection_id": "seafloor-carbon-flux-max",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
+            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "assets": [
+                {
+                    "id": "seafloor-carbon-flux-max-cog",
+                    "display_name": "Carbon Flux to Seafloor (decadal maximum)",
+                    "visible": false,
+                    "colormap": "viridis",
+                    "rescale": "0,26.907",
+                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+                }
+            ]
         }
     ]
 }
