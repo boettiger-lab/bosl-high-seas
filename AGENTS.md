@@ -9,7 +9,7 @@ This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.ya
 | | NRP Nautilus (prod) | cirrus (local k3s) |
 |---|---|---|
 | Manifests | `k8s/{configmap,deployment,service,ingress}.yaml` | `k8s/cirrus-*.yaml` |
-| Namespace | `biodiversity` | `high-seas` |
+| Namespace | `schmidtdse` | `high-seas` |
 | URL | https://high-seas.nrp-nautilus.io | https://high-seas.carlboettiger.info |
 | Layer config | `layers-input.json` (s3-west.nrp-nautilus.io) | `layers-input.cirrus.json` (minio.carlboettiger.info) |
 | MCP server | `duckdb-mcp.nrp-nautilus.io` | `duckdb-mcp.carlboettiger.info` (`mcp` ns) |
@@ -79,13 +79,13 @@ kubectl rollout status deployment/bosl-high-seas -n high-seas
 # 2. Commit and push to main — the initContainer clones from GitHub
 git add <source-files> && git commit -m "<message>" && git push
 # 3. Restart the deployment so a new pod re-clones the latest main
-kubectl rollout restart deployment/bosl-high-seas -n biodiversity
-kubectl rollout status deployment/bosl-high-seas -n biodiversity
+kubectl rollout restart deployment/bosl-high-seas -n schmidtdse
+kubectl rollout status deployment/bosl-high-seas -n schmidtdse
 ```
 
 The git push does **not** update running pods — step 3 does.
 
-If you change `k8s/configmap.yaml` (LLM model list or nginx template), apply it before the rollout: `kubectl apply -f k8s/configmap.yaml -n biodiversity`. Routine content edits don't need this.
+If you change `k8s/configmap.yaml` (LLM model list or nginx template), apply it before the rollout: `kubectl apply -f k8s/configmap.yaml -n schmidtdse`. Routine content edits don't need this.
 
 ### CDN versioning
 

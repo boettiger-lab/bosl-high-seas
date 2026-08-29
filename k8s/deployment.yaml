@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bosl-high-seas
-  namespace: biodiversity
+  namespace: schmidtdse
   labels:
     app: bosl-high-seas
 spec:
