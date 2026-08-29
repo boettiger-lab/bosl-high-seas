@@ -192,11 +192,11 @@
             ]
         },
         {
-            "collection_id": "ebsa",
-            "collection_url": "https://minio.carlboettiger.info/public-high-seas/ebsa/stac-collection.json",
+            "collection_id": "ebsa-2023",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/ebsa-2023/stac-collection.json",
             "assets": [
                 {
-                    "id": "ebsa-pmtiles",
+                    "id": "ebsa-2023-pmtiles",
                     "display_name": "Significant Marine Areas (EBSAs)",
                     "group": "Designated Areas",
                     "visible": false,

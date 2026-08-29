@@ -43,12 +43,16 @@ When the user asks to "show" a dataset that is already a configured layer, use t
 
 These two layers are easy to conflate but mean different things — be precise:
 
-- **EBSAs** (`ebsa`) are *scientific descriptions* of ecologically or biologically significant areas under the Convention on Biological Diversity. They carry **no legal protection or management measures** — describing an EBSA does not restrict any activity. Treat them as a biodiversity-significance reference, not a protected area.
+- **EBSAs** (`ebsa-2023`) are *scientific descriptions* of ecologically or biologically significant areas under the Convention on Biological Diversity. They carry **no legal protection or management measures** — describing an EBSA does not restrict any activity. Treat them as a biodiversity-significance reference, not a protected area.
 - **Marine Protected Areas** (`wdpa`) are *legally established* protected areas already in force, with management objectives (and, per `IUCN_CAT` / `NO_TAKE`, varying levels of restriction).
 
 When a user asks about "protection," clarify which of these they mean, and never describe an EBSA as protected.
 
-**EBSA coverage is incomplete.** The layer holds 203 EBSAs from 9 of the ~15 CBD regional workshops; it does **not** include the North-East Atlantic, Baltic, Black & Caspian Seas, Seas of East Asia, or North Indian Ocean. The absence of an EBSA from a region does **not** mean none was described — when a query overlaps an un-covered region, say so. Join EBSA hex to other hex layers on `h0` (+ finer `hN`); the Sargasso Sea EBSA is `GLOBAL_ID = 'WC_13'`. Do **not** use `Area_sqKm_EBSA` / `Shape_Area` (computed in Web Mercator and grossly distorted) — derive area from `h3_cell_area` over the hex cells.
+**EBSA coverage is now complete.** The `ebsa-2023` layer holds **336** EBSAs covering **all 15** CBD regional workshops, so there is no longer a coverage gap to warn users about. `GLOBAL_ID` is the per-site key (336 distinct, no nulls); the Sargasso Sea EBSA is `GLOBAL_ID = 'WC_13'`. **`EBSA_ID` is a per-workshop sequence number (1-45) and is NOT globally unique** — never join or count on it, use `GLOBAL_ID`. Join EBSA hex to other hex layers on `h8` (the catalog join key) or a coarser shared `hN`; the hex also carries `h7`/`h6`/`h5`/`h0`.
+
+**Area:** use `AREA_MW_KM` directly — it is an equal-area (Mollweide) value in km², validated against the H3 footprint to 0.2% median across all 336 sites and 0.23% on the catalog total. It is a **per-feature total repeated on every hex row**, so dedup before summing: `SELECT SUM(AREA_MW_KM) FROM (SELECT DISTINCT GLOBAL_ID, AREA_MW_KM FROM ...hex...)`. For the 8 smallest EBSAs (under ~31 km²) `AREA_MW_KM` is more accurate than a res-8 `h3_cell_area` sum, which quantizes badly at that size.
+
+**The seven CBD criteria ratings are not in this layer.** `ebsa-2023` carries no `Crit_*` columns. They exist for 203 of these 336 sites in the older `ebsa` collection (`s3://public-high-seas/ebsa.parquet`), joinable on `GLOBAL_ID`. If a user asks about uniqueness, life-history importance, threatened species, fragility, productivity, diversity or naturalness ratings, join to that collection and say plainly that the 133 sites added in 2023 have no ratings.
 
 ## IUCN Red List species ranges
 
