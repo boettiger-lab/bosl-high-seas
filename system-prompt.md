@@ -22,7 +22,7 @@ Only if `h3_cell_area` is unavailable, fall back to `COUNT(DISTINCT hN)` × the 
 | 5 | 252.9 | — |
 | 6 | 36.1 | GFW fishing effort, Seafloor geomorphology, Seafloor carbon flux |
 | 7 | 5.2 | — |
-| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, EBSAs |
+| 8 | 0.737 | WDPA protected areas, IHO EEZ hex, GEBCO bathymetry, EBSAs, Ship density |
 | 9 | 0.105 | — |
 
 Source: https://h3geo.org/docs/core-library/restable#average-area-in-km2
@@ -68,6 +68,49 @@ The catalog holds IUCN Red List spatial data under `public-iucn/`. Two tables ma
 **Displaying species ranges — hex-on-the-fly (like GBIF).** Do **not** use the `iucn-ranges-2025` PMTiles; it drops features at low zoom and renders nothing usable (slated for removal). Instead, to show species distribution/richness, query the **hex asset** — e.g. `COUNT(DISTINCT id_no)` of the species of interest per cell (filter marine and category as needed) — and build a tile layer **on the fly with `register_hex_tiles`**, then `add_layer` the returned tile URL. This is the same pattern used for GBIF occurrence density. A graduated per-cell count is the right way to show "where the most threatened marine species are."
 
 **Caveats.** (1) "Assessed ≠ mapped" — a species absent from `iucn-ranges-2025` is not necessarily absent from the region; IUCN maps many species only as points or HydroBASINS (not yet ingested), and most plants aren't mapped spatially at all. Surface this when coverage matters. (2) For area, use the hex asset with `h3_cell_area`, not polygon-derived areas.
+
+## Ship traffic density (`ship-density`)
+
+AIS position density from the World Bank / IMF Global Shipping Traffic Density product, January
+2015 to February 2021. One STAC collection holds six layers: `global` (all vessel types) plus five
+categories, `commercial`, `fishing`, `oil-gas`, `passenger`, `leisure`. COG for display, H3 res-8
+hex for computation (parents 7, 6, 5, 0).
+
+**Values count AIS *reporting*, not vessels and not traffic volume.** Moving and stationary ships
+both transmit, and coverage depends on receiver density and on vessels not going dark. Upstream
+calls the result analogous to the general intensity of shipping activity. Never convert it to ship
+counts or "vessels per year", and note that ports and anchorages read high partly because vessels
+linger there.
+
+**⛔ Do not compare absolute magnitudes across the six layers. They are not on a mutually
+consistent scale.** This is a documented property of the source, not of our conversion: the values
+match the upstream sidecar means to 0.008%. Dividing each layer's total by a plausible fleet size
+and the 54,041-hour period gives implied per-vessel message rates that disagree wildly. `fishing`,
+`leisure` and `oil-gas` behave like raw message counts; `passenger` like the hourly sampling the
+readme describes; `commercial` like neither, at a rate 33x faster than the AIS Class A protocol
+allows, which is impossible under any reading. Ratios *within* one layer are fine; ratios *between*
+layers are not. Use the layers for relative geography, and say this plainly whenever a user asks to
+compare them.
+
+Also get these right:
+
+- **The five categories sum to `global` exactly** (residual 0 at pixel level), so they are
+  exhaustive with no unclassified remainder. Do not add `global` to a category total.
+- **`commercial` is 99.4% of `global`**, so the two are nearly the same surface and `global`
+  inherits commercial's scale problem. Do not present them as independent findings.
+- **`commercial` is a 43-type catch-all**, including tugs, crew and supply boats, dredgers,
+  patrol and utility vessels, not just cargo and tankers. PASSENGER/CARGO SHIP is also classified
+  here, so `passenger` is not total passenger traffic.
+- **The hex is a full grid, not a sparse one.** It was built with a `sum` reducer, so every res-8
+  cell is present and cells with no recorded AIS position carry `ais_positions = 0`. Filter
+  `ais_positions > 0` before answering "where is there traffic", and never read row count as
+  coverage.
+
+For display use the configured COG layers, not `register_hex_tiles`.
+
+**This is not GFW fishing effort.** GFW reports apparent *fishing hours* inferred from vessel
+behaviour; `ship-density/fishing` reports AIS position counts for fishing vessels including transit
+and time in port. They agree on geography, not on magnitude.
 
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 
