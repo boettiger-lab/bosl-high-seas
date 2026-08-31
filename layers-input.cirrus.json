@@ -274,38 +274,6 @@
             ]
         },
         {
-            "collection_id": "meow-ecoregions",
-            "collection_url": "https://minio.carlboettiger.info/public-high-seas/meow/stac-collection.json",
-            "assets": [
-                {
-                    "id": "ecoregions-pmtiles",
-                    "display_name": "Marine Ecoregions (MEOW)",
-                    "group": "Biogeography",
-                    "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match", ["get", "REALM"],
-                            "Arctic", "#1565C0",
-                            "Temperate Northern Atlantic", "#1976D2",
-                            "Tropical Atlantic", "#42A5F5",
-                            "Temperate South America", "#0288D1",
-                            "Temperate Northern Pacific", "#0097A7",
-                            "Tropical Indo-Pacific", "#00897B",
-                            "Temperate Australasia", "#2E7D32",
-                            "Southern Ocean", "#6A1B9A",
-                            "#78909C"
-                        ],
-                        "fill-opacity": 0.4
-                    },
-                    "outline_style": {
-                        "line-color": "#37474F",
-                        "line-width": 0.5
-                    },
-                    "tooltip_fields": ["ECOREGION", "PROVINCE", "REALM", "ECO_CODE"]
-                }
-            ]
-        },
-        {
             "collection_id": "longhurst-provinces",
             "collection_url": "https://minio.carlboettiger.info/public-high-seas/longhurst/stac-collection.json",
             "assets": [
