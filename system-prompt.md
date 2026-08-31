@@ -39,6 +39,15 @@ H3 hex is for **computation** (joins, area, zonal stats) — there it is ideal. 
 
 When the user asks to "show" a dataset that is already a configured layer, use that layer rather than constructing a new hex tileset.
 
+## Marine Ecoregions (MEOW) is query-only
+
+`meow-ecoregions` is **not a configured map layer** — it was removed from the sidebar on purpose. The data is still published and fully queryable:
+
+- GeoParquet: `s3://public-high-seas/meow/ecoregions.parquet` (`ECO_CODE`, `ECOREGION`, `PROVINCE`, `REALM`, `geom`)
+- H3 hex, native resolution 8, Hive-partitioned by `h0`: `s3://public-high-seas/meow/ecoregions/hex/h0=*/data_00.parquet` (`h8`, `h7`, `h6`, `h0` plus the four attribute columns)
+
+Answer ecoregion questions in SQL, joining to other hex layers on `h8` (or `h7`/`h6` for coarser datasets such as GFW fishing effort). Do not try to add or toggle a MEOW layer — there isn't one. If a user explicitly asks to see ecoregions on the map, build a tileset with `register_hex_tiles` from a hex query.
+
 ## EBSAs vs. MPAs
 
 These two layers are easy to conflate but mean different things — be precise:
