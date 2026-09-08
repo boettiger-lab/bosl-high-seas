@@ -68,7 +68,7 @@
                 {
                     "id": "fishing-effort-cog-2024",
                     "display_name": "Fishing Effort",
-                    "visible": true,
+                    "visible": false,
                     "colormap": "reds",
                     "rescale": "0,200",
                     "legend_label": "Annual fishing hours",
@@ -94,7 +94,7 @@
         {
             "collection_id": "ship-density",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ship-density/stac-collection.json",
-            "group": "Ship Density (World Bank / IMF)",
+            "group": "Vessel Density (2015-2021)",
             "assets": [
                 {
                     "id": "ship-density-global-cog",
@@ -218,7 +218,7 @@
                     "alias": "wdpa-marine",
                     "display_name": "Marine Protected Areas",
                     "group": "Designated Areas",
-                    "visible": true,
+                    "visible": false,
                     "default_style": {
                         "fill-color": [
                             "match",
@@ -270,6 +270,39 @@
                         "line-width": 1
                     },
                     "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
+                }
+            ]
+        },
+        {
+            "collection_id": "meow-ecoregions",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/meow/stac-collection.json",
+            "assets": [
+                {
+                    "id": "ecoregions-pmtiles",
+                    "display_name": "Marine Ecoregions (MEOW)",
+                    "group": "Biogeography",
+                    "sidebar": false,
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": [
+                            "match", ["get", "REALM"],
+                            "Arctic", "#1565C0",
+                            "Temperate Northern Atlantic", "#1976D2",
+                            "Tropical Atlantic", "#42A5F5",
+                            "Temperate South America", "#0288D1",
+                            "Temperate Northern Pacific", "#0097A7",
+                            "Tropical Indo-Pacific", "#00897B",
+                            "Temperate Australasia", "#2E7D32",
+                            "Southern Ocean", "#6A1B9A",
+                            "#78909C"
+                        ],
+                        "fill-opacity": 0.4
+                    },
+                    "outline_style": {
+                        "line-color": "#37474F",
+                        "line-width": 0.5
+                    },
+                    "tooltip_fields": ["ECOREGION", "PROVINCE", "REALM", "ECO_CODE"]
                 }
             ]
         },
@@ -497,11 +530,11 @@
         {
             "collection_id": "bio-oracle-depthmean-thetao-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "thetao-mean-cog",
-                    "display_name": "Sea Temperature",
+                    "display_name": "Benthic Temperature",
                     "visible": false,
                     "colormap": "rdylbu_r",
                     "rescale": "-1,25",
@@ -512,11 +545,11 @@
         {
             "collection_id": "bio-oracle-depthmean-so-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/so-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "so-mean-cog",
-                    "display_name": "Salinity",
+                    "display_name": "Benthic Salinity",
                     "visible": false,
                     "colormap": "viridis",
                     "rescale": "32.5,35.5",
@@ -527,11 +560,11 @@
         {
             "collection_id": "bio-oracle-depthmean-sws-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "sws-mean-cog",
-                    "display_name": "Current Velocity",
+                    "display_name": "Benthic Current Velocity",
                     "visible": false,
                     "colormap": "magma",
                     "rescale": "0,0.1",
@@ -542,11 +575,11 @@
         {
             "collection_id": "bio-oracle-depthmean-o2-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "o2-mean-cog",
-                    "display_name": "Dissolved Oxygen",
+                    "display_name": "Benthic Dissolved Oxygen",
                     "visible": false,
                     "colormap": "blues",
                     "rescale": "80,320",
@@ -557,11 +590,11 @@
         {
             "collection_id": "bio-oracle-depthmean-ph-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "ph-mean-cog",
-                    "display_name": "pH",
+                    "display_name": "Benthic pH",
                     "visible": false,
                     "colormap": "rdbu",
                     "rescale": "7.65,8.1",
@@ -572,11 +605,11 @@
         {
             "collection_id": "bio-oracle-depthmean-no3-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "no3-mean-cog",
-                    "display_name": "Nitrate",
+                    "display_name": "Benthic Nitrate",
                     "visible": false,
                     "colormap": "ylgnbu",
                     "rescale": "0,40",
@@ -587,11 +620,12 @@
         {
             "collection_id": "bio-oracle-depthmean-po4-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "po4-mean-cog",
-                    "display_name": "Phosphate",
+                    "display_name": "Benthic Phosphate",
+                    "sidebar": false,
                     "visible": false,
                     "colormap": "ylgnbu",
                     "rescale": "0,3",
@@ -602,11 +636,12 @@
         {
             "collection_id": "bio-oracle-depthmean-si-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/si-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "si-mean-cog",
-                    "display_name": "Silicate",
+                    "display_name": "Benthic Silicate",
+                    "sidebar": false,
                     "visible": false,
                     "colormap": "ylgnbu",
                     "rescale": "0,175",
@@ -617,11 +652,12 @@
         {
             "collection_id": "bio-oracle-depthmean-dfe-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "dfe-mean-cog",
-                    "display_name": "Dissolved Iron",
+                    "display_name": "Benthic Dissolved Iron",
+                    "sidebar": false,
                     "visible": false,
                     "colormap": "copper",
                     "rescale": "0,0.004",
@@ -632,11 +668,11 @@
         {
             "collection_id": "bio-oracle-depthmean-phyc-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
-            "group": "Ocean Environment (Bio-ORACLE)",
+            "group": "Benthic Environment (Bio-ORACLE 3.0)",
             "assets": [
                 {
                     "id": "phyc-mean-cog",
-                    "display_name": "Primary Productivity",
+                    "display_name": "Benthic Productivity",
                     "visible": false,
                     "colormap": "ylgn",
                     "rescale": "0,2",
@@ -682,6 +718,7 @@
                 {
                     "id": "tpi-cog",
                     "display_name": "Topographic Position Index",
+                    "sidebar": false,
                     "visible": false,
                     "colormap": "rdbu_r",
                     "rescale": "-150,150",
@@ -697,6 +734,7 @@
                 {
                     "id": "tri-cog",
                     "display_name": "Terrain Ruggedness Index",
+                    "sidebar": false,
                     "visible": false,
                     "colormap": "inferno",
                     "rescale": "0,470",
@@ -708,6 +746,7 @@
             "collection_id": "seafloor-carbon-flux-avg",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
             "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "seafloor-carbon-flux-avg-cog",
@@ -723,6 +762,7 @@
             "collection_id": "seafloor-carbon-flux-min",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
             "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "seafloor-carbon-flux-min-cog",
@@ -738,6 +778,7 @@
             "collection_id": "seafloor-carbon-flux-max",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
             "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "seafloor-carbon-flux-max-cog",
@@ -753,6 +794,7 @@
             "collection_id": "woa23-temperature-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "temperature-0m-cog",
@@ -768,6 +810,7 @@
             "collection_id": "woa23-salinity-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "salinity-0m-cog",
@@ -783,6 +826,7 @@
             "collection_id": "woa23-oxygen-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-0m-cog",
@@ -798,6 +842,7 @@
             "collection_id": "woa23-oxygen-saturation-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-saturation-0m-cog",
@@ -813,6 +858,7 @@
             "collection_id": "woa23-aou-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "aou-0m-cog",
@@ -828,6 +874,7 @@
             "collection_id": "woa23-nitrate-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "nitrate-0m-cog",
@@ -843,6 +890,7 @@
             "collection_id": "woa23-phosphate-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "phosphate-0m-cog",
@@ -858,6 +906,7 @@
             "collection_id": "woa23-silicate-0m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-0m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 0 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "silicate-0m-cog",
@@ -873,6 +922,7 @@
             "collection_id": "woa23-temperature-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "temperature-200m-cog",
@@ -888,6 +938,7 @@
             "collection_id": "woa23-salinity-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "salinity-200m-cog",
@@ -903,6 +954,7 @@
             "collection_id": "woa23-oxygen-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-200m-cog",
@@ -918,6 +970,7 @@
             "collection_id": "woa23-oxygen-saturation-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-saturation-200m-cog",
@@ -933,6 +986,7 @@
             "collection_id": "woa23-aou-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "aou-200m-cog",
@@ -948,6 +1002,7 @@
             "collection_id": "woa23-nitrate-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "nitrate-200m-cog",
@@ -963,6 +1018,7 @@
             "collection_id": "woa23-phosphate-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "phosphate-200m-cog",
@@ -978,6 +1034,7 @@
             "collection_id": "woa23-silicate-200m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-200m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 200 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "silicate-200m-cog",
@@ -993,6 +1050,7 @@
             "collection_id": "woa23-temperature-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "temperature-1000m-cog",
@@ -1008,6 +1066,7 @@
             "collection_id": "woa23-salinity-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "salinity-1000m-cog",
@@ -1023,6 +1082,7 @@
             "collection_id": "woa23-oxygen-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-1000m-cog",
@@ -1038,6 +1098,7 @@
             "collection_id": "woa23-oxygen-saturation-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "oxygen-saturation-1000m-cog",
@@ -1053,6 +1114,7 @@
             "collection_id": "woa23-aou-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "aou-1000m-cog",
@@ -1068,6 +1130,7 @@
             "collection_id": "woa23-nitrate-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "nitrate-1000m-cog",
@@ -1083,6 +1146,7 @@
             "collection_id": "woa23-phosphate-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "phosphate-1000m-cog",
@@ -1098,6 +1162,7 @@
             "collection_id": "woa23-silicate-1000m",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-1000m/stac-collection.json",
             "group": "Ocean Properties (WOA23, 1000 m)",
+            "sidebar": false,
             "assets": [
                 {
                     "id": "silicate-1000m-cog",
