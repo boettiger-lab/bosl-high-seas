@@ -24,11 +24,16 @@ STAC catalog/collection URLs, so the layer file itself has to differ. **Any edit
 ```bash
 sed -e 's|https://s3-west\.nrp-nautilus\.io|https://minio.carlboettiger.info|g' \
     -e 's|https://duckdb-mcp\.nrp-nautilus\.io/mcp|https://duckdb-mcp.carlboettiger.info/mcp|g' \
+    -e 's|"titiler_url": "https://titiler\.nrp-nautilus\.io"|"titiler_url": "https://titiler.carlboettiger.info"|' \
     layers-input.json > layers-input.cirrus.json
 ```
 
 The cirrus initContainer copies it over `layers-input.json` in the nginx html dir.
-`titiler_url` still points at NRP — cirrus has no titiler.
+
+**All three expressions are required.** cirrus has its own titiler at
+`https://titiler.carlboettiger.info` (verified healthy), and that is what the committed mirror
+uses. Regenerating with only the first two expressions silently repoints every cirrus raster
+tile request at NRP.
 
 ### Deploying to cirrus
 
