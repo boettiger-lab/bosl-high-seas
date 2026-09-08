@@ -244,6 +244,7 @@ p.lede { font-size: 1.05rem; color: var(--ink-soft); }
         <li><em>"What is the combined area of all high seas MPA candidates?"</em></li>
         <li><em>"How does 2024 fishing effort vary across seafloor geomorphological features?"</em></li>
         <li><em>"If every MPA candidate were implemented, how many hours of 2024 fishing effort would fall within their boundaries?"</em></li>
+        <li><em>"Show marine species occurrence density in the high seas"</em>, <em>"Which marine taxa are recorded near the Mid-Atlantic Ridge?"</em></li>
     </ul>
 
     <div class="callout">
@@ -335,6 +336,8 @@ p.lede { font-size: 1.05rem; color: var(--ink-soft); }
     </div>
 
     <p style="margin-top: 1.6rem;">Browse the full STAC catalog at <a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-data/stac/catalog.json" target="_blank" rel="noopener">radiantearth.github.io / stac-browser</a> to explore additional datasets not yet enabled in the app.</p>
+
+    <p><strong>Species occurrence records have no map layer, but the assistant can query and map them on request.</strong> Marine occurrence records are not held separately: <a href="https://obis.org" target="_blank" rel="noopener">OBIS</a>, the Ocean Biodiversity Information System, is a network within <a href="https://www.gbif.org" target="_blank" rel="noopener">GBIF</a>, so OBIS-published records are part of the global <a href="https://radiantearth.github.io/stac-browser/#/external/s3-west.nrp-nautilus.io/public-gbif/stac-collection.json" target="_blank" rel="noopener">GBIF occurrence catalog</a> (3.5 billion records, indexed to H3 hexagons) and the assistant can restrict a query to the OBIS subset. Ask for marine occurrence density or which taxa are recorded in an area and it will build the hex layer on the fly. Occurrence counts measure <em>survey effort</em>: in the open ocean the densest cells are research-cruise transects and eDNA sampling programmes, so they show where sampling happened at least as much as where life is concentrated.</p>
 </section>
 
 <div class="foot">
