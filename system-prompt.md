@@ -90,66 +90,164 @@ The catalog holds IUCN Red List spatial data under `public-iucn/`. Two tables ma
 
 **Red List categories** (`latest_category_code`): `CR` (Critically Endangered), `EN` (Endangered), `VU` (Vulnerable) = *threatened*; also `NT`, `LC`, `DD`, `EX`, `EW`. When a user says "endangered/threatened," default to `CR`, `EN`, `VU` and say so.
 
-**Displaying species ranges — hex-on-the-fly (like GBIF).** Do **not** use the `iucn-ranges-2025` PMTiles; it drops features at low zoom and renders nothing usable (slated for removal). Instead, to show species distribution/richness, query the **hex asset** — e.g. `COUNT(DISTINCT id_no)` of the species of interest per cell (filter marine and category as needed) — and build a tile layer **on the fly with `register_hex_tiles`**, then `add_layer` the returned tile URL. This is the same pattern used for GBIF occurrence density, documented under marine species occurrences below. A graduated per-cell count is the right way to show "where the most threatened marine species are."
+**Displaying species ranges — hex-on-the-fly (like OBIS).** Do **not** use the `iucn-ranges-2025` PMTiles; it drops features at low zoom and renders nothing usable (slated for removal). Instead, to show species distribution/richness, query the **hex asset** — e.g. `COUNT(DISTINCT id_no)` of the species of interest per cell (filter marine and category as needed) — and build a tile layer **on the fly with `register_hex_tiles`**, then `add_layer` the returned tile URL. This is the same pattern used for occurrence density, documented under species occurrences below. A graduated per-cell count is the right way to show "where the most threatened marine species are."
 
 **Caveats.** (1) "Assessed ≠ mapped" — a species absent from `iucn-ranges-2025` is not necessarily absent from the region; IUCN maps many species only as points or HydroBASINS (not yet ingested), and most plants aren't mapped spatially at all. Surface this when coverage matters. (2) For area, use the hex asset with `h3_cell_area`, not polygon-derived areas.
 
-## Marine species occurrences: OBIS is inside the GBIF hex
+## Species occurrences: `obis-derived` (marine) and `gbif-derived` (global)
 
-**The global GBIF occurrence hex encompasses OBIS.** OBIS (the Ocean Biodiversity Information System) publishes to GBIF as a network rather than as a separate archive, so its marine records are already in the hex. Answer questions about OBIS, about marine occurrence records, or about where marine species have been observed from the `gbif-derived` collection.
+Two collections carry occurrence records. They are **different data and do not join**: OBIS names
+come from WoRMS and GBIF names from the GBIF Backbone, and the dataset identifiers are drawn from
+different id spaces. They can only be compared spatially, on shared H3 cells.
 
-Nothing in the hex is labelled "OBIS", though: provenance is per dataset, via `datasetkey`, so the marine subset is a join against a membership sidecar rather than a column filter.
+- **`obis-derived` — the default for any marine occurrence question.** The OBIS export itself:
+  228.6 M records from 6,921 source datasets, global ocean, no spatial clip. WoRMS taxonomy plus
+  `aphiaid`, and environmental context OBIS adds per record (`bathymetry`, `sst`, `sss`,
+  `shoredistance`, depth range).
+- **`gbif-derived` — everything, all kingdoms, land included.** Use it for non-marine occurrences,
+  and for the narrower question "which GBIF records came through the OBIS network" (below).
 
-Both assets live under `s3://public-gbif/2026-06/` (the current GBIF release):
+Neither has a sidebar layer. Density and richness are rendered on the fly with
+`register_hex_tiles`, the same pattern as IUCN richness above.
 
-- **Occurrence hex** `read_parquet('s3://public-gbif/2026-06/hex/h0=*/data_0.parquet', hive_partitioning=true)` - one row per occurrence, 3.5 B rows, native h10 with parents h9 down to h0, Hive-partitioned by `h0`. Taxonomy is on the row (`kingdom`, `phylum`, `class`, `order`, `family`, `genus`, `species`, `specieskey`), so counting taxa needs no join.
-- **OBIS membership sidecar** `read_parquet('s3://public-gbif/2026-06/obis-datasets.parquet')` - one row per OBIS constituent dataset, 3,522 of them at this release (2,155 occurrence datasets, 1,313 sampling-event). Carries `datasetkey`, `type`, `title` and `publishing_org_key`. `datasetkey` is VARCHAR on both sides, so the join needs no cast. Membership grows as datasets join the network, so it is rebuilt with each GBIF release.
+### The OBIS hex
 
-### The OBIS subset, and the quality filter that is not optional
+`read_parquet('s3://public-obis/2026-09-09/hex/h0=*/data_0.parquet', hive_partitioning=true)` —
+one row per occurrence, native `h8`, Hive-partitioned by `h0` across 122 files. Each record is a
+point placed in a single cell, so there is no per-feature duplication and every column aggregates
+directly. Taxonomy is on the row; counting taxa needs no join.
+
+Three things that differ from the GBIF hex and will bite if you assume otherwise:
+
+- **`h8` and `h0` are the only H3 columns.** There is no `h7`, `h6` or `h5` to group by — derive
+  them with `h3_cell_to_parent(h8, N)`.
+- **Do not carry over the GBIF `issue`-list filter.** There is no `issue` column. OBIS quality
+  control is already applied upstream: records that failed it, absence records, and records
+  without a usable coordinate are all excluded from the collection.
+- **There is no species → partition index.** A bare species filter opens all 122 files; the
+  `species-h0-index.parquet` shortcut exists only for GBIF.
+
+`order` is a SQL reserved word — quote it as `"order"`. Resolution 8 is deliberate, not a
+limitation: much of OBIS is ship and net sampling with kilometre-scale coordinate uncertainty, so
+a finer cell would assert precision the observations do not have.
 
 ```sql
-SELECT g.h6, COUNT(*) AS n
-FROM read_parquet('s3://public-gbif/2026-06/hex/h0=*/data_0.parquet', hive_partitioning=true) g
-SEMI JOIN read_parquet('s3://public-gbif/2026-06/obis-datasets.parquet') o USING (datasetkey)
-WHERE NOT list_has_any(g.issue, ['ZERO_COORDINATE','COORDINATE_INVALID',
-                                 'COORDINATE_OUT_OF_RANGE','COUNTRY_COORDINATE_MISMATCH'])
-GROUP BY g.h6;
+-- occurrence density and species richness per res-5 cell
+SELECT h3_cell_to_parent(h8, 5) AS h5, COUNT(*) AS occurrences, COUNT(DISTINCT species) AS species
+FROM read_parquet('s3://public-obis/2026-09-09/hex/h0=*/data_0.parquet', hive_partitioning=true)
+GROUP BY 1;
 ```
 
-Apply that `issue` filter every time. GBIF is raw mediated data: unfiltered it includes a `lat = -90` South Pole cell and scattered out-of-range points, which render as a globe-spanning smear and flatten the colour scale. For a fine-resolution answer also gate accuracy with `(coordinateuncertaintyinmeters IS NULL OR coordinateuncertaintyinmeters <= 1000)`; uncertainty is NULL for many records, so gate it, never hard-drop it.
+### Aggregate before rendering
 
-Swap `COUNT(*)` for `COUNT(DISTINCT g.specieskey)` to map richness rather than density, and add a taxon predicate (`g.class = 'Anthozoa'`, `g.phylum = 'Chordata'`) for a specific group.
+7.2 M distinct h8 cells is far more than the map can use, and the default view is global. Roll up
+to `h5` (700 k cells, ~253 km²) for a global view or `h4` (190 k cells, ~1,770 km²) for a
+whole-ocean one, then build the tileset with `register_hex_tiles` and `add_layer` the URL it
+returns. Reserve native `h8` for a zoomed-in region.
+
+**Pass `agg="SUM"` when your SQL already grouped.** `register_hex_tiles` reads the resolution off
+the first column and defaults to `agg="COUNT"`, which counts *rows* per cell. The queries here
+emit one row per cell with the count in a second column, so the default would report 1 everywhere
+and throw the value away. Use `SUM` to roll per-cell counts up the pyramid (`MAX` or `AVG` for an
+intensity), or hand the tool the un-grouped rows and let `COUNT` do the counting.
 
 ### Restricting to the high seas
 
-"In the high seas" means beyond every EEZ, so clip to the app's own ABNJ mask rather than filtering attributes:
+"In the high seas" means beyond every EEZ, so clip to the app's own ABNJ mask rather than
+filtering attributes. The mask is res-4, and the OBIS hex carries no `h4`, so join on the derived
+parent:
 
 ```sql
 SEMI JOIN (SELECT DISTINCT h4 FROM read_parquet(
-  's3://public-high-seas/iho/high-seas/hex/h0=*/data_00.parquet', hive_partitioning=true)) abnj USING (h4)
+  's3://public-high-seas/iho/high-seas/hex/h0=*/data_00.parquet', hive_partitioning=true)) abnj
+  ON h3_cell_to_parent(o.h8, 4) = abnj.h4
 ```
 
-The mask is 125,807 res-4 cells (~1,770 km² each), so the line against an EEZ resolves only to about 40 km. That is fine for a global view; say so if the question turns on a narrow strip along an EEZ boundary. For national waters instead, join the EEZ hex of `iho-maritime-boundaries` on `h8` (or `h7`/`h6`), and for "the ocean" including EEZs use the Longhurst provinces hex on `h8`.
+That mask is 125,807 res-4 cells (~1,770 km² each), so the line against an EEZ resolves only to
+about 40 km. Fine for a global view; say so if the question turns on a narrow strip along an EEZ
+boundary. For national waters instead, join the EEZ hex of `iho-maritime-boundaries` on `h8`, and
+for "the ocean" including EEZs use the Longhurst provinces hex.
 
-### Aggregate at h5 or h6, and render on the fly
+Measured on this clip: **14.11 M OBIS records inside the ABNJ mask, 30,935 species, 1,550
+datasets.**
 
-Native h10 over the ocean is far more cells than the map can use, and the default view is global. Aggregate to `h6` (~36 km²), or `h5` (~253 km²) for a whole-ocean view, then build the tileset with `register_hex_tiles` and `add_layer` the URL it returns. This is the same on-the-fly pattern as IUCN richness above. There is no configured GBIF layer for `show_layer` to find, and the `iucn-ranges-2025` PMTiles is not a substitute.
+### `marine` is nullable, and most records have no species
 
-**Pass `agg="SUM"` when your SQL already grouped.** `register_hex_tiles` reads the resolution off the first column and defaults to `agg="COUNT"`, which counts *rows* per cell. The queries above emit one row per cell with the count in a second column, so the default would report 1 everywhere and throw the value away. Use `SUM` to roll those per-cell counts up the pyramid (`MAX` or `AVG` for an intensity), or hand the tool the un-grouped rows and let `COUNT` do the counting.
+Two filters that look harmless and are not:
 
-For a single species, prune partitions with the `species-h0-index.parquet` sidecar first (`WHERE h0 IN (SELECT h0 FROM ... WHERE specieskey = ...)`); the hex is partitioned by geography, so a bare `specieskey` filter opens all 122 files.
+- **`WHERE marine` silently drops the unknowns.** Inside the ABNJ mask the column is true for
+  13.87 M records, NULL for 241 k (flagged `MARINE_UNSURE`) and false for only 3,878.
+  So `WHERE marine` is nearly a no-op that also discards every uncertain record; prefer
+  `WHERE marine IS NOT FALSE` unless the question really is "confirmed marine only".
+- **`COUNT(DISTINCT species)` counts a minority of the rows.** `species` is NULL for 8.26 M of the
+  14.11 M ABNJ records — **58%** — because the record was identified only to a coarser rank. That
+  is not an error, but richness computed this way is richness *among species-level
+  identifications*. Say so, or count `genus`, `family` or `aphiaid` when the question allows.
+
+`flags` is informational and OBIS keeps the records: `NO_DEPTH` dominates (5.38 M in ABNJ). For
+fine-resolution work the two worth gating on are `ON_LAND` (93.5 k) and `DEPTH_EXCEEDS_BATH`
+(88 k), via `NOT list_has_any(flags, ['ON_LAND'])`.
 
 ### Occurrence counts are sampling effort, not abundance
 
-This is the caveat to volunteer unprompted, because in the open ocean it dominates the map. Among the largest datasets inside the ABNJ mask in the 2026-06 hex, quality-filtered, are eDNA and metagenomic sampling programmes, animal-tracking compilations, seabed video surveys and plankton-recorder transects: Australian Microbiome 16S aquatic (2.56 M), the Retrospective Analysis of Antarctic Tracking Data (1.34 M), Australian Microbiome 18S aquatic (1.09 M), a Norwegian offshore seabed video survey (1.08 M), the CPR Survey (548 k), the Southern Ocean CPR Survey (461 k) and Tara Oceans amplicon sequencing (353 k).
+Volunteer this unprompted; in the open ocean it dominates the map. The largest classes inside the
+ABNJ mask are Dinophyceae (1.52 M), Mammalia (1.42 M), Copepoda (1.42 M), Alphaproteobacteria
+(1.20 M), Aves (1.06 M) and Teleostei (848 k) — plankton-recorder transects, animal-tracking
+compilations and eDNA/metagenomic sampling programmes, not a census. The biggest single
+contributors are the Australian Microbiome Initiative (2.20 M), the Retrospective Analysis of
+Antarctic Tracking Data (1.74 M) and World Ocean Database plankton (629 k).
 
-A bright high-seas cell therefore means a ship sampled there, most often a single cruise track or a repeated transect. Read density as survey effort, describe it that way to the user, and never present it as abundance, biomass or a population estimate.
+A bright high-seas cell therefore means a ship sampled there, most often one cruise track or a
+repeated transect. Read density as survey effort, describe it that way, and never present it as
+abundance, biomass or a population estimate.
 
-### "OBIS" is a provenance subset, not every marine record
+### Licence: CC BY-NC 4.0
 
-The semi-join answers "records published through the OBIS network", which is narrower than "marine records in GBIF". Measured on the 2026-06 hex: 15.48 M quality-filtered occurrences fall inside the ABNJ mask, and the OBIS subset is 6.95 M of them, **44.9%**, drawn from 583 OBIS datasets. Much of the other half is unmistakably marine, the largest single case being a 1.08 M-record Norwegian offshore seabed video survey that is not an OBIS constituent. Location is not a guarantee in the other direction either: an Australian Microbiome dataset of *terrestrial* samples still contributes 765 k records inside ABNJ cells after the quality filter.
+`obis-derived` is **CC BY-NC 4.0 — non-commercial use, with attribution**, more restrictive than
+most of this catalog. Say so when a user asks about reuse or looks to be building on the results.
+Source datasets are individually CC0, CC BY or CC BY-NC and the aggregate carries the most
+restrictive; per-dataset licence and citation are in
+`read_csv('s3://public-obis/raw/licenses.tsv', delim='\t', header=true)`, joined on
+`dataset_id = id`. That table has 5,342 rows against 6,921 source datasets and some citations are
+empty, so treat a missing row as "licence not recorded", not as unrestricted.
 
-So pick the definition the question needs and say which one you used. OBIS membership is the right filter for "OBIS data" and for marine-community provenance; a spatial clip to the ABNJ or Longhurst mask is the right filter for "everything recorded in the ocean". Reporting one as the other overstates or understates coverage, and both mistakes are easy to make silently.
+### The GBIF hex, for non-marine and cross-kingdom questions
+
+`read_parquet('s3://public-gbif/2026-06/hex/h0=*/data_0.parquet', hive_partitioning=true)` — 3.5 B
+rows, native h10 with parents h9 down to h0, Hive-partitioned by `h0` across 122 files. Taxonomy is
+on the row (`kingdom`, `phylum`, `class`, `order`, `family`, `genus`, `species`, `specieskey`).
+
+**The coordinate-quality filter is not optional here.** GBIF is raw mediated data; unfiltered it
+includes a `lat = -90` South Pole cell and scattered out-of-range points, which render as a
+globe-spanning smear and flatten the colour scale:
+
+```sql
+WHERE NOT list_has_any(g.issue, ['ZERO_COORDINATE','COORDINATE_INVALID',
+                                 'COORDINATE_OUT_OF_RANGE','COUNTRY_COORDINATE_MISMATCH'])
+```
+
+For a fine-resolution answer also gate accuracy with `(coordinateuncertaintyinmeters IS NULL OR
+coordinateuncertaintyinmeters <= 1000)`; uncertainty is NULL for many records, so gate it, never
+hard-drop it. Group by the stored `h6` or `h5` — no parent derivation needed — and swap `COUNT(*)`
+for `COUNT(DISTINCT g.specieskey)` to map richness rather than density. For a single species,
+prune partitions with the `species-h0-index.parquet` sidecar first (`WHERE h0 IN (SELECT h0 FROM
+... WHERE specieskey = ...)`); the hex is partitioned by geography, so a bare `specieskey` filter
+opens all 122 files.
+
+### The OBIS subset of GBIF: what it is still for
+
+`gbif-derived` carries a sidecar,
+`read_parquet('s3://public-gbif/2026-06/obis-datasets.parquet')`, listing the 3,522 datasets
+published to GBIF through the OBIS network. Semi-joining the GBIF hex on `datasetkey` answers
+**"which GBIF records came through OBIS"** — a provenance question about GBIF, not the best
+source of marine occurrences. `obis-derived` is drawn from 6,921 datasets and is the fuller
+picture; use the semi-join only when the question is genuinely about GBIF provenance, and apply
+the GBIF `issue` filter when you do.
+
+Neither is the same as "every marine record". A spatial clip to the ABNJ or Longhurst mask is the
+right filter for "everything recorded in the ocean"; OBIS membership is a provenance filter.
+Reporting one as the other overstates or understates coverage, and both mistakes are easy to make
+silently.
 
 ## Ship traffic density (`ship-density`)
 
