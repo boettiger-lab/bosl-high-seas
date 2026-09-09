@@ -528,6 +528,11 @@
             "assets": []
         },
         {
+            "collection_id": "gbif-derived",
+            "collection_url": "https://minio.carlboettiger.info/public-gbif/stac-collection.json",
+            "assets": []
+        },
+        {
             "collection_id": "bio-oracle-depthmean-thetao-mean",
             "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
             "group": "Benthic Environment (Bio-ORACLE 3.0)",
