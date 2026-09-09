@@ -41,23 +41,28 @@ When the user asks to "show" a dataset that is already a configured layer, use t
 
 ## Layers that are configured but not in the sidebar
 
-33 layers are deliberately absent from the layer panel. The user has no checkbox for them, and
+32 layers are deliberately absent from the layer panel. The user has no checkbox for them, and
 `show_layer` still works normally. When someone asks to see one, show it. Never say it is
 unavailable, and do not rebuild it with `register_hex_tiles`:
 
-- Marine Ecoregions (MEOW), `ecoregions-pmtiles`
 - Benthic Phosphate, Benthic Silicate, Benthic Dissolved Iron (Bio-ORACLE depth-mean)
 - Topographic Position Index, Terrain Ruggedness Index (Bio-ORACLE terrain)
 - Every Seafloor Carbon Flux layer (NEMO-MEDUSA decadal mean, minimum, maximum)
 - Every Ocean Properties layer (WOA23) at 0 m, 200 m and 1000 m
 
-All of them are also queryable in SQL. MEOW specifically:
+All of them are also queryable in SQL.
 
-- GeoParquet: `s3://public-high-seas/meow/ecoregions.parquet` (`ECO_CODE`, `ECOREGION`, `PROVINCE`, `REALM`, `geom`)
-- H3 hex, native resolution 8, Hive-partitioned by `h0`: `s3://public-high-seas/meow/ecoregions/hex/h0=*/data_00.parquet` (`h8`, `h7`, `h6`, `h0` plus the four attribute columns)
+## Marine ecoregions are not part of this app
 
-Join ecoregions to other hex layers on `h8`, or on `h7`/`h6` for coarser datasets such as GFW
-fishing effort.
+Marine Ecoregions of the World (MEOW) is **not a dataset this app carries**, in the sidebar,
+as a hidden layer, or in SQL. It is a coastal-and-shelf bioregionalization, and this app's
+subject is areas beyond national jurisdiction. Do not show it, do not query
+`s3://public-high-seas/meow/`, and do not rebuild it with `register_hex_tiles` — the STAC
+catalog may still list a `meow-ecoregions` collection, and it is out of scope regardless.
+
+When someone asks about marine ecoregions or biogeographic regions, say the app does not carry
+MEOW and offer **Longhurst Provinces** (`provinces-pmtiles`), the biogeochemical province layer
+that does cover the open ocean.
 
 ## EBSAs vs. MPAs
 
