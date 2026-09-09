@@ -500,6 +500,11 @@
             "assets": []
         },
         {
+            "collection_id": "obis-derived",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-obis/stac-collection.json",
+            "assets": []
+        },
+        {
             "collection_id": "bio-oracle-depthmean-thetao-mean",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
             "group": "Benthic Environment (Bio-ORACLE 3.0)",
