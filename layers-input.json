@@ -385,6 +385,62 @@
             ]
         },
         {
+            "collection_id": "unep-wcmc-coral-reefs-polygons",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
+            "assets": [
+                {
+                    "id": "polygons-pmtiles",
+                    "alias": "coral-reefs",
+                    "display_name": "Warm-water Coral Reefs (UNEP-WCMC)",
+                    "group": "Coastal Habitats",
+                    "visible": false,
+                    "default_style": { "fill-color": "#FF7F50", "fill-opacity": 0.7 },
+                    "outline_style": { "line-color": "#C0392B", "line-width": 0.5 },
+                    "tooltip_fields": ["NAME", "DATA_TYPE", "VERIF", "GIS_AREA_K"]
+                }
+            ]
+        },
+        {
+            "collection_id": "unep-wcmc-seagrass-polygons",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/polygons/stac-collection.json",
+            "assets": [
+                {
+                    "id": "polygons-pmtiles",
+                    "alias": "seagrass-polygons",
+                    "display_name": "Seagrass Beds (UNEP-WCMC)",
+                    "toggle_group": "Seagrass (UNEP-WCMC)",
+                    "group": "Coastal Habitats",
+                    "visible": false,
+                    "default_style": { "fill-color": "#2E8B57", "fill-opacity": 0.7 },
+                    "outline_style": { "line-color": "#1B5E20", "line-width": 0.5 },
+                    "tooltip_fields": ["vernacular", "scientific", "habitat", "AREA_SQKM"]
+                }
+            ]
+        },
+        {
+            "collection_id": "unep-wcmc-seagrass-points",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/points/stac-collection.json",
+            "assets": [
+                {
+                    "id": "points-pmtiles",
+                    "alias": "seagrass-points",
+                    "display_name": "Seagrass Point Records (UNEP-WCMC)",
+                    "toggle_group": "Seagrass (UNEP-WCMC)",
+                    "group": "Coastal Habitats",
+                    "visible": false,
+                    "layer_type": "circle",
+                    "default_style": {
+                        "circle-color": "#2E8B57",
+                        "circle-radius": 3,
+                        "circle-stroke-color": "#FFFFFF",
+                        "circle-stroke-width": 0.5,
+                        "circle-opacity": 0.85
+                    },
+                    "tooltip_fields": ["scientific", "GENUS", "VERIF", "eventDate"]
+                }
+            ]
+        },
+        {
             "collection_id": "rfmo-boundaries",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
             "assets": [
