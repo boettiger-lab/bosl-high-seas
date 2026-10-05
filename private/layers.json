@@ -1,0 +1,23 @@
+{
+    "_comment": "Restricted-licence layers added ONLY to the private deployment (#85). Each entry is inserted after the collection named in insert_after. Run scripts/build-private.py after editing this file or layers-input.json.",
+    "collections": [
+        {
+            "insert_after": "ebsa-2023",
+            "collection": {
+                "collection_id": "imma",
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/imma/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "imma-pmtiles",
+                        "display_name": "Important Marine Mammal Areas (IUCN-MMPATF)",
+                        "group": "Designated Areas",
+                        "visible": false,
+                        "default_style": { "fill-color": "#7E57C2", "fill-opacity": 0.3 },
+                        "outline_style": { "line-color": "#4527A0", "line-width": 1 },
+                        "tooltip_fields": ["title", "criteria", "qualifying_sp", "region", "area_sqkm", "year_classified"]
+                    }
+                ]
+            }
+        }
+    ]
+}

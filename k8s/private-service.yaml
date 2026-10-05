@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bosl-high-seas-private
+  namespace: schmidtdse
+  labels:
+    app: bosl-high-seas-private
+spec:
+  type: ClusterIP
+  selector:
+    app: bosl-high-seas-private
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http

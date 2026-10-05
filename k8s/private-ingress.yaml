@@ -1,0 +1,27 @@
+# PRIVATE deployment (#85). The app's nginx enforces basic auth; the ingress
+# only terminates TLS (basic-auth credentials must never travel over plain HTTP).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bosl-high-seas-private-ingress
+  namespace: schmidtdse
+  annotations:
+    haproxy-ingress.github.io/ssl-redirect: "true"
+    haproxy-ingress.github.io/timeout-server: "600s"
+    haproxy-ingress.github.io/timeout-tunnel: "3600s"
+spec:
+  ingressClassName: haproxy
+  tls:
+    - hosts:
+        - high-seas-private.nrp-nautilus.io
+  rules:
+    - host: high-seas-private.nrp-nautilus.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bosl-high-seas-private
+                port:
+                  number: 80
