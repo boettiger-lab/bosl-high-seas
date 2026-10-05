@@ -8,6 +8,7 @@
         "globe": true
     },
     "draw_enabled": true,
+    "upload_enabled": true,
     "auto_approve": true,
     "sidebar": {
         "enabled": true,
