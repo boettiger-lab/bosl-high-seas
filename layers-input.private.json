@@ -400,6 +400,70 @@
             ]
         },
         {
+            "collection_id": "kba-2026-03-sites",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-kba/kba-2026-03/sites/stac-collection.json",
+            "assets": [
+                {
+                    "id": "sites-pmtiles",
+                    "display_name": "Key Biodiversity Areas, marine and coastal (KBA Partnership)",
+                    "group": "Designated Areas",
+                    "visible": false,
+                    "default_style": {
+                        "fill-color": [
+                            "match",
+                            [
+                                "get",
+                                "realm"
+                            ],
+                            "marine",
+                            "#00897B",
+                            "coastal",
+                            "#80CBC4",
+                            "#BDBDBD"
+                        ],
+                        "fill-opacity": 0.4
+                    },
+                    "outline_style": {
+                        "line-color": "#004D40",
+                        "line-width": 0.75
+                    },
+                    "default_filter": [
+                        "match",
+                        [
+                            "get",
+                            "realm"
+                        ],
+                        [
+                            "marine",
+                            "coastal"
+                        ],
+                        true,
+                        false
+                    ],
+                    "legend_type": "categorical",
+                    "legend_classes": [
+                        {
+                            "label": "Marine (90% or more at sea)",
+                            "color": "#00897B"
+                        },
+                        {
+                            "label": "Coastal (10-90% at sea)",
+                            "color": "#80CBC4"
+                        }
+                    ],
+                    "tooltip_fields": [
+                        "IntName",
+                        "Country",
+                        "KbaClass",
+                        "IbaStatus",
+                        "realm",
+                        "marine_frac",
+                        "AreaKM2"
+                    ]
+                }
+            ]
+        },
+        {
             "collection_id": "longhurst-provinces",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/longhurst/stac-collection.json",
             "assets": [

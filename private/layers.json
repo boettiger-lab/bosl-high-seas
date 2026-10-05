@@ -12,9 +12,89 @@
                         "display_name": "Important Marine Mammal Areas (IUCN-MMPATF)",
                         "group": "Designated Areas",
                         "visible": false,
-                        "default_style": { "fill-color": "#7E57C2", "fill-opacity": 0.3 },
-                        "outline_style": { "line-color": "#4527A0", "line-width": 1 },
-                        "tooltip_fields": ["title", "criteria", "qualifying_sp", "region", "area_sqkm", "year_classified"]
+                        "default_style": {
+                            "fill-color": "#7E57C2",
+                            "fill-opacity": 0.3
+                        },
+                        "outline_style": {
+                            "line-color": "#4527A0",
+                            "line-width": 1
+                        },
+                        "tooltip_fields": [
+                            "title",
+                            "criteria",
+                            "qualifying_sp",
+                            "region",
+                            "area_sqkm",
+                            "year_classified"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "insert_after": "imma",
+            "collection": {
+                "collection_id": "kba-2026-03-sites",
+                "collection_url": "https://s3-west.nrp-nautilus.io/public-kba/kba-2026-03/sites/stac-collection.json",
+                "assets": [
+                    {
+                        "id": "sites-pmtiles",
+                        "display_name": "Key Biodiversity Areas, marine and coastal (KBA Partnership)",
+                        "group": "Designated Areas",
+                        "visible": false,
+                        "default_style": {
+                            "fill-color": [
+                                "match",
+                                [
+                                    "get",
+                                    "realm"
+                                ],
+                                "marine",
+                                "#00897B",
+                                "coastal",
+                                "#80CBC4",
+                                "#BDBDBD"
+                            ],
+                            "fill-opacity": 0.4
+                        },
+                        "outline_style": {
+                            "line-color": "#004D40",
+                            "line-width": 0.75
+                        },
+                        "default_filter": [
+                            "match",
+                            [
+                                "get",
+                                "realm"
+                            ],
+                            [
+                                "marine",
+                                "coastal"
+                            ],
+                            true,
+                            false
+                        ],
+                        "legend_type": "categorical",
+                        "legend_classes": [
+                            {
+                                "label": "Marine (90% or more at sea)",
+                                "color": "#00897B"
+                            },
+                            {
+                                "label": "Coastal (10-90% at sea)",
+                                "color": "#80CBC4"
+                            }
+                        ],
+                        "tooltip_fields": [
+                            "IntName",
+                            "Country",
+                            "KbaClass",
+                            "IbaStatus",
+                            "realm",
+                            "marine_frac",
+                            "AreaKM2"
+                        ]
                     }
                 ]
             }
