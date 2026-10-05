@@ -2,7 +2,7 @@
 
 ## Deployment model: public repo, git-clone initContainer
 
-This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.yaml`) runs `git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git` on each pod start and copies `index.html`, `layers-input.json`, and `system-prompt.md` into the nginx html dir. Pod content tracks `main`. The `k8s/configmap.yaml` ConfigMap holds only the LLM model list and the nginx reverse-proxy template — **not** website content.
+This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.yaml`) runs `git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git` on each pod start and copies `index.html`, `docs.html`, `bosl-logo.svg`, `layers-input.json`, and `system-prompt.md` into the nginx html dir. Pod content tracks `main`. The `k8s/configmap.yaml` ConfigMap holds only the LLM model list and the nginx reverse-proxy template — **not** website content.
 
 ## Two deployments
 

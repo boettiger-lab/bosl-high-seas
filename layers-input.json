@@ -15,6 +15,24 @@
         "title": "High Seas Explorer",
         "chat_title": "Data Assistant"
     },
+    "header": {
+        "enabled": true,
+        "mode": "solid",
+        "title": "High Seas Explorer",
+        "partner": {
+            "src": "bosl-logo.svg",
+            "alt": "Benioff Ocean Science Laboratory",
+            "href": "https://bosl.ucsb.edu/"
+        }
+    },
+    "theme": {
+        "mode": "dark",
+        "primary": "#1b78ab",
+        "surface": "#021f2e",
+        "text": "#e6f3fa",
+        "panel": "rgba(2, 31, 46, 0.92)",
+        "backdrop": "#01141e"
+    },
     "default_basemap": "natgeo",
     "custom_basemap": {
         "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
