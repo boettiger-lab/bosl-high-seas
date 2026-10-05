@@ -7,6 +7,9 @@
 #     (minio.carlboettiger.info) and queries duckdb-mcp.carlboettiger.info
 #   - PROXY_KEY comes from the vllm-api-key secret (see AGENTS.md for the
 #     one-time copy from the vllm namespace), not open-llm-proxy-secrets
+#
+# SCALED DOWN: the app runs on NRP only. replicas is 0 so that re-applying
+# this file does not bring cirrus back by accident.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +18,7 @@ metadata:
   labels:
     app: bosl-high-seas
 spec:
-  replicas: 1
+  replicas: 0
   strategy:
     type: RollingUpdate
     rollingUpdate:

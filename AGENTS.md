@@ -4,9 +4,16 @@
 
 This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.yaml`) runs `git clone --depth 1 https://github.com/boettiger-lab/bosl-high-seas.git` on each pod start and copies `index.html`, `docs.html`, `bosl-logo.svg`, `layers-input.json`, and `system-prompt.md` into the nginx html dir. Pod content tracks `main`. The `k8s/configmap.yaml` ConfigMap holds only the LLM model list and the nginx reverse-proxy template — **not** website content.
 
-## Two deployments
+## Deployments: NRP only
 
-| | NRP Nautilus (prod) | cirrus (local k3s) |
+> **cirrus is scaled down.** Production runs on NRP Nautilus only; deploy there and nowhere
+> else. The cirrus manifests (`k8s/cirrus-*.yaml`, `replicas: 0`) and `layers-input.cirrus.json`
+> are kept so it can be revived, but they are not maintained. Before reviving it, regenerate the
+> mirror (below) and set `replicas: 1`.
+
+The table records both setups for reference:
+
+| | NRP Nautilus (prod) | cirrus (local k3s, scaled down) |
 |---|---|---|
 | Manifests | `k8s/{configmap,deployment,service,ingress}.yaml` | `k8s/cirrus-*.yaml` |
 | Namespace | `schmidtdse` | `high-seas` |
@@ -18,8 +25,8 @@ This repo is **public**. The pod's `git-clone` initContainer (`k8s/deployment.ya
 
 **`layers-input.cirrus.json` is a committed copy of `layers-input.json`** with the S3
 and MCP hosts rewritten — `config.json` can override `mcp_server_url` but *not* the
-STAC catalog/collection URLs, so the layer file itself has to differ. **Any edit to
-`layers-input.json` must be mirrored there:**
+STAC catalog/collection URLs, so the layer file itself has to differ. While cirrus is scaled
+down, keeping it in sync is optional; regenerate it before reviving cirrus:
 
 ```bash
 sed -e 's|https://s3-west\.nrp-nautilus\.io|https://minio.carlboettiger.info|g' \
@@ -35,7 +42,7 @@ The cirrus initContainer copies it over `layers-input.json` in the nginx html di
 uses. Regenerating with only the first two expressions silently repoints every cirrus raster
 tile request at NRP.
 
-### Deploying to cirrus
+### Deploying to cirrus (only if reviving it)
 
 One-time setup (namespace + a copy of the vLLM API key, which nginx injects into
 the `/api/llm/` Authorization header; secrets can't be read across namespaces):
