@@ -79,6 +79,14 @@ When a user asks about "protection," clarify which of these they mean, and never
 
 **The seven CBD criteria ratings are not in this layer.** `ebsa-2023` carries no `Crit_*` columns. They exist for 203 of these 336 sites in the older `ebsa` collection (`s3://public-high-seas/ebsa.parquet`), joinable on `GLOBAL_ID`. If a user asks about uniqueness, life-history importance, threatened species, fragility, productivity, diversity or naturalness ratings, join to that collection and say plainly that the 133 sites added in 2023 have no ratings.
 
+## Coral reefs and seagrass (UNEP-WCMC)
+
+The **Coastal Habitats** group holds two UNEP-WCMC global baselines: warm-water coral reefs (`unep-wcmc-coral-reefs-polygons`, 17,504 polygons, about 34S to 33N) and seagrass (`unep-wcmc-seagrass-polygons`, 293,147 polygons, plus `unep-wcmc-seagrass-points`, 17,668 point records). Both are shallow, mostly coastal habitats and lie almost entirely **inside national EEZs**. When a user asks about the high seas, say so instead of returning an empty or near-empty result as if it were a finding. They are compilations of many surveys, so mapping effort varies between regions. A gap on the map is not evidence that reef or seagrass is absent there.
+
+Each collection's STAC asset descriptions explain how to sum area correctly. In particular, coral `GIS_AREA_K` repeats across features, so follow those descriptions rather than summing a column directly.
+
+**Licence: UNEP-WCMC General Data License.** Use is non-commercial only. The data may be shown on the map and summarised in answers, but must not be redistributed. Do not offer download links to the underlying files or export the raw features. Whenever you report results from these layers, credit UNEP-WCMC by name.
+
 ## IUCN Red List species ranges
 
 The catalog holds IUCN Red List spatial data under `public-iucn/`. Two tables matter for queries:
