@@ -63,6 +63,37 @@ kubectl rollout restart deployment/bosl-high-seas -n high-seas
 kubectl rollout status deployment/bosl-high-seas -n high-seas
 ```
 
+## Third deployment: private (password-protected) instance (#85)
+
+`https://high-seas-private.nrp-nautilus.io` is the same app plus the **restricted-licence layers**
+(IMMA, KBA) whose hosting agreement requires a password-protected app and exclusion from the
+source.coop mirror. Protection is by licence policy, not cybersecurity: the files themselves sit in
+ordinary `public-*` buckets, and that is accepted under the agreement.
+
+- **Never add a restricted layer to `layers-input.json`.** It goes in `private/layers.json`
+  (with `insert_after`) and its licence notes in `private/system-prompt-addendum.md`.
+- **Generated files** (`layers-input.private.json`, `system-prompt.private.md`,
+  `k8s/private-{configmap,deployment}.yaml`) come from `scripts/build-private.py`. **Re-run it
+  after ANY edit to `layers-input.json`, `system-prompt.md`, `k8s/configmap.yaml` or
+  `k8s/deployment.yaml`**, and commit the output in the same PR, or the private app drifts.
+- **Auth:** nginx `auth_basic` on every path except `/health` (including `/api/llm/`). The
+  htpasswd file comes from the `bosl-high-seas-private-htpasswd` Secret in `schmidtdse`. It is
+  **never committed**. The username is `bosl`, and the passphrase is shared only with approved colleagues.
+- **Rotate the password** (then share the new one out of band):
+  ```bash
+  PP='<new passphrase>'
+  kubectl -n schmidtdse create secret generic bosl-high-seas-private-htpasswd \
+    --from-literal=htpasswd="bosl:$(openssl passwd -apr1 "$PP")" --dry-run=client -o yaml | kubectl apply -f -
+  kubectl -n schmidtdse rollout restart deployment/bosl-high-seas-private
+  ```
+- **Deploy:** same push-then-restart model as prod, using the private manifests:
+  ```bash
+  kubectl apply -f k8s/private-configmap.yaml -f k8s/private-deployment.yaml \
+                -f k8s/private-service.yaml -f k8s/private-ingress.yaml
+  kubectl -n schmidtdse rollout restart deployment/bosl-high-seas-private
+  ```
+  Check: `curl -s -o /dev/null -w '%{http_code}' https://high-seas-private.nrp-nautilus.io/` → `401`.
+
 ## Repo relationship
 
 | Repo | Purpose |
