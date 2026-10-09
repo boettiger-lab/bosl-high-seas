@@ -386,6 +386,35 @@
             ]
         },
         {
+            "collection_id": "deep-submergence-dives",
+            "collection_url": "https://minio.carlboettiger.info/public-high-seas/deep-submergence-dives/stac-collection.json",
+            "assets": [
+                {
+                    "id": "deep-submergence-dives-pmtiles",
+                    "display_name": "Deep-Sea Dives (Bell et al. 2025)",
+                    "group": "Seafloor",
+                    "visible": false,
+                    "layer_type": "circle",
+                    "default_style": {
+                        "circle-color": [
+                            "match", ["get", "Type"],
+                            "HOV", "#E66101",
+                            "ROV", "#5E3C99",
+                            "AUV", "#1B9E77",
+                            "Lander", "#FDB863",
+                            "Camera Tow", "#B2ABD2",
+                            "#888888"
+                        ],
+                        "circle-radius": 3,
+                        "circle-stroke-color": "#FFFFFF",
+                        "circle-stroke-width": 0.5,
+                        "circle-opacity": 0.85
+                    },
+                    "tooltip_fields": ["Type", "Platform", "Institution", "Year", "Depth", "Geomorphology_Description", "Jurisdiction"]
+                }
+            ]
+        },
+        {
             "collection_id": "unep-wcmc-coral-reefs-polygons",
             "collection_url": "https://minio.carlboettiger.info/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
             "assets": [

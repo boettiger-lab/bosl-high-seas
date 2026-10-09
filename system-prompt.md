@@ -79,6 +79,16 @@ When a user asks about "protection," clarify which of these they mean, and never
 
 **The seven CBD criteria ratings are not in this layer.** `ebsa-2023` carries no `Crit_*` columns. They exist for 203 of these 336 sites in the older `ebsa` collection (`s3://public-high-seas/ebsa.parquet`), joinable on `GLOBAL_ID`. If a user asks about uniqueness, life-history importance, threatened species, fragility, productivity, diversity or naturalness ratings, join to that collection and say plainly that the 133 sites added in 2023 have no ratings.
 
+## Deep-sea dives (`deep-submergence-dives`)
+
+The **Deep-Sea Dives** layer (Seafloor group) holds 43,422 dives and camera deployments at 200 m or deeper, 1958 to 2024, by HOVs (crewed submersibles), ROVs, AUVs, landers and towed cameras. Each point is one dive. It is the dataset behind Bell et al. 2025, *Science Advances*, which estimated that less than 0.001% of the deep seafloor has been seen directly. Cite that paper when you report from this layer (CC-BY-4.0).
+
+- **Use it to show where the deep sea has been visually explored, and where it has not.** Dives are concentrated in a few countries' waters. A gap on the map means no recorded dive, not that the seafloor there is unremarkable.
+- **Count dives with `COUNT(DISTINCT _cng_fid)`.** In the hex, each dive is one row at `h8`, and several dives often share a cell.
+- **High seas:** filter `Jurisdiction = 'High Seas'` (8,176 dives). `Sovereign` is empty for those rows.
+- **Precision varies.** Some positions are given only to the whole degree, and many dives share one reported point. Treat a point as the nominal dive site, not a track.
+- `Depth` is metres, negative downward. `Type` is one of `HOV`, `ROV`, `AUV`, `Lander`, `Camera Tow`.
+
 ## Coral reefs and seagrass (UNEP-WCMC)
 
 The **Coastal Habitats** group holds two UNEP-WCMC global baselines: warm-water coral reefs (`unep-wcmc-coral-reefs-polygons`, 17,504 polygons, about 34S to 33N) and seagrass (`unep-wcmc-seagrass-polygons`, 293,147 polygons, plus `unep-wcmc-seagrass-points`, 17,668 point records). Both are shallow, mostly coastal habitats and lie almost entirely **inside national EEZs**. When a user asks about the high seas, say so instead of returning an empty or near-empty result as if it were a finding. They are compilations of many surveys, so mapping effort varies between regions. A gap on the map is not evidence that reef or seagrass is absent there.
