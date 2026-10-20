@@ -1,0 +1,58 @@
+{
+    "label": "Productivity",
+    "color": "#2fb5a3",
+    "blurb": "Productivity of the water column and the carbon it delivers to the deep seafloor.",
+    "queries": {
+        "productivity": {
+            "file": "productivity.sql",
+            "all": "productivity-all.sql"
+        }
+    },
+    "headlines": [
+        {
+            "query": "productivity",
+            "row": {
+                "variable": "phyc_mean"
+            },
+            "field": "pillar_score",
+            "label": "Provisional productivity score",
+            "format": "num1",
+            "note": "The score is the mean of this pillar's variable percentiles among EBSAs, from 0 to 100."
+        }
+    ],
+    "charts": [
+        {
+            "query": "productivity",
+            "title": "Percentile by variable",
+            "subtitle": "Percentiles run from 0 to 100 among all EBSAs, and higher is better for the pillar.",
+            "category": "label",
+            "format": "num1",
+            "domain_max": 100,
+            "series": [
+                {
+                    "field": "pct",
+                    "label": "Percentile",
+                    "color": "#2fb5a3"
+                }
+            ],
+            "label_lines": 2
+        },
+        {
+            "type": "percentile-strip",
+            "title": "Distribution across EBSAs",
+            "subtitle": "The dot marks this EBSA's value on the spread of all EBSAs.",
+            "query": "productivity",
+            "key": "variable",
+            "label": "label",
+            "value": "value",
+            "format_field": "fmt",
+            "rank_field": "pct",
+            "scale_field": "scale",
+            "direction_field": "dir",
+            "peer_label": "EBSAs",
+            "note": "Provisional scores",
+            "wide": true
+        }
+    ],
+    "method": "Phytoplankton carbon is the Bio-ORACLE v3 depth-mean for the 2000–2020 baseline, in mmol per m³. Carbon flux to the seafloor is the NEMO-MEDUSA decadal mean for 2006–2015, in mmol C per m² per day. Both are area-weighted means over the EBSA's res-6 cells. Both are strongly skewed, so the strip uses a log scale; the percentile is unaffected. Scores are mid-rank percentiles (0–100) among the EBSAs with data, with direction applied so higher is better for the pillar; tied values share the midpoint of their rank range. The pillar score is the plain mean of the variable percentiles. All of this is provisional."
+}

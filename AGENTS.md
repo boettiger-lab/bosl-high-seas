@@ -94,6 +94,24 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
   ```
   Check: `curl -s -o /dev/null -w '%{http_code}' https://high-seas-private.nrp-nautilus.io/` → `401`.
 
+## EBSA explorer (`explorer/`)
+
+A second, no-LLM app at `https://high-seas.nrp-nautilus.io/explorer/` that ranks the 336 EBSAs
+on five provisional pillars, built on [glen-charts](https://github.com/SchmidtDSE/glen-charts)
+(pinned in `explorer/index.html`). It is configuration, SQL and precomputed data only; see
+`explorer/README.md` for units, variables and scoring. The `git-clone` initContainer copies the
+whole `explorer/` folder, so a push plus a rollout restart deploys it like the main app.
+
+```bash
+# After changing explorer SQL: re-run the precompute (MCP; about a minute in all) and commit data/
+npx github:SchmidtDSE/glen-charts#v0.2.4 precompute --site explorer lists
+npx github:SchmidtDSE/glen-charts#v0.2.4 precompute --site explorer results
+npx github:SchmidtDSE/glen-charts#v0.2.4 precompute --site explorer sources
+```
+
+The explorer's header carries its own pin of geo-agent (the DSE mark) and the BOSL logo
+(`../bosl-logo.svg`); when bumping geo-agent, bump `explorer/index.html` too.
+
 ## Repo relationship
 
 | Repo | Purpose |

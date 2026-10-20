@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBSA Explorer</title>
+    <script src="https://unpkg.com/maplibre-gl@5.22.0/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@5.22.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <script src="https://unpkg.com/pmtiles@3.0.7/dist/pmtiles.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SchmidtDSE/glen-charts@v0.2.4/core/style.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <header id="app-header">
+        <div class="app-header-brand"><h1 class="app-header-title">High Seas EBSA Explorer</h1></div>
+        <div class="app-header-end">
+            <nav class="app-header-nav">
+                <a class="app-header-link" href="../">Map &amp; chat</a>
+                <a class="app-header-link" href="https://github.com/boettiger-lab/bosl-high-seas/tree/main/explorer" target="_blank" rel="noopener">Methods</a>
+            </nav>
+            <a class="app-header-logo-link" href="https://bosl.ucsb.edu/" target="_blank" rel="noopener"><img class="app-header-logo app-header-logo--partner" src="../bosl-logo.svg" alt="Benioff Ocean Science Laboratory"></a>
+            <a class="app-header-logo-link" href="https://dse.berkeley.edu/" target="_blank" rel="noopener"><img class="app-header-logo" src="https://cdn.jsdelivr.net/gh/boettiger-lab/geo-agent@v3.35.0/app/assets/dse-mark-white.png" alt="Eric and Wendy Schmidt Center for Data Science &amp; Environment at Berkeley"></a>
+        </div>
+    </header>
+    <main id="glen"></main>
+    <script type="module">
+        import { createExplorer } from 'https://cdn.jsdelivr.net/gh/SchmidtDSE/glen-charts@v0.2.4/core/explorer.js';
+        createExplorer();
+    </script>
+</body>
+</html>

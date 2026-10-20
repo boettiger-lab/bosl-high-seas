@@ -1,0 +1,101 @@
+/* High seas explorer theme: the main High Seas app's look (geo-agent dark theme with
+   the ocean palette from layers-input.json), mapped onto glen-charts' palette tokens.
+   CSS only: no JavaScript in this repo. */
+
+:root {
+    color-scheme: dark;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* layers-input.json theme: primary */
+    --primary: #1b78ab;
+    --primary-strong: #2a95cf;
+    --primary-wash: rgba(120, 170, 255, 0.16);
+    --accent: #4fb3e8;
+    --focus: #9ec5ff;
+    --on-primary: #e6f3fa;
+
+    /* layers-input.json theme: surface, panel, backdrop */
+    --header-bg: #021f2e;
+    --header-fg: #e6f3fa;
+    --chrome-bg: #021f2e;
+    --card-bg: #062c40;
+    --surface: #0b3a52;
+    --backdrop: #01141e;
+    --mix-base: #062c40;
+
+    /* layers-input.json theme: text and its muted steps */
+    --text: #e6f3fa;
+    --text-2: rgba(230, 243, 250, 0.78);
+    --text-3: rgba(230, 243, 250, 0.58);
+    --line: rgba(255, 255, 255, 0.12);
+    --line-strong: rgba(255, 255, 255, 0.22);
+    --hover: rgba(255, 255, 255, 0.08);
+    --shadow: rgba(0, 0, 0, 0.45);
+    --danger: #ff8a80;
+
+    --grid: rgba(255, 255, 255, 0.1);
+    --series-state: #e6f3fa;
+    --overlay-bg: rgba(2, 31, 46, 0.92);
+    --code-bg: rgba(0, 0, 0, 0.35);
+    --skeleton-a: #062c40;
+    --skeleton-b: #0e4561;
+    --rev-fg: #fbbf24;
+    --badge: #7cc4f0;
+
+    --header-h: 64px;
+}
+
+body { color: var(--text); background: var(--backdrop); }
+a { color: #7cc4f0; }
+
+/* ----- header: geo-agent's solid app header -------------------------------- */
+#app-header {
+    gap: 16px;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 2px 10px var(--shadow);
+    position: relative;
+    z-index: 10;
+}
+.app-header-brand, .app-header-end { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.app-header-title {
+    font-size: 15px; font-weight: 600; letter-spacing: 0.2px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;
+}
+.app-header-nav { display: flex; align-items: center; gap: 4px; }
+.app-header-link {
+    padding: 6px 10px; border-radius: 4px; font-size: 13px;
+    color: inherit; opacity: 0.85; text-decoration: none; white-space: nowrap;
+    transition: background 120ms ease;
+}
+.app-header-link:hover { opacity: 1; background: rgba(255, 255, 255, 0.09); }
+.app-header-logo-link { display: flex; align-items: center; }
+.app-header-logo { display: block; height: 24px; width: auto; max-width: 180px; object-fit: contain; }
+@media (max-width: 1100px) { .app-header-logo--partner { display: none; } }
+@media (max-width: 820px) {
+    .app-header-nav, .app-header-logo-link { display: none; }
+    .app-header-title { font-size: 14px; }
+}
+
+/* ----- surfaces glen-charts leaves light ----------------------------------- */
+#place-input, .lb-search, .seg button, .chips button, .ghost-btn, .map-btn, .lb-open, .lb-rev {
+    background: var(--card-bg); color: var(--text);
+}
+.seg button[aria-checked="true"] { background: var(--primary); color: var(--on-primary); border-color: var(--primary); }
+.map-btn[aria-pressed="true"] { background: var(--c); color: var(--on-primary); }
+.lb-open:hover { background: var(--primary); color: var(--on-primary); }
+#place-results { background: var(--card-bg); }
+.view-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.lb-table th { background: var(--card-bg); }
+.lb-table tbody tr.focus { box-shadow: inset 3px 0 0 #ff8a3d; background: rgba(255, 138, 61, 0.14); }
+
+/* MapLibre popups and controls follow the theme too */
+.maplibregl-popup-content { background: var(--chrome-bg); color: var(--text); box-shadow: 0 4px 14px var(--shadow); }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { border-bottom-color: var(--chrome-bg); }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { border-top-color: var(--chrome-bg); }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--chrome-bg); }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--chrome-bg); }

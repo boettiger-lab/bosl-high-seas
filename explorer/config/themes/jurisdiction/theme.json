@@ -1,0 +1,45 @@
+{
+    "label": "Jurisdiction",
+    "color": "#4fa3d9",
+    "blurb": "How much of the EBSA lies on the high seas, beyond national jurisdiction, and whose waters hold the rest.",
+    "queries": {
+        "jurisdiction": {
+            "file": "jurisdiction.sql",
+            "all": "jurisdiction-all.sql"
+        }
+    },
+    "headlines": [
+        {
+            "query": "jurisdiction",
+            "field": "abnj_share",
+            "label": "Area on the high seas",
+            "format": "pct",
+            "note": "This is the part of the EBSA beyond every EEZ, where an area-based management tool under the BBNJ Agreement could apply."
+        },
+        {
+            "query": "jurisdiction",
+            "field": "ebsa_km2",
+            "label": "EBSA area",
+            "format": "km2",
+            "note": "The area is the sum of the EBSA's res-6 cells."
+        }
+    ],
+    "charts": [
+        {
+            "query": "jurisdiction",
+            "title": "Share of the EBSA by zone",
+            "subtitle": "Each cell in an EEZ counts for that EEZ's sovereign state, so overseas territories count for their sovereign.",
+            "category": "zone",
+            "format": "pct",
+            "domain_max": 1,
+            "series": [
+                {
+                    "field": "share",
+                    "label": "Share of EBSA area",
+                    "color": "#4fa3d9"
+                }
+            ]
+        }
+    ],
+    "method": "The EBSA's H3 res-6 cells (about 36 km² each, from the res-8 hex) joined to EEZ v12 (Marine Regions). A cell in an EEZ takes the EEZ's primary sovereign (ISO_SOV1); joint regimes and overlapping claims count for the first-listed sovereign only. A cell in no EEZ counts as high seas when it lies within two res-4 rings of the World High Seas v2 mask, or north of 86°N, where the res-4 mask has a gap at the pole. The rest is shown as 'Outside any EEZ': land, estuaries and inland seas such as the Caspian, which EEZ v12 does not cover. A cell on an EEZ boundary counts for the EEZ."
+}

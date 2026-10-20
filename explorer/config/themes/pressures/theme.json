@@ -1,0 +1,58 @@
+{
+    "label": "Pressures",
+    "color": "#e0794a",
+    "blurb": "Industrial fishing and vessel traffic in the EBSA's waters. Less pressure scores higher.",
+    "queries": {
+        "pressures": {
+            "file": "pressures.sql",
+            "all": "pressures-all.sql"
+        }
+    },
+    "headlines": [
+        {
+            "query": "pressures",
+            "row": {
+                "variable": "fishing_hours"
+            },
+            "field": "pillar_score",
+            "label": "Provisional pressures score",
+            "format": "num1",
+            "note": "The score is the mean of this pillar's variable percentiles among EBSAs, from 0 to 100."
+        }
+    ],
+    "charts": [
+        {
+            "query": "pressures",
+            "title": "Percentile by variable",
+            "subtitle": "Percentiles run from 0 to 100 among all EBSAs, and higher is better for the pillar.",
+            "category": "label",
+            "format": "num1",
+            "domain_max": 100,
+            "series": [
+                {
+                    "field": "pct",
+                    "label": "Percentile",
+                    "color": "#e0794a"
+                }
+            ],
+            "label_lines": 2
+        },
+        {
+            "type": "percentile-strip",
+            "title": "Distribution across EBSAs",
+            "subtitle": "The dot marks this EBSA's value on the spread of all EBSAs.",
+            "query": "pressures",
+            "key": "variable",
+            "label": "label",
+            "value": "value",
+            "format_field": "fmt",
+            "rank_field": "pct",
+            "scale_field": "scale",
+            "direction_field": "dir",
+            "peer_label": "EBSAs",
+            "note": "Provisional scores",
+            "wide": true
+        }
+    ],
+    "method": "Fishing effort is Global Fishing Watch apparent fishing hours for 2024, all gears, per 1,000 km² of the EBSA. Vessel density is the IMF / World Bank global AIS layer, total positions from January 2015 to February 2021 per km²; it stops near ±85°, so polar cells have no value. Both are AIS-based and miss vessels that do not broadcast. The direction is reversed for scoring: the EBSA with the least pressure scores 100. Use the scoring panel to reverse it if pressure should count towards priority instead. Scores are mid-rank percentiles (0–100) among the EBSAs with data, with direction applied so higher is better for the pillar; tied values share the midpoint of their rank range. The pillar score is the plain mean of the variable percentiles. All of this is provisional."
+}

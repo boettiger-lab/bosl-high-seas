@@ -1,0 +1,536 @@
+{
+ "generated": "2026-10-20T18:26:21.284Z",
+ "catalog": "https://s3-west.nrp-nautilus.io/public-data/stac/catalog.json",
+ "datasets": [
+  {
+   "id": "ebsa-2023",
+   "prefixes": [
+    "s3://public-high-seas/ebsa-2023/hex",
+    "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023.pmtiles"
+   ],
+   "stac": {
+    "id": "ebsa-2023",
+    "title": "Ecologically or Biologically Significant Marine Areas (EBSAs), 2023 global set",
+    "license": "other",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://www.cbd.int/ebsa",
+      "type": "text/html"
+     }
+    ]
+   }
+  },
+  {
+   "id": "iho-maritime-boundaries",
+   "prefixes": [
+    "s3://public-high-seas/iho/eez/hex",
+    "s3://public-high-seas/iho/high-seas/hex"
+   ],
+   "stac": {
+    "id": "iho-maritime-boundaries",
+    "title": "IHO Maritime Boundaries (EEZ v12 + High Seas v2)",
+    "license": "CC-BY-4.0",
+    "providers": [
+     {
+      "name": "Marine Regions / Flanders Marine Institute (VLIZ)",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://www.marineregions.org/"
+     },
+     {
+      "name": "Boettiger Lab / NRP",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://boettiger-lab.github.io"
+     }
+    ],
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/iho/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+     }
+    ]
+   }
+  },
+  {
+   "id": "iucn-richness-2025",
+   "prefixes": [
+    "s3://public-iucn/hex/combined_thr_sr"
+   ],
+   "stac": {
+    "id": "iucn-richness-2025",
+    "title": "IUCN Species Richness 2025",
+    "license": "proprietary",
+    "providers": [
+     {
+      "name": "IUCN Red List",
+      "roles": [
+       "producer"
+      ],
+      "url": "https://www.iucnredlist.org/"
+     },
+     {
+      "name": "Boettiger Lab",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://github.com/boettiger-lab"
+     }
+    ],
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-iucn/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://www.iucnredlist.org/terms/terms-of-use",
+      "title": "IUCN Red List Terms of Use"
+     }
+    ]
+   }
+  },
+  {
+   "id": "megamove-immegas",
+   "prefixes": [
+    "s3://public-high-seas/megamove/immegas/hex"
+   ],
+   "stac": {
+    "id": "megamove-immegas",
+    "title": "MegaMove — Important Marine Megafauna Areas (IMMegAs)",
+    "license": "CC0-1.0",
+    "providers": [
+     {
+      "name": "MegaMove / Sequeira Lab, Australian National University",
+      "roles": [
+       "producer",
+       "processor"
+      ],
+      "url": "https://megamove.org"
+     },
+     {
+      "name": "Dryad",
+      "roles": [
+       "host"
+      ],
+      "url": "https://doi.org/10.5061/dryad.x95x69ptv"
+     }
+    ],
+    "sci:citation": "Sequeira, A.M.M., Rodriguez, J.P., et al. (2025). Global tracking of marine megafauna space use reveals how to achieve conservation targets. Science 388(6751):1086-1097.",
+    "sci:doi": "10.1126/science.adl0239",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/immegas/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5061/dryad.x95x69ptv"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/"
+     }
+    ]
+   }
+  },
+  {
+   "id": "seafloor-geomorphology",
+   "prefixes": [
+    "s3://public-high-seas/seafloor-geomorphology/hex"
+   ],
+   "stac": {
+    "id": "seafloor-geomorphology",
+    "title": "Global Seafloor Geomorphic Features Map (Harris et al. 2014)",
+    "license": "CC-BY-4.0",
+    "providers": [
+     {
+      "name": "Harris et al. / Blue Habitats / CSIRO",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://bluehabitats.org"
+     },
+     {
+      "name": "Boettiger Lab, UC Berkeley",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://boettiger-lab.github.io"
+     }
+    ],
+    "sci:citation": "Harris, P.T., Macmillan-Lawler, M., Rupp, J. and Baker, E.K. (2014). Geomorphology of the oceans. Marine Geology, 352, 4-24. doi:10.1016/j.margeo.2014.01.011",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-geomorphology/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hydrothermal-vents",
+   "prefixes": [
+    "s3://public-high-seas/hydrothermal-vents/hex"
+   ],
+   "stac": {
+    "id": "hydrothermal-vents",
+    "title": "InterRidge Global Database of Active Submarine Hydrothermal Vent Fields (v3.4)",
+    "license": "CC-BY-NC-SA-4.0",
+    "providers": [
+     {
+      "name": "InterRidge / Beaulieu & Szafrański",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://vents-data.interridge.org/"
+     },
+     {
+      "name": "Boettiger Lab, UC Berkeley",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://boettiger-lab.github.io"
+     }
+    ],
+    "sci:citation": "Beaulieu, S.E. & Szafrański, K.M. (2020). InterRidge Global Database of Active Submarine Hydrothermal Vent Fields Version 3.4. PANGAEA, https://doi.org/10.1594/PANGAEA.917894",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/hydrothermal-vents/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "title": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+     },
+     {
+      "rel": "about",
+      "href": "https://vents-data.interridge.org/",
+      "title": "InterRidge Vents Database online interface"
+     }
+    ]
+   }
+  },
+  {
+   "id": "bio-oracle-depthmean-phyc-mean",
+   "prefixes": [
+    "s3://public-bio-oracle/depthmean/phyc-mean/hex"
+   ],
+   "stac": {
+    "id": "bio-oracle-depthmean-phyc-mean",
+    "title": "Bio-ORACLE v3.0 — Primary Productivity (Phytoplankton Carbon) (depth-mean)",
+    "license": "other",
+    "providers": [
+     {
+      "name": "Bio-ORACLE (Ghent University, University of Algarve, VLIZ)",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://bio-oracle.org/"
+     },
+     {
+      "name": "Boettiger Lab, UC Berkeley",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/"
+     }
+    ],
+    "sci:citation": "Assis, J., Fernandez Bejarano, S.J., Salazar, V.W., Schepers, L., Gouvea, L., Fragkopoulou, E., Leclercq, F., Vanhoorne, B., Tyberghein, L., Serrao, E.A., Verbruggen, H., De Clerck, O. (2024) Bio-ORACLE v3.0. Pushing marine data layers to the CMIP6 Earth system models of climate change research. Global Ecology and Biogeography. https://doi.org/10.1111/geb.13813",
+    "sci:doi": "10.1111/geb.13813",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://bio-oracle.org/downloads-to-email.php",
+      "type": "text/html",
+      "title": "Bio-ORACLE terms: released under the GNU General Public License"
+     },
+     {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1111/geb.13813",
+      "type": "text/html",
+      "title": "Assis et al. 2024, Bio-ORACLE v3.0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "seafloor-carbon-flux-avg",
+   "prefixes": [
+    "s3://public-high-seas/seafloor-carbon-flux/avg/hex"
+   ],
+   "stac": {
+    "id": "seafloor-carbon-flux-avg",
+    "title": "Seafloor Organic Carbon Flux, decadal mean (NEMO-MEDUSA, 2006-2015)",
+    "license": "CC-BY-4.0",
+    "providers": [
+     {
+      "name": "Andrew Yool, National Oceanography Centre, Southampton",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://noc.ac.uk"
+     },
+     {
+      "name": "Zenodo",
+      "roles": [
+       "host"
+      ],
+      "url": "https://zenodo.org/records/6513616"
+     },
+     {
+      "name": "Boettiger Lab, University of California, Berkeley",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://s3-west.nrp-nautilus.io/public-high-seas/"
+     }
+    ],
+    "sci:citation": "Yool, A. (2022). Seafloor organic carbon flux output from the NEMO-MEDUSA model (Version 1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.6513616 Accessed 2026-08-29 from https://zenodo.org/records/6513616.",
+    "sci:doi": "10.5281/zenodo.6513616",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "about",
+      "href": "https://zenodo.org/records/6513616",
+      "type": "text/html",
+      "title": "Seafloor organic carbon flux output from the NEMO-MEDUSA model (Zenodo record)"
+     },
+     {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5281/zenodo.6513616",
+      "type": "text/html",
+      "title": "DOI 10.5281/zenodo.6513616"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "Creative Commons Attribution 4.0 International"
+     }
+    ]
+   }
+  },
+  {
+   "id": "gfw-fishing-effort",
+   "prefixes": [
+    "s3://public-gfw/gfw-fishing-effort/hex"
+   ],
+   "stac": {
+    "id": "gfw-fishing-effort",
+    "title": "Global Fishing Watch Annual Fishing Effort v3 (2012–2024)",
+    "license": "CC-BY-NC-4.0",
+    "providers": [
+     {
+      "name": "Global Fishing Watch",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://globalfishingwatch.org"
+     },
+     {
+      "name": "Boettiger Lab / NRP",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://boettiger-lab.github.io"
+     }
+    ],
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "title": "Creative Commons Attribution-NonCommercial 4.0 International"
+     }
+    ]
+   }
+  },
+  {
+   "id": "ship-density",
+   "prefixes": [
+    "s3://public-high-seas/ship-density/global/hex"
+   ],
+   "stac": {
+    "id": "ship-density",
+    "title": "Global Shipping Traffic Density (World Bank / IMF)",
+    "license": "CC-BY-4.0",
+    "providers": [
+     {
+      "name": "International Monetary Fund",
+      "roles": [
+       "producer"
+      ],
+      "url": "https://www.imf.org/"
+     },
+     {
+      "name": "World Bank Group",
+      "roles": [
+       "licensor",
+       "host"
+      ],
+      "url": "https://datacatalog.worldbank.org/search/dataset/0037580"
+     },
+     {
+      "name": "Boettiger Lab",
+      "roles": [
+       "processor"
+      ],
+      "url": "https://boettiger-lab.github.io/"
+     }
+    ],
+    "sci:citation": "Data source: IMF's World Seaborne Trade monitoring system (Cerdeiro, Komaromi, Liu and Saeed, 2020).",
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/ship-density/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://datacatalog.worldbank.org/public-licenses?fragment=cc",
+      "type": "text/html",
+      "title": "Creative Commons Attribution 4.0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "wdpa",
+   "prefixes": [
+    "s3://public-wdpa/wdpa/hex"
+   ],
+   "stac": {
+    "id": "wdpa",
+    "title": "World Database on Protected Areas (WDPA)",
+    "license": "proprietary",
+    "providers": [
+     {
+      "name": "UNEP-WCMC and IUCN",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://www.protectedplanet.net/"
+     },
+     {
+      "name": "Boettiger Lab",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://github.com/boettiger-lab"
+     }
+    ],
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-wdpa/wdpa/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "about",
+      "href": "https://www.protectedplanet.net/en/thematic-areas/wdpa",
+      "title": "Protected Planet — WDPA"
+     },
+     {
+      "rel": "license",
+      "href": "https://www.protectedplanet.net/en/legal",
+      "title": "WDPA Terms and Conditions"
+     }
+    ]
+   }
+  },
+  {
+   "id": "rfmo-maritime-governance",
+   "prefixes": [
+    "s3://public-high-seas/rfmo/vme/hex"
+   ],
+   "stac": {
+    "id": "rfmo-maritime-governance",
+    "title": "RFMO Boundaries and VME Closures (FAO)",
+    "license": "CC-BY-SA-3.0-IGO",
+    "providers": [
+     {
+      "name": "Food and Agriculture Organization of the United Nations (FAO)",
+      "roles": [
+       "producer",
+       "licensor"
+      ],
+      "url": "https://www.fao.org/fishery/en/rfb"
+     },
+     {
+      "name": "Boettiger Lab / NRP",
+      "roles": [
+       "processor",
+       "host"
+      ],
+      "url": "https://boettiger-lab.github.io"
+     }
+    ],
+    "links": [
+     {
+      "rel": "self",
+      "href": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
+      "type": "application/json"
+     },
+     {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by-sa/3.0/igo/",
+      "title": "Creative Commons Attribution-ShareAlike 3.0 IGO"
+     }
+    ]
+   }
+  }
+ ]
+}

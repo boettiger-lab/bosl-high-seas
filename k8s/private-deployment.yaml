@@ -34,6 +34,8 @@ spec:
           cp /tmp/repo/bosl-logo.svg /usr/share/nginx/html/
           cp /tmp/repo/layers-input.private.json /usr/share/nginx/html/layers-input.json
           cp /tmp/repo/system-prompt.private.md /usr/share/nginx/html/system-prompt.md
+          # EBSA explorer (glen-charts): page, theme, config and precomputed data
+          cp -r /tmp/repo/explorer /usr/share/nginx/html/
         volumeMounts:
         - name: website-content
           mountPath: /usr/share/nginx/html

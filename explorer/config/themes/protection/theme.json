@@ -1,0 +1,58 @@
+{
+    "label": "Protection",
+    "color": "#8f7ad6",
+    "blurb": "Existing conservation and management measures: marine protected areas, no-take areas and bottom-fishing closures.",
+    "queries": {
+        "protection": {
+            "file": "protection.sql",
+            "all": "protection-all.sql"
+        }
+    },
+    "headlines": [
+        {
+            "query": "protection",
+            "row": {
+                "variable": "mpa_share"
+            },
+            "field": "pillar_score",
+            "label": "Provisional protection score",
+            "format": "num1",
+            "note": "The score is the mean of this pillar's variable percentiles among EBSAs, from 0 to 100."
+        }
+    ],
+    "charts": [
+        {
+            "query": "protection",
+            "title": "Percentile by variable",
+            "subtitle": "Percentiles run from 0 to 100 among all EBSAs, and higher is better for the pillar.",
+            "category": "label",
+            "format": "num1",
+            "domain_max": 100,
+            "series": [
+                {
+                    "field": "pct",
+                    "label": "Percentile",
+                    "color": "#8f7ad6"
+                }
+            ],
+            "label_lines": 2
+        },
+        {
+            "type": "percentile-strip",
+            "title": "Distribution across EBSAs",
+            "subtitle": "The dot marks this EBSA's value on the spread of all EBSAs.",
+            "query": "protection",
+            "key": "variable",
+            "label": "label",
+            "value": "value",
+            "format_field": "fmt",
+            "rank_field": "pct",
+            "scale_field": "scale",
+            "direction_field": "dir",
+            "peer_label": "EBSAs",
+            "note": "Provisional scores",
+            "wide": true
+        }
+    ],
+    "method": "Shares are the area of the EBSA's res-6 cells that touch a marine or coastal protected area in the WDPA (status other than Proposed), a fully no-take protected area (NO_TAKE = All), or an FAO bottom-fishing closure for vulnerable marine ecosystems, divided by the EBSA's area. A cell counts if any part of it is covered, so shares are upper bounds for small sites. More existing protection scores higher (BBNJ Annex I criterion v). For a gap analysis, reverse the pillar's variables in the scoring panel. Scores are mid-rank percentiles (0–100) among the EBSAs with data, with direction applied so higher is better for the pillar; tied values share the midpoint of their rank range. The pillar score is the plain mean of the variable percentiles. All of this is provisional."
+}
