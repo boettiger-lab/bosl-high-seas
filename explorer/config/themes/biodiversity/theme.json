@@ -1,0 +1,58 @@
+{
+    "label": "Biodiversity",
+    "color": "#4caf6a",
+    "blurb": "Threatened species and important areas for marine megafauna: the species found in the EBSA and how much of it migrating and resident megafauna depend on.",
+    "queries": {
+        "biodiversity": {
+            "file": "biodiversity.sql",
+            "all": "biodiversity-all.sql"
+        }
+    },
+    "headlines": [
+        {
+            "query": "biodiversity",
+            "row": {
+                "variable": "threatened_richness"
+            },
+            "field": "pillar_score",
+            "label": "Provisional biodiversity score",
+            "format": "num1",
+            "note": "The score is the mean of this pillar's variable percentiles among EBSAs, from 0 to 100."
+        }
+    ],
+    "charts": [
+        {
+            "query": "biodiversity",
+            "title": "Percentile by variable",
+            "subtitle": "Percentiles run from 0 to 100 among all EBSAs, and higher is better for the pillar.",
+            "category": "label",
+            "format": "num1",
+            "domain_max": 100,
+            "series": [
+                {
+                    "field": "pct",
+                    "label": "Percentile",
+                    "color": "#4caf6a"
+                }
+            ],
+            "label_lines": 2
+        },
+        {
+            "type": "percentile-strip",
+            "title": "Distribution across EBSAs",
+            "subtitle": "The dot marks this EBSA's value on the spread of all EBSAs.",
+            "query": "biodiversity",
+            "key": "variable",
+            "label": "label",
+            "value": "value",
+            "format_field": "fmt",
+            "rank_field": "pct",
+            "scale_field": "scale",
+            "direction_field": "dir",
+            "peer_label": "EBSAs",
+            "note": "Provisional scores",
+            "wide": true
+        }
+    ],
+    "method": "Threatened species richness is the area-weighted mean IUCN 2025 count of Vulnerable, Endangered and Critically Endangered species over the EBSA's cells. The mapped groups are amphibians, birds, mammals, reptiles and freshwater fish, so at sea it counts seabirds and marine mammals, not marine fish or invertebrates. Important Marine Megafauna Areas (IMMegAs; MegaMove, Sequeira et al. 2025) are the 1° cells used by tracked megafauna as migratory corridors or residence areas; the share is of the EBSA's area, and the group count is how many of the eight taxon groups (birds, cetaceans, fishes, penguins, polar bears, seals, sirenians, turtles) have an IMMegA in the EBSA. Tracking effort is uneven, so a missing IMMegA is not proof of absence. Scores are mid-rank percentiles (0–100) among the EBSAs with data, with direction applied so higher is better for the pillar; tied values share the midpoint of their rank range. The pillar score is the plain mean of the variable percentiles. All of this is provisional."
+}

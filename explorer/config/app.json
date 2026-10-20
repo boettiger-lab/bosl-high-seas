@@ -1,0 +1,108 @@
+{
+    "id": "bosl-ebsa",
+    "title": "High Seas EBSA Explorer",
+    "engine": "mcp",
+    "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+    "view": {
+        "center": [
+            0,
+            10
+        ],
+        "zoom": 1.4
+    },
+    "basemap": "dark-gray",
+    "overview": "jurisdiction",
+    "themes": [
+        "biodiversity",
+        "seafloor",
+        "productivity",
+        "pressures",
+        "protection"
+    ],
+    "jurisdictions": [
+        {
+            "id": "ebsa",
+            "label": "EBSAs",
+            "peer_label": "EBSAs",
+            "singular": "EBSA",
+            "description": "Ecologically or Biologically Significant Marine Areas described through the CBD regional workshops (2023 global set, 336 sites)",
+            "aoi": "SELECT DISTINCT h0, h8 FROM read_parquet('s3://public-high-seas/ebsa-2023/hex/h0=*/data_0.parquet') WHERE GLOBAL_ID = '{{ID}}'",
+            "list": "WITH c AS (SELECT DISTINCT GLOBAL_ID AS id, NAME AS name, h5 FROM read_parquet('s3://public-high-seas/ebsa-2023/hex/h0=*/data_0.parquet')), p AS (SELECT id, name, h3_cell_to_lng(h5) AS x, h3_cell_to_lat(h5) AS y FROM c), g AS (SELECT id, ANY_VALUE(name) AS name, MIN(x) AS ax0, MAX(x) AS ax1, MIN((x + 360) % 360) AS sx0, MAX((x + 360) % 360) AS sx1, GREATEST(MIN(y) - 0.3, -85) AS ymin, LEAST(MAX(y) + 0.3, 85) AS ymax FROM p GROUP BY id) SELECT id, name, CASE WHEN sx1 - sx0 < ax1 - ax0 THEN (CASE WHEN sx0 > 180 THEN sx0 - 360 ELSE sx0 END) ELSE ax0 END - 0.3 AS xmin, ymin, CASE WHEN sx1 - sx0 < ax1 - ax0 THEN (CASE WHEN sx1 > 180 THEN sx1 - 360 ELSE sx1 END) ELSE ax1 END + 0.3 AS xmax, ymax FROM g ORDER BY name",
+            "boundary": {
+                "url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023.pmtiles",
+                "source_layer": "ebsa-2023",
+                "id_prop": "GLOBAL_ID",
+                "name_prop": "NAME",
+                "style": {
+                    "selected_width": 1.6,
+                    "selected": "#ff8a3d",
+                    "line": "#7cc4f0",
+                    "line_opacity": 0.5
+                }
+            },
+            "picker": "map"
+        }
+    ],
+    "format": {
+        "nodata": "no data"
+    },
+    "labels": {
+        "sections": "Pillars",
+        "place_hint": "Click an EBSA on the map"
+    },
+    "intro": "<p>Click an EBSA on the map to see how it compares with every other Ecologically or Biologically Significant Marine Area. Each pillar shows the EBSA's variables and where it ranks among all 336 EBSAs.</p><p class=\"tile-note\"><strong>Provisional.</strong> The pillars loosely follow the BBNJ Agreement's Annex I indicative criteria. Which variables belong to each pillar, and how they are scored, has not been decided. Scores are mid-rank percentiles (0–100, higher is better for the pillar); a pillar score is the mean of its variables' percentiles.</p><p class=\"tile-note\">EBSAs are scientific descriptions under the Convention on Biological Diversity. They carry no legal protection.</p>",
+    "leaderboard": {
+        "jurisdiction": "ebsa",
+        "tab": "Leaderboard",
+        "title": "Ranks by EBSA",
+        "intro": "<p>Every EBSA ranked by its overall score. Click a name to see it on the map, or an EBSA on the map to find its row. Adjust the scoring below to see how the ranking changes. Methods are in the <a href=\"https://github.com/boettiger-lab/bosl-high-seas/tree/main/explorer\" target=\"_blank\" rel=\"noopener\">explorer README</a>.</p>",
+        "pillars": [
+            {
+                "theme": "biodiversity",
+                "query": "biodiversity"
+            },
+            {
+                "theme": "seafloor",
+                "query": "seafloor"
+            },
+            {
+                "theme": "productivity",
+                "query": "productivity"
+            },
+            {
+                "theme": "pressures",
+                "query": "pressures"
+            },
+            {
+                "theme": "protection",
+                "query": "protection"
+            }
+        ],
+        "overall": {
+            "label": "Overall",
+            "note": "The overall score is the weighted mean of the pillar scores. A pillar score is the weighted mean of its variables' percentiles (0–100, higher is better for the pillar), computed among the EBSAs in view."
+        },
+        "scope": {
+            "theme": "jurisdiction",
+            "query": "jurisdiction",
+            "field": "abnj_share",
+            "min": 0.5,
+            "label": "High seas",
+            "global_label": "All EBSAs",
+            "column": "High seas share",
+            "note": "The high seas view keeps the EBSAs with half or more of their area beyond national jurisdiction, and recomputes the percentiles among those EBSAs only."
+        },
+        "map": {
+            "label": "Overall score",
+            "ramp": [
+                "#f0f921",
+                "#fca636",
+                "#e16462",
+                "#b12a90",
+                "#6a00a8"
+            ]
+        },
+        "default": true,
+        "profile_tab": "EBSA details"
+    }
+}
