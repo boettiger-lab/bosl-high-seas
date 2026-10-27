@@ -1,0 +1,203 @@
+# Codebook for evidence on the BBNJ Annex I indicative criteria.
+# Questions use the Jev request format (noul, choice, score) and run on any Jev-compatible
+# decision model. Pass 1 screens every passage; pass 2 runs on passages with content > 0.5.
+# Draft for the pilot: wording will change once we compare the codes with hand labels.
+
+passes:
+  screen:
+    content:
+      type: noul
+      instructions: >-
+        Does this paragraph report scientific observations, measurements, results or
+        interpretation, as opposed to references, acknowledgements, author details, figure
+        residue or publishing boilerplate?
+    site:
+      type: choice
+      instructions: Where were the observations described in this paragraph made?
+      criteria:
+        emperor_feature: at a named seamount, guyot or gap of the Emperor Seamount Chain
+        emperor_chain: the Emperor Seamount Chain or the Hawaiian-Emperor chain as a whole
+        north_pacific: elsewhere in the North Pacific Ocean
+        other_ocean: another ocean or region outside the North Pacific
+        global: a global synthesis or many oceans
+        none: no place is stated or implied
+
+  criteria:
+    crit_a_uniqueness:
+      type: noul
+      instructions: >-
+        Does this paragraph say that a habitat, community, species or feature at the place
+        studied is unique, endemic or found nowhere else, or that the place is a
+        biogeographic boundary?
+    crit_b_rarity:
+      type: noul
+      instructions: >-
+        Does this paragraph say that a species, habitat or community at the place studied is
+        rare or occurs in only a few places?
+    crit_c_life_history:
+      type: noul
+      instructions: >-
+        Does this paragraph describe spawning, breeding, nursery grounds, feeding or migration
+        of a species at the place studied?
+    crit_d_species_importance:
+      type: noul
+      instructions: >-
+        Does this paragraph describe a species at the place studied that is commercially
+        fished, ecologically dominant, a keystone species or of special scientific interest?
+    crit_e_threatened:
+      type: noul
+      instructions: >-
+        Does this paragraph describe threatened, endangered, depleted or declining species or
+        habitats at the place studied?
+    crit_f_vulnerability:
+      type: noul
+      instructions: >-
+        Does this paragraph describe vulnerability of the place studied to climate change,
+        warming, deoxygenation or ocean acidification?
+    crit_g_fragility:
+      type: noul
+      instructions: >-
+        Does this paragraph describe habitats or organisms at the place studied that are
+        physically fragile and easily damaged, such as corals or sponges broken by fishing
+        gear?
+    crit_h_sensitivity:
+      type: noul
+      instructions: >-
+        Does this paragraph describe species or habitats at the place studied that are
+        sensitive to disturbance by human activity?
+    crit_i_diversity_productivity:
+      type: noul
+      instructions: >-
+        Does this paragraph describe high biological diversity, high species richness or high
+        biological productivity at the place studied?
+    crit_j_representativeness:
+      type: noul
+      instructions: >-
+        Does this paragraph say that the place studied is typical or representative of a
+        broader type of ecosystem, habitat or biogeographic region?
+    crit_k_dependency:
+      type: noul
+      instructions: >-
+        Does this paragraph describe species at the place studied that depend on one another
+        or on a particular structure, such as fauna living on corals or sponges?
+    crit_l_naturalness:
+      type: noul
+      instructions: >-
+        Does this paragraph say that the place studied is pristine, undisturbed or little
+        affected by human activity?
+    crit_m_connectivity:
+      type: noul
+      instructions: >-
+        Does this paragraph describe ecological connectivity of the place studied, such as
+        larval dispersal, gene flow, migration corridors or links between populations?
+    crit_n_processes:
+      type: noul
+      instructions: >-
+        Does this paragraph describe an important ecological or oceanographic process at the
+        place studied, such as upwelling, eddies, carbon export, nutrient supply or diel
+        vertical migration?
+    crit_o_economic_social:
+      type: noul
+      instructions: >-
+        Does this paragraph describe economic or social uses or values of the place studied,
+        such as fisheries catch, revenue or livelihoods?
+    crit_p_cultural:
+      type: noul
+      instructions: >-
+        Does this paragraph describe cultural, historical or traditional values or uses of the
+        place studied?
+    crit_q_impacts:
+      type: noul
+      instructions: >-
+        Does this paragraph describe a human activity or pressure affecting the place studied,
+        such as fishing, bycatch, mining, shipping, noise or pollution?
+    crit_r_recovery:
+      type: noul
+      instructions: >-
+        Does this paragraph describe slow recovery after disturbance, long-lived or slow-growing
+        organisms, or the resilience of the place studied?
+    crit_s_adequacy:
+      type: noul
+      instructions: >-
+        Does this paragraph discuss whether an area is large enough, or bounded suitably, to
+        sustain the species, habitats or processes it is meant to protect?
+    crit_t_replication:
+      type: noul
+      instructions: >-
+        Does this paragraph describe similar habitats or features repeated across several
+        seamounts or sites?
+    crit_u_reproduction:
+      type: noul
+      instructions: >-
+        Does this paragraph describe whether a population at the place studied can sustain
+        itself through reproduction and recruitment?
+    crit_v_measures:
+      type: noul
+      instructions: >-
+        Does this paragraph describe an existing conservation or management measure at the
+        place studied, such as a fishing closure, a protected area or catch limits?
+    direction:
+      type: choice
+      instructions: >-
+        Does this paragraph support or weaken the case that the place studied is ecologically
+        important?
+      criteria:
+        supports: it supports the importance of the place
+        weakens: it suggests the place is ordinary, degraded or of low importance
+        neither: it does not bear on the importance of the place
+    evidence_type:
+      type: choice
+      instructions: What kind of evidence does this paragraph present?
+      criteria:
+        direct: new observations or samples collected at the place studied
+        repeated: a repeated survey or time series at the place studied
+        model: a model, remote sensing or a global data product
+        elsewhere: findings from other regions applied by analogy
+        review: a review, synthesis or expert opinion
+        none: no evidence, such as methods or background
+    strength:
+      type: score
+      instructions: How strong is the evidence in this paragraph?
+      criteria:
+        - an anecdote, a single record or a statement without data
+        - a single survey or a small number of samples
+        - several surveys or a substantial quantitative dataset
+        - a replicated quantitative survey or a long time series
+    taxon:
+      type: choice
+      instructions: Which group of organisms is this paragraph mainly about?
+      criteria:
+        microbes: bacteria, archaea, fungi or other microorganisms
+        plankton: phytoplankton or zooplankton
+        mesopelagic: mesopelagic fish, squid or micronekton
+        demersal: demersal or bottom-associated fish and cephalopods
+        corals_sponges: corals or sponges
+        benthic_invertebrates: other benthic invertebrates
+        seabirds: seabirds
+        mammals: marine mammals
+        pelagic_predators: tuna, sharks, turtles or other large pelagic animals
+        none: no organisms
+    zone:
+      type: choice
+      instructions: Which depth zone does this paragraph mainly concern?
+      criteria:
+        surface: the surface or epipelagic zone, upper 200 m
+        mesopelagic: the mesopelagic zone, 200 to 1000 m
+        deep_water: the bathypelagic or abyssopelagic water column, below 1000 m
+        bathyal_seafloor: the seafloor on seamount slopes or summits
+        abyssal_seafloor: the abyssal seafloor
+        subseafloor: rocks or sediments beneath the seafloor
+        not_stated: no depth is stated or implied
+    pressure:
+      type: choice
+      instructions: Which human pressure, if any, does this paragraph mainly concern?
+      criteria:
+        bottom_trawling: bottom trawling or other bottom-contact fishing
+        other_fishing: pelagic or longline fishing and catch
+        bycatch: bycatch of seabirds, mammals, turtles or sharks
+        mining: deep-sea mining or mineral exploration
+        shipping: shipping or vessel traffic
+        plastics: plastics or other pollution
+        noise: underwater noise
+        climate: climate change or ocean acidification
+        none: no human pressure

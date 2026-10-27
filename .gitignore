@@ -3,3 +3,6 @@
 # Editor / notebook artifacts
 .ipynb_checkpoints/
 .vscode/
+
+# Local copies of the private literature corpus (s3://high-seas-lit): never commit
+tmp/
