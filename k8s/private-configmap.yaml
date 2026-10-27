@@ -145,6 +145,15 @@ data:
             proxy_buffering off;
         }
 
+        # Literature corpus (text-query prototype): the in-cluster server reads the
+        # private corpus bucket, so it is reachable only behind this password.
+        location /api/text-query/ {
+            proxy_pass http://high-seas-text-query.schmidtdse.svc.cluster.local:8000/;
+            proxy_read_timeout 300s;
+            proxy_send_timeout 300s;
+            proxy_buffering off;
+        }
+
         location / {
             try_files $uri $uri/ /index.html;
             add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";

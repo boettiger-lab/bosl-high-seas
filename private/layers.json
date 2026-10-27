@@ -1,5 +1,14 @@
 {
     "_comment": "Restricted-licence layers added ONLY to the private deployment (#85). Each entry is inserted after the collection named in insert_after. Run scripts/build-private.py after editing this file or layers-input.json.",
+    "mcp_servers": [
+        {
+            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp"
+        },
+        {
+            "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
+            "optional": true
+        }
+    ],
     "collections": [
         {
             "insert_after": "ebsa-2023",

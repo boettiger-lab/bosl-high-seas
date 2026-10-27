@@ -1578,5 +1578,14 @@
                 }
             ]
         }
+    ],
+    "mcp_servers": [
+        {
+            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp"
+        },
+        {
+            "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
+            "optional": true
+        }
     ]
 }

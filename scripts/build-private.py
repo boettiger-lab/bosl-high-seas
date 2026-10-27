@@ -28,6 +28,8 @@ def build_layers():
     for entry in extra["collections"]:
         ids = [c["collection_id"] for c in public["collections"]]
         public["collections"].insert(ids.index(entry["insert_after"]) + 1, entry["collection"])
+    if "mcp_servers" in extra:
+        public["mcp_servers"] = extra["mcp_servers"]
     public["sidebar"]["title"] = public["sidebar"]["title"] + " (private)"
     (ROOT / "layers-input.private.json").write_text(json.dumps(public, indent=4, ensure_ascii=False) + "\n")
 
@@ -51,6 +53,16 @@ def build_configmap():
         "        auth_basic_user_file /etc/nginx/auth/htpasswd;\n")
     t = replace_once(t, "        location /health {\n            access_log off;",
         "        location /health {\n            auth_basic off;\n            access_log off;")
+    t = replace_once(t, "        location / {\n",
+        "        # Literature corpus (text-query prototype): the in-cluster server reads the\n"
+        "        # private corpus bucket, so it is reachable only behind this password.\n"
+        "        location /api/text-query/ {\n"
+        "            proxy_pass http://high-seas-text-query.schmidtdse.svc.cluster.local:8000/;\n"
+        "            proxy_read_timeout 300s;\n"
+        "            proxy_send_timeout 300s;\n"
+        "            proxy_buffering off;\n"
+        "        }\n\n"
+        "        location / {\n")
     (ROOT / "k8s/private-configmap.yaml").write_text(HEADER.format(src="configmap.yaml") + t)
 
 

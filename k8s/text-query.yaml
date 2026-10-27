@@ -1,0 +1,141 @@
+# Literature corpus server for the private app: a prototype of SchmidtDSE/text-query.
+#
+# It reads passage text from a private bucket on rustfs (boettiger-lab namespace), so it has no
+# ingress. The private app's nginx proxies /api/text-query/ to this Service behind its password.
+# The code is cloned from the text-query `prototype` branch at pod start; the corpus
+# description below is sent to the chat agent as the server's instructions.
+#
+# The Secret high-seas-text-query (never committed) holds decision-token (Jev on OpenRouter) and
+# s3-key / s3-secret: a rustfs user that can only list and read the corpus bucket, minted and
+# rotated by geo-agent-ops. Use a host from rustfs's RUSTFS_SERVER_DOMAINS as the endpoint; any
+# other Host gets a blanket AccessDenied (geo-agent-ops#126).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: high-seas-text-query
+  namespace: schmidtdse
+data:
+  instructions.md: |
+    Runs codebook questions over the high-seas literature corpus with a decision model (Jev),
+    and reads rows of the corpus tables. The corpus is a dossier compiled on the Emperor
+    Seamount Chain (EBSA NP_18): 186 papers and reports with a text layer, in 14,513
+    passages of about one paragraph. Many papers report evidence from other regions. The
+    text is publisher copyright: quote short excerpts as evidence, never whole papers.
+
+    Tables (DuckDB SQL, snapshot 2026-10-27):
+
+    - `s3://high-seas-lit/derived/2026-10-27/passages.parquet`: one row per passage.
+      `passage_id`, `doc_id`, `title` (paper), `page`, `text`, `folder` (dossier section
+      folder, e.g. '8.2.4.Corals, 8.2.5.Sponges'), `file`, `folders` (all folders holding
+      the paper).
+    - `s3://high-seas-lit/derived/2026-10-27/coded.parquet`: the same rows, coded with the
+      BBNJ Annex I codebook (codebooks/bbnj-annex1.yaml in boettiger-lab/bosl-high-seas).
+      `content` = P(the passage reports scientific results). `site` (choice:
+      emperor_feature, emperor_chain, north_pacific, other_ocean, global, none) with
+      `site_p`. Criteria columns, coded only where content > 0.5 and NULL otherwise, each
+      P(yes) for Annex I criterion (a)-(v): crit_a_uniqueness, crit_b_rarity,
+      crit_c_life_history, crit_d_species_importance, crit_e_threatened,
+      crit_f_vulnerability, crit_g_fragility, crit_h_sensitivity,
+      crit_i_diversity_productivity, crit_j_representativeness, crit_k_dependency,
+      crit_l_naturalness, crit_m_connectivity, crit_n_processes, crit_o_economic_social,
+      crit_p_cultural, crit_q_impacts, crit_r_recovery, crit_s_adequacy,
+      crit_t_replication, crit_u_reproduction, crit_v_measures. Choices with a `_p`
+      probability column: `direction` (supports, weakens, neither), `evidence_type`
+      (direct, repeated, model, elsewhere, review, none), `taxon`, `zone`, `pressure`.
+      `strength` is a score from 0 (anecdote) to 3 (replicated survey or time series).
+
+    How to use the tools:
+
+    - Use `read_rows` on coded.parquet for questions the codebook already answers, such
+      as how many passages give evidence for each criterion on the Emperor chain. Count a
+      criterion as present at P > 0.7; crit_n and crit_t over-fire. Restrict to the site
+      with `site IN ('emperor_feature', 'emperor_chain')`.
+    - Use `decide` for new questions. Narrow the rows first with SQL (folder, a coded
+      column or a keyword) to at most 400, pass `context_column='title'`, and keep
+      `passage_id`, `title` and `page` in the SELECT so answers can be cited. A call costs
+      about a cent; answers are cached.
+    - Cite evidence by paper title and page. Say that codes come from a decision model and
+      have not all been checked by a person.
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: high-seas-text-query
+  namespace: schmidtdse
+  labels:
+    app: high-seas-text-query
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: high-seas-text-query
+  template:
+    metadata:
+      labels:
+        app: high-seas-text-query
+    spec:
+      initContainers:
+      - name: git-clone
+        image: alpine/git:2.52.0
+        command: [sh, -c, "git clone --depth 1 --branch prototype https://github.com/SchmidtDSE/text-query.git /app"]
+        volumeMounts:
+        - name: app
+          mountPath: /app
+      containers:
+      - name: server
+        image: python:3.12-slim
+        workingDir: /app/prototype
+        command: [sh, -c, "pip install --no-cache-dir -q -r requirements.txt && python server.py"]
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DECISION_URL
+          value: https://openrouter.ai/api/v1/systemone
+        - name: DECISION_MODEL
+          value: "~typesafe/jev-latest"
+        - name: DECISION_TOKEN
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: decision-token}
+        - name: S3_ENDPOINT
+          value: http://rustfs-s3.boettiger-lab.svc.cluster.local
+        - name: S3_KEY
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: s3-key}
+        - name: S3_SECRET
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: s3-secret}
+        - name: INSTRUCTIONS_FILE
+          value: /config/instructions.md
+        - name: MAX_ROWS
+          value: "400"
+        resources:
+          requests: {cpu: "100m", memory: "512Mi"}
+          limits: {cpu: "1", memory: "1Gi"}
+        readinessProbe:
+          httpGet: {path: /health, port: 8000}
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - name: app
+          mountPath: /app
+        - name: config
+          mountPath: /config
+          readOnly: true
+      volumes:
+      - name: app
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: high-seas-text-query
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: high-seas-text-query
+  namespace: schmidtdse
+spec:
+  selector:
+    app: high-seas-text-query
+  ports:
+  - port: 8000
+    targetPort: 8000

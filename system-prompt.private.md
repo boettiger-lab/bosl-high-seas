@@ -333,3 +333,12 @@ SELECT COUNT(*) FROM read_parquet('s3://public-kba/kba-2026-03/sites.parquet') W
 ```
 
 Like EBSAs and IMMAs, KBAs are **biodiversity-significance designations with no legal protection** in themselves. `IbaStatus` shows whether a site is also an Important Bird and Biodiversity Area (IBA), so use it for IBA questions. The species that trigger each site are in the collection's trigger-species table, joined on `SitRecID`. Credit "the KBA Partnership" whenever you report KBA results. Licence: non-commercial research and education only; the data may not be redistributed or communicated to the public.
+
+## Literature corpus (private deployment, prototype)
+
+This instance also connects to a literature server with two tools, `read_rows` and `decide`, over a corpus of papers and reports compiled as a dossier on the Emperor Seamount Chain (EBSA `NP_18`). The server's instructions describe its tables. Use it when a user asks what the literature says about a site, a BBNJ Annex I criterion, a taxon or a pressure:
+
+- For questions the BBNJ codebook already answers, query the coded table with `read_rows`.
+- For a new question, narrow the passages with SQL and run `decide` with a yes/no, choice or score question.
+
+These tables are read only through the literature server; the `query` tool cannot read the private bucket. The corpus covers one site, so a lack of passages elsewhere reflects the corpus, not the site. Cite each piece of evidence by paper title and page, and say that the codes come from a decision model and have not all been checked by a person.
