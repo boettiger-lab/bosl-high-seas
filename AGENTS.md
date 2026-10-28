@@ -94,6 +94,17 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
   ```
   Check: `curl -s -o /dev/null -w '%{http_code}' https://high-seas-private.nrp-nautilus.io/` → `401`.
 
+### Literature server (private app only)
+
+The private app also connects to a prototype literature server, `high-seas-text-query`
+(code: SchmidtDSE/text-query, `prototype` branch). It reads the copyrighted corpus from the
+private rustfs bucket `high-seas-lit` with a read-only key that geo-agent-ops mints, so it has
+no ingress; the private nginx proxies `/api/text-query/` to it behind the password.
+`k8s/text-query.yaml` holds its ConfigMap (the corpus description the agent reads) and
+Service, and `k8s/text-query-deployment.yaml` its Deployment, which is alone in that file
+because the geo-agent-ops weekly age reset deletes and re-applies it. Apply the Service before
+restarting the private app: nginx will not start if the route's Service is missing.
+
 ## EBSA explorer (`explorer/`)
 
 A second, no-LLM app at `https://high-seas.nrp-nautilus.io/explorer/` that ranks the 336 EBSAs

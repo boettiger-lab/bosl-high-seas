@@ -1,0 +1,73 @@
+# Literature corpus server for the private app; see text-query.yaml for the ConfigMap,
+# the Service and the Secret. Kept alone in this file for the geo-agent-ops weekly age
+# reset (schmidtdse-refresh), which deletes and re-applies it every Sunday.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: high-seas-text-query
+  namespace: schmidtdse
+  labels:
+    app: high-seas-text-query
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: high-seas-text-query
+  template:
+    metadata:
+      labels:
+        app: high-seas-text-query
+    spec:
+      initContainers:
+      - name: git-clone
+        image: alpine/git:2.52.0
+        command: [sh, -c, "git clone --depth 1 --branch prototype https://github.com/SchmidtDSE/text-query.git /app"]
+        volumeMounts:
+        - name: app
+          mountPath: /app
+      containers:
+      - name: server
+        image: python:3.12-slim
+        workingDir: /app/prototype
+        command: [sh, -c, "pip install --no-cache-dir -q -r requirements.txt && python server.py"]
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DECISION_URL
+          value: https://openrouter.ai/api/v1/systemone
+        - name: DECISION_MODEL
+          value: "~typesafe/jev-latest"
+        - name: DECISION_TOKEN
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: decision-token}
+        - name: S3_ENDPOINT
+          value: http://rustfs-s3.boettiger-lab.svc.cluster.local
+        - name: S3_KEY
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: s3-key}
+        - name: S3_SECRET
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query, key: s3-secret}
+        - name: INSTRUCTIONS_FILE
+          value: /config/instructions.md
+        - name: MAX_ROWS
+          value: "400"
+        resources:
+          requests: {cpu: "100m", memory: "512Mi"}
+          limits: {cpu: "1", memory: "1Gi"}
+        readinessProbe:
+          httpGet: {path: /health, port: 8000}
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - name: app
+          mountPath: /app
+        - name: config
+          mountPath: /config
+          readOnly: true
+      volumes:
+      - name: app
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: high-seas-text-query
