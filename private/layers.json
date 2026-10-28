@@ -9,6 +9,10 @@
             "optional": true
         }
     ],
+    "welcome_examples": [
+        "Is there evidence that coral communities on the Emperor seamounts recover after bottom trawling stops? Quote the strongest passages with paper and page.",
+        "Which BBNJ Annex I criteria have the most evidence from the Emperor Seamount Chain, and which papers support the top three?"
+    ],
     "collections": [
         {
             "insert_after": "ebsa-2023",

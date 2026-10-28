@@ -30,6 +30,7 @@ def build_layers():
         public["collections"].insert(ids.index(entry["insert_after"]) + 1, entry["collection"])
     if "mcp_servers" in extra:
         public["mcp_servers"] = extra["mcp_servers"]
+    public["welcome"]["examples"] += extra.get("welcome_examples", [])
     public["sidebar"]["title"] = public["sidebar"]["title"] + " (private)"
     (ROOT / "layers-input.private.json").write_text(json.dumps(public, indent=4, ensure_ascii=False) + "\n")
 
