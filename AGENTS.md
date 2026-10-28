@@ -108,6 +108,7 @@ no ingress; the private nginx proxies `/api/text-query/` to it behind the passwo
 Service, and `k8s/text-query-deployment.yaml` its Deployment, which is alone in that file
 because the geo-agent-ops weekly age reset deletes and re-applies it. Apply the Service before
 restarting the private app: nginx will not start if the route's Service is missing.
+`docs/text-query-walkthrough.md` follows one question through the tools and the data.
 
 ## EBSA explorer (`explorer/`)
 
