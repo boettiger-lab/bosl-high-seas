@@ -20,61 +20,61 @@ data:
                 "value": "xiaomi/mimo-v2.6-pro",
                 "label": "MiMo V2.6 Pro (OpenRouter)",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "xiaomi/mimo-v2.6-flash",
                 "label": "MiMo V2.6 Flash (OpenRouter)",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "z-ai/glm-5.2",
                 "label": "GLM-5.2 (OpenRouter)",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "~deepseek/deepseek-v4-flash-latest",
                 "label": "DeepSeek V4 Flash Latest (OpenRouter)",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "qwen",
                 "label": "DSE-nimbus",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "qwen3",
                 "label": "NRP Qwen3",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "gpt-oss",
                 "label": "NRP GPT-OSS 120B",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "kimi",
                 "label": "NRP Kimi K2.5",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "minimax-m2",
                 "label": "NRP MiniMax M2.5",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             },
             {
                 "value": "anthropic/claude-sonnet-5",
                 "label": "Claude Sonnet 5",
                 "endpoint": "/api/llm",
-                "api_key": "unused"
+                "api_key": "${APP_TOKEN}"
             }
         ]
     }
@@ -129,6 +129,10 @@ data:
         # ClusterIP is reachable cluster-wide. The service lives only in the
         # biodiversity namespace: ClusterIP open-llm-proxy:8002 (http).
         location /api/llm/ {
+            auth_basic off;
+            if ($http_authorization != "Bearer ${APP_TOKEN}") {
+                return 403;
+            }
             proxy_pass http://open-llm-proxy.biodiversity.svc.cluster.local:8002/v1/;
             proxy_set_header Authorization "Bearer ${PROXY_KEY}";
 

@@ -54,6 +54,17 @@ def build_configmap():
         "        auth_basic_user_file /etc/nginx/auth/htpasswd;\n")
     t = replace_once(t, "        location /health {\n            access_log off;",
         "        location /health {\n            auth_basic off;\n            access_log off;")
+    # geo-agent sends every LLM request with "Authorization: Bearer <api_key>", which
+    # replaces the browser's saved basic-auth credentials, so basic auth on /api/llm/ always
+    # fails (and the 401 re-prompts for the password). Instead the api_key is a token that
+    # only signed-in users can read (config.json is behind basic auth), and nginx checks it.
+    t = t.replace('"api_key": "unused"', '"api_key": "${APP_TOKEN}"')
+    t = replace_once(t, "        location /api/llm/ {\n",
+        "        location /api/llm/ {\n"
+        "            auth_basic off;\n"
+        "            if ($http_authorization != \"Bearer ${APP_TOKEN}\") {\n"
+        "                return 403;\n"
+        "            }\n")
     t = replace_once(t, "        location / {\n",
         "        # Literature corpus (text-query prototype): the in-cluster server reads the\n"
         "        # private corpus bucket, so it is reachable only behind this password.\n"
@@ -77,6 +88,13 @@ def build_deployment():
         "cp /tmp/repo/layers-input.private.json /usr/share/nginx/html/layers-input.json")
     t = replace_once(t, "cp /tmp/repo/system-prompt.md /usr/share/nginx/html/",
         "cp /tmp/repo/system-prompt.private.md /usr/share/nginx/html/system-prompt.md")
+    # APP_TOKEN is derived from the htpasswd Secret, so it rotates with the password and
+    # needs no Secret of its own.
+    t = replace_once(t, "          apk add --no-cache gettext\n",
+        "          apk add --no-cache gettext\n"
+        "          export APP_TOKEN=$(sha256sum /etc/nginx/auth/htpasswd | cut -c1-40)\n")
+    t = replace_once(t, "envsubst '$${MCP_SERVER_URL}'", "envsubst '$${MCP_SERVER_URL} $${APP_TOKEN}'")
+    t = replace_once(t, "envsubst '$${PROXY_KEY}'", "envsubst '$${PROXY_KEY} $${APP_TOKEN}'")
     t = replace_once(t, "        - name: config-template\n          mountPath: /config\n",
         "        - name: config-template\n          mountPath: /config\n"
         "        - name: htpasswd\n          mountPath: /etc/nginx/auth\n          readOnly: true\n")

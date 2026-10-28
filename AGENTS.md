@@ -76,7 +76,11 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
   `k8s/private-{configmap,deployment}.yaml`) come from `scripts/build-private.py`. **Re-run it
   after ANY edit to `layers-input.json`, `system-prompt.md`, `k8s/configmap.yaml` or
   `k8s/deployment.yaml`**, and commit the output in the same PR, or the private app drifts.
-- **Auth:** nginx `auth_basic` on every path except `/health` (including `/api/llm/`). The
+- **Auth:** nginx `auth_basic` on every path except `/health` and `/api/llm/`. geo-agent sends LLM
+  requests with `Authorization: Bearer <api_key>`, which replaces the browser's saved password, so
+  `/api/llm/` instead checks a token: `APP_TOKEN`, derived at pod start from the htpasswd Secret and
+  served only in the password-protected `config.json`. Without it the chat fails with 401 and the
+  browser re-prompts for the password. The
   htpasswd file comes from the `bosl-high-seas-private-htpasswd` Secret in `schmidtdse`. It is
   **never committed**. The username is `bosl`, and the passphrase is shared only with approved colleagues.
 - **Rotate the password** (then share the new one out of band):
