@@ -48,6 +48,8 @@ spec:
         - name: S3_SECRET
           valueFrom:
             secretKeyRef: {name: high-seas-text-query, key: s3-secret}
+        - name: TABLES
+          value: passages=s3://high-seas-lit/derived/2026-10-27/passages.parquet;coded=s3://high-seas-lit/derived/2026-10-27/coded.parquet
         - name: INSTRUCTIONS_FILE
           value: /config/instructions.md
         - name: MAX_ROWS

@@ -19,7 +19,7 @@ Like EBSAs and IMMAs, KBAs are **biodiversity-significance designations with no 
 
 ## Literature corpus (private deployment, prototype)
 
-This instance also connects to a literature server with two tools, `read_rows` and `decide`, over a corpus of papers and reports compiled as a dossier on the Emperor Seamount Chain (EBSA `NP_18`). The server's instructions describe its tables. Use it when a user asks what the literature says about a site, a BBNJ Annex I criterion, a taxon or a pressure:
+This instance also connects to a literature server with two tools, `read_rows` and `decide`, over a corpus of papers and reports compiled as a dossier on the Emperor Seamount Chain (EBSA `NP_18`). It has exactly two tables, `passages` (one row per paragraph, with `text`) and `coded` (the same rows with BBNJ Annex I codes), described in the tools' descriptions. Query them by name, as in `SELECT * FROM coded LIMIT 5`; don't list or guess other tables. Use it when a user asks what the literature says about a site, a BBNJ Annex I criterion, a taxon or a pressure:
 
 - For questions the BBNJ codebook already answers, query the coded table with `read_rows`.
 - For a new question, narrow the passages with SQL and run `decide` with a yes/no, choice or score question.
