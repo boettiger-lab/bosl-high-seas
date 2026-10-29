@@ -4,7 +4,7 @@
 # ingress. The private app's nginx proxies /api/text-query/ to this Service behind its password.
 # The Deployment is in text-query-deployment.yaml, a file of its own so the weekly
 # schmidtdse age reset in geo-agent-ops can delete and re-create it without touching
-# the Service. The code is cloned from the text-query `prototype` branch at pod start; the corpus
+# the Service. The code is cloned from text-query `main` at pod start; the corpus
 # description below is sent to the chat agent as the server's instructions.
 #
 # The Secret high-seas-text-query (never committed) holds decision-token (Jev on OpenRouter) and

@@ -21,7 +21,7 @@ spec:
       initContainers:
       - name: git-clone
         image: alpine/git:2.52.0
-        command: [sh, -c, "git clone --depth 1 --branch prototype https://github.com/SchmidtDSE/text-query.git /app"]
+        command: [sh, -c, "git clone --depth 1 --branch main https://github.com/SchmidtDSE/text-query.git /app"]
         volumeMounts:
         - name: app
           mountPath: /app

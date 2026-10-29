@@ -101,7 +101,7 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
 ### Literature server (private app only)
 
 The private app also connects to a prototype literature server, `high-seas-text-query`
-(code: SchmidtDSE/text-query, `prototype` branch). It reads the copyrighted corpus from the
+(code: SchmidtDSE/text-query, `main`). It reads the copyrighted corpus from the
 private rustfs bucket `high-seas-lit` with a read-only key that geo-agent-ops mints, so it has
 no ingress; the private nginx proxies `/api/text-query/` to it behind the password.
 `k8s/text-query.yaml` holds its ConfigMap (the corpus description the agent reads) and
