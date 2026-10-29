@@ -34,7 +34,7 @@ The bucket `high-seas-lit` on rustfs holds two kinds of object.
 The pilot's PyMuPDF script made the passages. It reads each PDF's text blocks, drops running
 headers and footers, tables of contents and everything after the References heading, and
 merges blocks into chunks of about a paragraph. The result is 14,513 passages from 186 PDFs.
-The 8 scanned PDFs have no text yet. GROBID will replace this step in `corpus-ingest`.
+The 8 scanned PDFs have no text yet. GROBID will replace this step in `text-ingest`.
 
 There are two tables.
 
