@@ -102,11 +102,11 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
 
 The private app also connects to a prototype literature server, `high-seas-text-query`
 (code: SchmidtDSE/text-query, `main`). It reads the copyrighted corpus from the
-private rustfs bucket `high-seas-lit` with a read-only key that geo-agent-ops mints, so it has
+private rustfs bucket `high-seas-lit` with a read-only key that glen-ops mints, so it has
 no ingress; the private nginx proxies `/api/text-query/` to it behind the password.
 `k8s/text-query.yaml` holds its ConfigMap (the corpus description the agent reads) and
 Service, and `k8s/text-query-deployment.yaml` its Deployment, which is alone in that file
-because the geo-agent-ops weekly age reset deletes and re-applies it. Apply the Service before
+because the glen-ops weekly age reset deletes and re-applies it. Apply the Service before
 restarting the private app: nginx will not start if the route's Service is missing.
 `docs/text-query-walkthrough.md` follows one question through the tools and the data.
 
