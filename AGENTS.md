@@ -200,4 +200,4 @@ For private data modules (rclone sidecar, oauth2-proxy, private parquet credenti
 
 ---
 
-For full `layers-input.json` schema, troubleshooting, and configuration reference see the [geo-agent-template AGENTS.md](https://github.com/boettiger-lab/geo-agent-template/blob/main/AGENTS.md) or the [docs](https://schmidtdse.github.io/glen/).
+For full `layers-input.json` schema, troubleshooting, and configuration reference see the [glen-template AGENTS.md](https://github.com/SchmidtDSE/glen-template/blob/main/AGENTS.md) or the [docs](https://schmidtdse.github.io/glen/).
