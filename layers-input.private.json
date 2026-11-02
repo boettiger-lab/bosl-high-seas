@@ -27,7 +27,35 @@
             "src": "bosl-logo.svg",
             "alt": "Benioff Ocean Science Laboratory",
             "href": "https://bosl.ucsb.edu/"
-        }
+        },
+        "nav": [
+            {
+                "label": "Heat watch",
+                "href": "/heat-watch/",
+                "external": false
+            },
+            {
+                "label": "About",
+                "href": "/docs.html",
+                "icon": "info"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/boettiger-lab/bosl-high-seas",
+                "icon": "github"
+            },
+            {
+                "label": "Carbon",
+                "href": "https://carbon-api.nrp-nautilus.io/",
+                "icon": "leaf"
+            },
+            {
+                "label": "Contact us",
+                "href": "mailto:dse@berkeley.edu",
+                "icon": "mail",
+                "external": false
+            }
+        ]
     },
     "theme": {
         "mode": "dark",
@@ -931,6 +959,11 @@
         {
             "collection_id": "obis-derived",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-obis/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "coral-reef-watch",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/stac-collection.json",
             "assets": []
         },
         {

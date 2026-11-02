@@ -36,6 +36,8 @@ spec:
           cp /tmp/repo/system-prompt.private.md /usr/share/nginx/html/system-prompt.md
           # EBSA explorer (glen-charts): page, theme, config and precomputed data
           cp -r /tmp/repo/explorer /usr/share/nginx/html/
+          # Pacific Heat Watch: animated daily CRW SST anomaly, read from the public COGs
+          cp -r /tmp/repo/heat-watch /usr/share/nginx/html/
         volumeMounts:
         - name: website-content
           mountPath: /usr/share/nginx/html
