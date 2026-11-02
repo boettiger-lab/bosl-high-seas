@@ -135,7 +135,7 @@ The explorer's header carries its own pin of geo-agent (the DSE mark) and the BO
 | `geo-agent` | Core library (map, chat, agent, tools). Source of truth for all functionality. |
 | `bosl-high-seas` | Application repo. Configure `layers-input.json`, `system-prompt.md`, and `k8s/` for this dataset. |
 
-**Full docs:** [boettiger-lab.github.io/geo-agent/docs](https://boettiger-lab.github.io/geo-agent/docs/)
+**Full docs:** [schmidtdse.github.io/glen/](https://schmidtdse.github.io/glen/)
 
 ---
 
@@ -169,11 +169,11 @@ If you change `k8s/configmap.yaml` (LLM model list or nginx template), apply it 
 `index.html` pins the geo-agent library version. Verify jsDelivr serves a new tag before deploying:
 
 ```bash
-curl -sI https://cdn.jsdelivr.net/gh/boettiger-lab/geo-agent@vX.Y.Z/app/style.css | grep HTTP
+curl -sI https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@vX.Y.Z/app/style.css | grep HTTP
 # Must return HTTP/2 200 — a 404 means jsDelivr hasn't indexed the tag yet
 ```
 
-For private data modules (rclone sidecar, oauth2-proxy, private parquet credentials): [docs/guide/private-deployment](https://boettiger-lab.github.io/geo-agent/docs/guide/private-deployment)
+For private data modules (rclone sidecar, oauth2-proxy, private parquet credentials): [docs/guide/private-deployment](https://schmidtdse.github.io/glen/guide/private-deployment)
 
 ---
 
@@ -200,4 +200,4 @@ For private data modules (rclone sidecar, oauth2-proxy, private parquet credenti
 
 ---
 
-For full `layers-input.json` schema, troubleshooting, and configuration reference see the [geo-agent-template AGENTS.md](https://github.com/boettiger-lab/geo-agent-template/blob/main/AGENTS.md) or the [docs](https://boettiger-lab.github.io/geo-agent/docs/).
+For full `layers-input.json` schema, troubleshooting, and configuration reference see the [geo-agent-template AGENTS.md](https://github.com/boettiger-lab/geo-agent-template/blob/main/AGENTS.md) or the [docs](https://schmidtdse.github.io/glen/).
