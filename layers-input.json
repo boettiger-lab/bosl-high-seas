@@ -24,7 +24,14 @@
             "src": "bosl-logo.svg",
             "alt": "Benioff Ocean Science Laboratory",
             "href": "https://bosl.ucsb.edu/"
-        }
+        },
+        "nav": [
+            { "label": "Heat watch", "href": "/heat-watch/", "external": false },
+            { "label": "About", "href": "/docs.html", "icon": "info" },
+            { "label": "GitHub", "href": "https://github.com/boettiger-lab/bosl-high-seas", "icon": "github" },
+            { "label": "Carbon", "href": "https://carbon-api.nrp-nautilus.io/", "icon": "leaf" },
+            { "label": "Contact us", "href": "mailto:dse@berkeley.edu", "icon": "mail", "external": false }
+        ]
     },
     "theme": {
         "mode": "dark",
@@ -607,6 +614,25 @@
             "collection_id": "obis-derived",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-obis/stac-collection.json",
             "assets": []
+        },
+        {
+            "collection_id": "coral-reef-watch",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-daily-baa-max-7d",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/baa-max-7d/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "baa-max-7d-cog",
+                    "display_name": "Coral Bleaching Alert Area",
+                    "visible": false,
+                    "legend_type": "categorical",
+                    "legend_label": "Highest alert level in the last 7 days"
+                }
+            ]
         },
         {
             "collection_id": "bio-oracle-depthmean-thetao-mean",

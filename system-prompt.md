@@ -310,6 +310,75 @@ For display use the configured COG layers, not `register_hex_tiles`.
 behaviour; `ship-density/fishing` reports AIS position counts for fishing vessels including transit
 and time in port. They agree on geography, not on magnitude.
 
+## Sea surface temperature and coral heat stress (`coral-reef-watch`)
+
+NOAA Coral Reef Watch (CRW) publishes daily global 5 km sea surface temperature and coral
+bleaching heat stress products. We hold them as H3 resolution 6 hex tables in three tiers.
+Each product is its own STAC sub-collection, so call `get_stac_details` on the product ID for the
+exact path and columns:
+
+- **Daily, last 13 months only** (`crw-5km-daily-<product>`, one row per cell per day): `sst`
+  (`analysed_sst`), `ssta` (`sea_surface_temperature_anomaly`), `hs` (`hotspot`), `dhw`
+  (`degree_heating_week`), `baa` and `baa-max-7d` (`bleaching_alert_area`, classes 0 to 4).
+  Days older than 13 months are deleted as new ones arrive.
+- **Monthly from 1985** (`crw-5km-monthly-<product>`): `sst-min/mean/max`, `ssta-min/mean/max`,
+  `hs-max`, `dhw-max`, `baa-max`, `baa5-max`. `time` is the last day of the month.
+- **Annual from 1985** (`crw-5km-annual-<product>`), with the same products.
+- **`crw-5km-daily-ne-pacific-blob`** is one row per day summarising the northeast Pacific warm
+  anomaly (20–60°N, 180–110°W): `area_km2_ssta_ge_2`, `max_ssta` and its location. Use it for
+  questions about the "Blob" before scanning the hex.
+
+Use the daily tier for the last 13 months and the monthly tier for anything older or for long
+trends. A daily query over a large box and all 13 months takes 2–3 minutes. The monthly tier is
+much faster per month, so prefer it when monthly resolution answers the question.
+
+**Restrict `h0` before anything else.** The tables are partitioned by `h0` and hold about
+9 million rows per day, so an unscoped scan times out. Build the `h0` set from a grid of points
+over the box, then filter on the cell centre. This query gives the Niño 3.4 index
+(5°S–5°N, 170–120°W):
+
+```sql
+WITH c AS (
+  SELECT time, sea_surface_temperature_anomaly AS v, h3_cell_area(h6, 'km^2') AS a,
+         h3_cell_to_lat(h6) AS lat, h3_cell_to_lng(h6) AS lng
+  FROM read_parquet('<ssta-mean hex path from get_stac_details>', hive_partitioning = true)
+  WHERE time >= DATE '2026-01-01'
+    AND h0 IN (SELECT DISTINCT h3_cell_to_parent(h3_latlng_to_cell(lat, lng, 6), 0)
+               FROM range(-5, 6) r1(lat), range(-170, -119) r2(lng))
+)
+SELECT time, SUM(v * a) / SUM(a) AS ssta_c
+FROM c WHERE lat BETWEEN -5 AND 5 AND lng BETWEEN -170 AND -120
+GROUP BY time ORDER BY time;
+```
+
+Also get these right:
+
+- **Values are temperatures and indices, not amounts.** Never sum them across cells or days.
+  Summarise a region with the area-weighted mean shown above, or with the area above a threshold
+  (`SUM(h3_cell_area(h6, 'km^2')) WHERE v >= 2`).
+- **There is no h8 column.** A 5 km pixel is coarser than a resolution 8 cell. Join to
+  resolution 8 data (EEZs, MPAs, EBSAs) with `h3_cell_to_parent(h8, 6)` and deduplicate the h6
+  cells first.
+- **Land, sea ice and missing pixels are absent rather than zero,** so a cell missing on one day
+  is not a cold cell.
+- **The anomaly is measured against CRW's 1985–1990 and 1993 climatology** for that day of the
+  year. It is not a trend-adjusted anomaly, so it includes long-term warming.
+- **DHW counts accumulated heat stress over 12 weeks in °C-weeks.** CRW's Alert Level 1 is
+  4 °C-weeks and Alert Level 2 is 8 °C-weeks. Coral bleaching thresholds are defined for reef
+  areas, so describe DHW in the open high seas as heat stress, not bleaching.
+- **Credit the source as NOAA Coral Reef Watch** whenever you report these numbers. The data are
+  in the public domain.
+
+**Map layer.** `Coral Bleaching Alert Area` (`crw-5km-daily-baa-max-7d`) shows the latest day of
+CRW's 7-day maximum Bleaching Alert Area, from No Stress through Alert Level 2. It always shows
+the most recent day only, and the asset title in STAC gives that date. For any other day, or for
+SST, anomaly or DHW, query the hex.
+
+**Animation.** You cannot animate a time series on this map. When someone asks to watch SST
+anomaly change over time, point them to the Pacific Heat Watch page at `/heat-watch/` (the
+"Heat watch" link in the header). It plays the daily anomaly across the Pacific for the last
+13 months. For a time series in the chat, query the hex and plot a chart.
+
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 
 The Pacific Islands Heritage Marine National Monument (PIHMNM, formerly the Pacific Remote Islands MNM / PRIMNM) and similar US Pacific monuments are delineated by **US Exclusive Economic Zone units**, not by the WDPA protected-areas layer. For questions about monument extent, no-take radii, distance-from-island buffers, or "out to N nautical miles / to the EEZ limit", build the footprint from the **EEZ hex asset** (`iho-maritime-boundaries`), selecting the US units via `MRGID_EEZ` / `SOVEREIGN1 = 'United States'`, and measure distance from each island with `h3_great_circle_distance`. Do **not** reconstruct the monument from WDPA.
