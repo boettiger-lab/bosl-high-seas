@@ -27,35 +27,7 @@
             "src": "bosl-logo.svg",
             "alt": "Benioff Ocean Science Laboratory",
             "href": "https://bosl.ucsb.edu/"
-        },
-        "nav": [
-            {
-                "label": "Heat watch",
-                "href": "/heat-watch/",
-                "external": false
-            },
-            {
-                "label": "About",
-                "href": "/docs.html",
-                "icon": "info"
-            },
-            {
-                "label": "GitHub",
-                "href": "https://github.com/boettiger-lab/bosl-high-seas",
-                "icon": "github"
-            },
-            {
-                "label": "Carbon",
-                "href": "https://carbon-api.nrp-nautilus.io/",
-                "icon": "leaf"
-            },
-            {
-                "label": "Contact us",
-                "href": "mailto:dse@berkeley.edu",
-                "icon": "mail",
-                "external": false
-            }
-        ]
+        }
     },
     "theme": {
         "mode": "dark",

@@ -374,10 +374,8 @@ CRW's 7-day maximum Bleaching Alert Area, from No Stress through Alert Level 2. 
 the most recent day only, and the asset title in STAC gives that date. For any other day, or for
 SST, anomaly or DHW, query the hex.
 
-**Animation.** You cannot animate a time series on this map. When someone asks to watch SST
-anomaly change over time, point them to the Pacific Heat Watch page at `/heat-watch/` (the
-"Heat watch" link in the header). It plays the daily anomaly across the Pacific for the last
-13 months. For a time series in the chat, query the hex and plot a chart.
+**Animation.** You cannot animate a time series on this map. For change over time, query the hex
+and plot a chart.
 
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 
