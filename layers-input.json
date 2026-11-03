@@ -649,6 +649,7 @@
                     "control": {
                         "bind": "frame",
                         "frames": "ssta-mean-cog-frames",
+                        "preload": 5,
                         "frame_ms": 300
                     }
                 }
