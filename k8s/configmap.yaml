@@ -13,8 +13,14 @@ data:
   config.template.json: |
     {
         "mcp_server_url": "${MCP_SERVER_URL}",
-        "llm_model": "xiaomi/mimo-v2.6-pro",
+        "llm_model": "deepseek-v4-flash",
         "llm_models": [
+            {
+                "value": "deepseek-v4-flash",
+                "label": "NRP DeepSeek V4 Flash",
+                "endpoint": "/api/llm",
+                "api_key": "unused"
+            },
             {
                 "value": "xiaomi/mimo-v2.6-pro",
                 "label": "MiMo V2.6 Pro (OpenRouter)",
