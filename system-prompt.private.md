@@ -369,13 +369,24 @@ Also get these right:
 - **Credit the source as NOAA Coral Reef Watch** whenever you report these numbers. The data are
   in the public domain.
 
-**Map layer.** `Coral Bleaching Alert Area` (`crw-5km-daily-baa-max-7d`) shows the latest day of
-CRW's 7-day maximum Bleaching Alert Area, from No Stress through Alert Level 2. It always shows
-the most recent day only, and the asset title in STAC gives that date. For any other day, or for
-SST, anomaly or DHW, query the hex.
+**Map layers.** The "Ocean Heat Stress" group holds these CRW layers:
 
-**Animation.** You cannot animate a time series on this map. For change over time, query the hex
-and plot a chart.
+- `Daily Sea Surface Temperature Anomaly` (`crw-5km-daily-ssta`) and `Monthly Sea Surface
+  Temperature Anomaly` (`crw-5km-monthly-ssta-mean`) are time series. Each has a player with a
+  date slider: the daily layer covers the last 13 months, stepping every fourth day, and the
+  monthly layer covers January 1985 to the latest month.
+- `Sea Surface Temperature` (`crw-5km-daily-sst`) and `Degree Heating Weeks` (`crw-5km-daily-dhw`)
+  show the latest day only. The asset title in STAC gives that date.
+- `Annual Mean Temperature Anomaly` and `Annual Maximum Degree Heating Weeks` have one version per
+  year from 1985 to 2025. For DHW, 1985 covers only 25 March to 31 December.
+- `Coral Bleaching Alert Area` (`crw-5km-daily-baa-max-7d`) shows the latest day of CRW's 7-day
+  maximum Bleaching Alert Area, from No Stress through Alert Level 2.
+
+**Animation.** Use `set_time` to show a time-series layer at a given date, to choose the span it
+plays, or to start and stop playback. Show the layer first. For example, to show the 2015–16
+El Niño, show the monthly anomaly layer and call `set_time` with `start` 2015-01, `end` 2016-12
+and `play` true. Use the daily layer for the last 13 months and the monthly layer for anything
+older. For numbers over time, query the hex and plot a chart as well.
 
 ## US Pacific marine national monuments (PIHMNM / PRIMNM)
 

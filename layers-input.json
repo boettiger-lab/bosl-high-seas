@@ -614,6 +614,439 @@
             "assets": []
         },
         {
+            "collection_id": "crw-5km-daily-ssta",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/ssta/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "ssta-cog",
+                    "display_name": "Daily Sea Surface Temperature Anomaly",
+                    "visible": false,
+                    "colormap": "rdbu_r",
+                    "rescale": "-5,5",
+                    "legend_label": "°C",
+                    "control": {
+                        "bind": "frame",
+                        "frames": "ssta-cog-frames",
+                        "step": 4,
+                        "frame_ms": 320
+                    }
+                }
+            ]
+        },
+        {
+            "collection_id": "crw-5km-monthly-ssta-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/ssta-mean/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "ssta-mean-cog",
+                    "display_name": "Monthly Sea Surface Temperature Anomaly",
+                    "visible": false,
+                    "colormap": "rdbu_r",
+                    "rescale": "-5,5",
+                    "legend_label": "°C",
+                    "control": {
+                        "bind": "frame",
+                        "frames": "ssta-mean-cog-frames",
+                        "frame_ms": 300
+                    }
+                }
+            ]
+        },
+        {
+            "collection_id": "crw-5km-daily-sst",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/sst/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "sst-cog",
+                    "display_name": "Sea Surface Temperature",
+                    "visible": false,
+                    "colormap": "rdylbu_r",
+                    "rescale": "-2,31",
+                    "legend_label": "°C"
+                }
+            ]
+        },
+        {
+            "collection_id": "crw-5km-daily-dhw",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/dhw/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "dhw-cog",
+                    "display_name": "Degree Heating Weeks",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0,30",
+                    "legend_label": "°C-weeks"
+                }
+            ]
+        },
+        {
+            "collection_id": "crw-5km-annual-ssta-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/ssta-mean/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "ssta-mean-cog-2025",
+                    "display_name": "Annual Mean Temperature Anomaly",
+                    "visible": false,
+                    "colormap": "rdbu_r",
+                    "rescale": "-2,2",
+                    "legend_label": "°C",
+                    "versions": [
+                        {
+                            "label": "2025",
+                            "asset_id": "ssta-mean-cog-2025"
+                        },
+                        {
+                            "label": "2024",
+                            "asset_id": "ssta-mean-cog-2024"
+                        },
+                        {
+                            "label": "2023",
+                            "asset_id": "ssta-mean-cog-2023"
+                        },
+                        {
+                            "label": "2022",
+                            "asset_id": "ssta-mean-cog-2022"
+                        },
+                        {
+                            "label": "2021",
+                            "asset_id": "ssta-mean-cog-2021"
+                        },
+                        {
+                            "label": "2020",
+                            "asset_id": "ssta-mean-cog-2020"
+                        },
+                        {
+                            "label": "2019",
+                            "asset_id": "ssta-mean-cog-2019"
+                        },
+                        {
+                            "label": "2018",
+                            "asset_id": "ssta-mean-cog-2018"
+                        },
+                        {
+                            "label": "2017",
+                            "asset_id": "ssta-mean-cog-2017"
+                        },
+                        {
+                            "label": "2016",
+                            "asset_id": "ssta-mean-cog-2016"
+                        },
+                        {
+                            "label": "2015",
+                            "asset_id": "ssta-mean-cog-2015"
+                        },
+                        {
+                            "label": "2014",
+                            "asset_id": "ssta-mean-cog-2014"
+                        },
+                        {
+                            "label": "2013",
+                            "asset_id": "ssta-mean-cog-2013"
+                        },
+                        {
+                            "label": "2012",
+                            "asset_id": "ssta-mean-cog-2012"
+                        },
+                        {
+                            "label": "2011",
+                            "asset_id": "ssta-mean-cog-2011"
+                        },
+                        {
+                            "label": "2010",
+                            "asset_id": "ssta-mean-cog-2010"
+                        },
+                        {
+                            "label": "2009",
+                            "asset_id": "ssta-mean-cog-2009"
+                        },
+                        {
+                            "label": "2008",
+                            "asset_id": "ssta-mean-cog-2008"
+                        },
+                        {
+                            "label": "2007",
+                            "asset_id": "ssta-mean-cog-2007"
+                        },
+                        {
+                            "label": "2006",
+                            "asset_id": "ssta-mean-cog-2006"
+                        },
+                        {
+                            "label": "2005",
+                            "asset_id": "ssta-mean-cog-2005"
+                        },
+                        {
+                            "label": "2004",
+                            "asset_id": "ssta-mean-cog-2004"
+                        },
+                        {
+                            "label": "2003",
+                            "asset_id": "ssta-mean-cog-2003"
+                        },
+                        {
+                            "label": "2002",
+                            "asset_id": "ssta-mean-cog-2002"
+                        },
+                        {
+                            "label": "2001",
+                            "asset_id": "ssta-mean-cog-2001"
+                        },
+                        {
+                            "label": "2000",
+                            "asset_id": "ssta-mean-cog-2000"
+                        },
+                        {
+                            "label": "1999",
+                            "asset_id": "ssta-mean-cog-1999"
+                        },
+                        {
+                            "label": "1998",
+                            "asset_id": "ssta-mean-cog-1998"
+                        },
+                        {
+                            "label": "1997",
+                            "asset_id": "ssta-mean-cog-1997"
+                        },
+                        {
+                            "label": "1996",
+                            "asset_id": "ssta-mean-cog-1996"
+                        },
+                        {
+                            "label": "1995",
+                            "asset_id": "ssta-mean-cog-1995"
+                        },
+                        {
+                            "label": "1994",
+                            "asset_id": "ssta-mean-cog-1994"
+                        },
+                        {
+                            "label": "1993",
+                            "asset_id": "ssta-mean-cog-1993"
+                        },
+                        {
+                            "label": "1992",
+                            "asset_id": "ssta-mean-cog-1992"
+                        },
+                        {
+                            "label": "1991",
+                            "asset_id": "ssta-mean-cog-1991"
+                        },
+                        {
+                            "label": "1990",
+                            "asset_id": "ssta-mean-cog-1990"
+                        },
+                        {
+                            "label": "1989",
+                            "asset_id": "ssta-mean-cog-1989"
+                        },
+                        {
+                            "label": "1988",
+                            "asset_id": "ssta-mean-cog-1988"
+                        },
+                        {
+                            "label": "1987",
+                            "asset_id": "ssta-mean-cog-1987"
+                        },
+                        {
+                            "label": "1986",
+                            "asset_id": "ssta-mean-cog-1986"
+                        },
+                        {
+                            "label": "1985",
+                            "asset_id": "ssta-mean-cog-1985"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "collection_id": "crw-5km-annual-dhw-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/dhw-max/stac-collection.json",
+            "group": "Ocean Heat Stress",
+            "assets": [
+                {
+                    "id": "dhw-max-cog-2025",
+                    "display_name": "Annual Maximum Degree Heating Weeks",
+                    "visible": false,
+                    "colormap": "ylorrd",
+                    "rescale": "0,30",
+                    "legend_label": "°C-weeks",
+                    "versions": [
+                        {
+                            "label": "2025",
+                            "asset_id": "dhw-max-cog-2025"
+                        },
+                        {
+                            "label": "2024",
+                            "asset_id": "dhw-max-cog-2024"
+                        },
+                        {
+                            "label": "2023",
+                            "asset_id": "dhw-max-cog-2023"
+                        },
+                        {
+                            "label": "2022",
+                            "asset_id": "dhw-max-cog-2022"
+                        },
+                        {
+                            "label": "2021",
+                            "asset_id": "dhw-max-cog-2021"
+                        },
+                        {
+                            "label": "2020",
+                            "asset_id": "dhw-max-cog-2020"
+                        },
+                        {
+                            "label": "2019",
+                            "asset_id": "dhw-max-cog-2019"
+                        },
+                        {
+                            "label": "2018",
+                            "asset_id": "dhw-max-cog-2018"
+                        },
+                        {
+                            "label": "2017",
+                            "asset_id": "dhw-max-cog-2017"
+                        },
+                        {
+                            "label": "2016",
+                            "asset_id": "dhw-max-cog-2016"
+                        },
+                        {
+                            "label": "2015",
+                            "asset_id": "dhw-max-cog-2015"
+                        },
+                        {
+                            "label": "2014",
+                            "asset_id": "dhw-max-cog-2014"
+                        },
+                        {
+                            "label": "2013",
+                            "asset_id": "dhw-max-cog-2013"
+                        },
+                        {
+                            "label": "2012",
+                            "asset_id": "dhw-max-cog-2012"
+                        },
+                        {
+                            "label": "2011",
+                            "asset_id": "dhw-max-cog-2011"
+                        },
+                        {
+                            "label": "2010",
+                            "asset_id": "dhw-max-cog-2010"
+                        },
+                        {
+                            "label": "2009",
+                            "asset_id": "dhw-max-cog-2009"
+                        },
+                        {
+                            "label": "2008",
+                            "asset_id": "dhw-max-cog-2008"
+                        },
+                        {
+                            "label": "2007",
+                            "asset_id": "dhw-max-cog-2007"
+                        },
+                        {
+                            "label": "2006",
+                            "asset_id": "dhw-max-cog-2006"
+                        },
+                        {
+                            "label": "2005",
+                            "asset_id": "dhw-max-cog-2005"
+                        },
+                        {
+                            "label": "2004",
+                            "asset_id": "dhw-max-cog-2004"
+                        },
+                        {
+                            "label": "2003",
+                            "asset_id": "dhw-max-cog-2003"
+                        },
+                        {
+                            "label": "2002",
+                            "asset_id": "dhw-max-cog-2002"
+                        },
+                        {
+                            "label": "2001",
+                            "asset_id": "dhw-max-cog-2001"
+                        },
+                        {
+                            "label": "2000",
+                            "asset_id": "dhw-max-cog-2000"
+                        },
+                        {
+                            "label": "1999",
+                            "asset_id": "dhw-max-cog-1999"
+                        },
+                        {
+                            "label": "1998",
+                            "asset_id": "dhw-max-cog-1998"
+                        },
+                        {
+                            "label": "1997",
+                            "asset_id": "dhw-max-cog-1997"
+                        },
+                        {
+                            "label": "1996",
+                            "asset_id": "dhw-max-cog-1996"
+                        },
+                        {
+                            "label": "1995",
+                            "asset_id": "dhw-max-cog-1995"
+                        },
+                        {
+                            "label": "1994",
+                            "asset_id": "dhw-max-cog-1994"
+                        },
+                        {
+                            "label": "1993",
+                            "asset_id": "dhw-max-cog-1993"
+                        },
+                        {
+                            "label": "1992",
+                            "asset_id": "dhw-max-cog-1992"
+                        },
+                        {
+                            "label": "1991",
+                            "asset_id": "dhw-max-cog-1991"
+                        },
+                        {
+                            "label": "1990",
+                            "asset_id": "dhw-max-cog-1990"
+                        },
+                        {
+                            "label": "1989",
+                            "asset_id": "dhw-max-cog-1989"
+                        },
+                        {
+                            "label": "1988",
+                            "asset_id": "dhw-max-cog-1988"
+                        },
+                        {
+                            "label": "1987",
+                            "asset_id": "dhw-max-cog-1987"
+                        },
+                        {
+                            "label": "1986",
+                            "asset_id": "dhw-max-cog-1986"
+                        },
+                        {
+                            "label": "1985",
+                            "asset_id": "dhw-max-cog-1985"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "collection_id": "crw-5km-daily-baa-max-7d",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/baa-max-7d/stac-collection.json",
             "group": "Ocean Heat Stress",
