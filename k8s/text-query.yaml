@@ -71,3 +71,27 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
+---
+# Only the private app's pods may reach this server. It has no auth of its own:
+# the private app's nginx password is the gate, so nothing else in the cluster
+# should be able to bypass that by calling the Service directly. Health probes
+# still work, because traffic from the pod's own node is always allowed.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: high-seas-text-query-ingress
+  namespace: schmidtdse
+spec:
+  podSelector:
+    matchLabels:
+      app: high-seas-text-query
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: bosl-high-seas-private
+    ports:
+    - port: 8000
+      protocol: TCP
