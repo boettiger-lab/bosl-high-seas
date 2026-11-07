@@ -2,7 +2,7 @@
     "id": "bosl-ebsa",
     "title": "High Seas EBSA Explorer",
     "engine": "mcp",
-    "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+    "mcp_url": "https://high-seas.nrp-nautilus.io/api/mcp",
     "view": {
         "center": [
             0,

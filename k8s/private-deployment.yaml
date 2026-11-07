@@ -47,8 +47,16 @@ spec:
         env:
         - name: TMPDIR
           value: "/tmp"
+        # Same-origin MCP path: nginx proxies it to the shared server and
+        # attaches the bearer token, so the browser never holds the token
+        # (geo-query#453). Absolute, because GLEN does new URL(mcp_url).
         - name: MCP_SERVER_URL
-          value: "https://duckdb-mcp.nrp-nautilus.io/mcp"
+          value: "https://high-seas-private.nrp-nautilus.io/api/mcp"
+        - name: MCP_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: duckdb-mcp-auth
+              key: MCP_AUTH_TOKEN
         - name: PROXY_KEY
           valueFrom:
             secretKeyRef:
@@ -69,7 +77,7 @@ spec:
           # /api/llm/ reverse proxy's Authorization header. Limited to
           # ${PROXY_KEY} so nginx's own $uri / $remote_addr variables
           # are preserved.
-          envsubst '$${PROXY_KEY} $${APP_TOKEN}' < /nginx-template/nginx.conf.template \
+          envsubst '$${PROXY_KEY} $${APP_TOKEN} $${MCP_AUTH_TOKEN}' < /nginx-template/nginx.conf.template \
             > /etc/nginx/conf.d/default.conf
           # Pin worker_processes low: the base image defaults to
           # 'auto' (one worker per CPU), which spawns hundreds of
