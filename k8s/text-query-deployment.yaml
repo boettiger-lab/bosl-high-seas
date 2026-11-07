@@ -18,6 +18,9 @@ spec:
       labels:
         app: high-seas-text-query
     spec:
+      # No Kubernetes API token in the pod. The server never calls the
+      # Kubernetes API.
+      automountServiceAccountToken: false
       initContainers:
       - name: git-clone
         image: alpine/git:2.52.0
@@ -54,6 +57,12 @@ spec:
           value: /config/instructions.md
         - name: MAX_ROWS
           value: "400"
+        # Bearer token callers must send (every path but /health). The private
+        # app's nginx attaches it on /api/text-query/. Secret
+        # high-seas-text-query-auth is created by hand, not kept in git.
+        - name: MCP_AUTH_TOKEN
+          valueFrom:
+            secretKeyRef: {name: high-seas-text-query-auth, key: token}
         resources:
           requests: {cpu: "100m", memory: "512Mi"}
           limits: {cpu: "1", memory: "1Gi"}

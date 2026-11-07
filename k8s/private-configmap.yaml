@@ -159,6 +159,9 @@ data:
         # private corpus bucket, so it is reachable only behind this password.
         location /api/text-query/ {
             proxy_pass http://high-seas-text-query.schmidtdse.svc.cluster.local:8000/;
+            # text-query requires this bearer. It also replaces the browser's
+            # password, so the password stops at this pod.
+            proxy_set_header Authorization "Bearer ${TEXT_QUERY_TOKEN}";
             proxy_read_timeout 300s;
             proxy_send_timeout 300s;
             proxy_buffering off;
