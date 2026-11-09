@@ -131,16 +131,18 @@ data:
         # so both failure modes disappear. The Origin header still forwards by
         # default, so proxy logging/routing is unchanged.
         #
-        # Cross-namespace apps (e.g. schmidtdse) use this same FQDN; the
-        # ClusterIP is reachable cluster-wide. The service lives only in the
-        # biodiversity namespace: ClusterIP open-llm-proxy:8002 (http).
+        # This app runs in schmidtdse, which cannot reach biodiversity since
+        # 2026-11-08, so it uses schmidtdse's own proxy (open-llm-proxy#176):
+        # ClusterIP open-llm-proxy:8002 (http). The key is the namespace key
+        # for this app's tier; X-Glen-App tells the proxy logs which app called.
         location /api/llm/ {
             auth_basic off;
             if ($http_authorization != "Bearer ${APP_TOKEN}") {
                 return 403;
             }
-            proxy_pass http://open-llm-proxy.biodiversity.svc.cluster.local:8002/v1/;
+            proxy_pass http://open-llm-proxy.schmidtdse.svc.cluster.local:8002/v1/;
             proxy_set_header Authorization "Bearer ${PROXY_KEY}";
+            proxy_set_header X-Glen-App "bosl-high-seas-private";
 
             # Allow long agent loops (multi-turn tool use). 600s keeps the
             # timeout uniform across the whole chain: the geo-agent client

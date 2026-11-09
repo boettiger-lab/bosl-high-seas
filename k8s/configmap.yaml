@@ -127,9 +127,10 @@ data:
         # so both failure modes disappear. The Origin header still forwards by
         # default, so proxy logging/routing is unchanged.
         #
-        # Cross-namespace apps (e.g. schmidtdse) use this same FQDN; the
-        # ClusterIP is reachable cluster-wide. The service lives only in the
-        # biodiversity namespace: ClusterIP open-llm-proxy:8002 (http).
+        # This app runs in schmidtdse, which cannot reach biodiversity since
+        # 2026-11-08, so it uses schmidtdse's own proxy (open-llm-proxy#176):
+        # ClusterIP open-llm-proxy:8002 (http). The key is the namespace key
+        # for this app's tier; X-Glen-App tells the proxy logs which app called.
         # Only two calls are relayed (glen-ops#246): POST chat/completions
         # (chat and transcription) and GET models. Any other path or method
         # under /api/llm/ is answered here and never reaches the proxy.
@@ -138,8 +139,9 @@ data:
             proxy_set_header X-Real-IP $client_addr;
             limit_req zone=llm burst=30 nodelay;
             limit_conn addr 20;
-            proxy_pass http://open-llm-proxy.biodiversity.svc.cluster.local:8002/v1/chat/completions;
+            proxy_pass http://open-llm-proxy.schmidtdse.svc.cluster.local:8002/v1/chat/completions;
             proxy_set_header Authorization "Bearer ${PROXY_KEY}";
+            proxy_set_header X-Glen-App "bosl-high-seas";
 
             # Allow long agent loops (multi-turn tool use). 600s keeps the
             # timeout uniform across the whole chain: the geo-agent client
@@ -159,8 +161,9 @@ data:
             proxy_set_header X-Real-IP $client_addr;
             limit_req zone=llm burst=30 nodelay;
             limit_conn addr 20;
-            proxy_pass http://open-llm-proxy.biodiversity.svc.cluster.local:8002/v1/models;
+            proxy_pass http://open-llm-proxy.schmidtdse.svc.cluster.local:8002/v1/models;
             proxy_set_header Authorization "Bearer ${PROXY_KEY}";
+            proxy_set_header X-Glen-App "bosl-high-seas";
             proxy_read_timeout 600s;
             proxy_send_timeout 600s;
             proxy_buffering off;

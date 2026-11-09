@@ -59,8 +59,8 @@ spec:
         - name: PROXY_KEY
           valueFrom:
             secretKeyRef:
-              name: open-llm-proxy-app-keys
-              key: bosl-high-seas
+              name: open-llm-proxy-namespace-keys
+              key: public
               optional: true
         command:
         - sh
