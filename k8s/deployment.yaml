@@ -54,8 +54,8 @@ spec:
         - name: MCP_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
-              name: duckdb-mcp-mirror-auth
-              key: MCP_AUTH_TOKEN
+              name: duckdb-mcp-tokens
+              key: bosl-high-seas
         - name: PROXY_KEY
           valueFrom:
             secretKeyRef:

@@ -177,22 +177,37 @@ data:
         # bearer token (geo-query#453); nginx attaches it from ${MCP_AUTH_TOKEN}
         # so the browser never holds it, and proxies the in-cluster Service
         # rather than the public hostname (glen-ops#73).
-        # TEMPORARY (glen-ops, 2026-11-09): NRP's incident-mcp-deny-ingress
-        # NetworkPolicy blocks every in-cluster DuckDB MCP server, so this goes to
-        # Carl's mirror off NRP, which serves the same public data. Switch back to
-        # the in-cluster Service and the duckdb-mcp-auth Secret once NRP lifts it.
+        # Since 2026-11-09 schmidtdse has its own copy of the server, because pods here
+        # cannot reach Services in biodiversity. The token is this app's own key in
+        # Secret duckdb-mcp-tokens.
         location /api/mcp {
             proxy_set_header X-Real-IP $client_addr;
             limit_req zone=mcp burst=120 nodelay;
-            proxy_pass https://duckdb-mcp.carlboettiger.info/mcp;
-            proxy_ssl_server_name on;
+            proxy_pass http://duckdb-mcp.schmidtdse.svc.cluster.local:8000/mcp;
+            # register_hex_tiles returns tile URLs on the server's in-cluster address,
+            # which browsers cannot reach. Rewrite them to this app's /tiles/ (below).
+            proxy_set_header Accept-Encoding "";
+            sub_filter 'http://duckdb-mcp.schmidtdse.svc.cluster.local:8000/tiles/' 'https://$host/tiles/';
+            sub_filter_once off;
+            sub_filter_types text/event-stream application/json;
             proxy_http_version 1.1;
-            proxy_set_header Host duckdb-mcp.carlboettiger.info;
+            proxy_set_header Host duckdb-mcp.schmidtdse.svc.cluster.local;
             proxy_set_header Connection "";
             proxy_set_header Authorization "Bearer ${MCP_AUTH_TOKEN}";
             proxy_read_timeout 600s;
             proxy_send_timeout 600s;
             proxy_buffering off;
+        }
+
+        # Hex tiles from register_hex_tiles, served through the app with its token.
+        location /tiles/ {
+            limit_except GET { deny all; }
+            proxy_pass http://duckdb-mcp.schmidtdse.svc.cluster.local:8000/tiles/;
+            proxy_http_version 1.1;
+            proxy_set_header Host duckdb-mcp.schmidtdse.svc.cluster.local;
+            proxy_set_header Connection "";
+            proxy_set_header X-Real-IP $client_addr;
+            proxy_set_header Authorization "Bearer ${MCP_AUTH_TOKEN}";
         }
 
         location / {
