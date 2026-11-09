@@ -55,8 +55,8 @@ spec:
         - name: MCP_AUTH_TOKEN
           valueFrom:
             secretKeyRef:
-              name: duckdb-mcp-mirror-auth
-              key: MCP_AUTH_TOKEN
+              name: duckdb-mcp-tokens
+              key: bosl-high-seas-private
         # Bearer for the in-cluster text-query server, attached by nginx on
         # /api/text-query/ so the browser never holds it.
         - name: TEXT_QUERY_TOKEN
