@@ -44,7 +44,7 @@ spec:
           valueFrom:
             secretKeyRef: {name: high-seas-text-query, key: decision-token}
         - name: S3_ENDPOINT
-          value: http://rustfs-s3.boettiger-lab.svc.cluster.local
+          value: https://rustfs.nrp-nautilus.io
         - name: S3_KEY
           valueFrom:
             secretKeyRef: {name: high-seas-text-query, key: s3-key}
