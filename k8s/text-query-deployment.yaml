@@ -1,6 +1,12 @@
 # Literature corpus server for the private app; see text-query.yaml for the ConfigMap,
-# the Service and the Secret. Kept alone in this file for the geo-agent-ops weekly age
-# reset (schmidtdse-refresh), which deletes and re-applies it every Sunday.
+# the Service, the Secret and the NetworkPolicy. Kept alone in this file for the
+# geo-agent-ops weekly age reset (schmidtdse-refresh), which deletes and re-applies it
+# every Sunday.
+#
+# Hardened as geo-query is since the NRP incident of 2026-11-06: a baked image (nothing is
+# cloned or installed at start), non-root, read-only root filesystem, no capabilities, no
+# service-account token, named caller tokens, and DuckDB bounded to the pod's limits. The
+# server locks each DuckDB connection itself (text-query prototype/dbconfig.py).
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,21 +24,20 @@ spec:
       labels:
         app: high-seas-text-query
     spec:
-      # No Kubernetes API token in the pod. The server never calls the
-      # Kubernetes API.
+      # The server never calls the Kubernetes API.
       automountServiceAccountToken: false
-      initContainers:
-      - name: git-clone
-        image: alpine/git:2.52.0
-        command: [sh, -c, "git clone --depth 1 --branch main https://github.com/SchmidtDSE/text-query.git /app"]
-        volumeMounts:
-        - name: app
-          mountPath: /app
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: server
-        image: python:3.12-slim
-        workingDir: /app/prototype
-        command: [sh, -c, "pip install --no-cache-dir -q -r requirements.txt && python server.py"]
+        # Built from SchmidtDSE/text-query f9a8d5c (PR #5); pinned by digest.
+        image: ghcr.io/schmidtdse/text-query:f9a8d5c479a483967147b2c20081f6a585a9a53e@sha256:5d56d00989d760e939f351d1dd84af1510ab618ce93621cb6364d6c51948cf90
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
         env:
@@ -43,6 +48,7 @@ spec:
         - name: DECISION_TOKEN
           valueFrom:
             secretKeyRef: {name: high-seas-text-query, key: decision-token}
+        # rustfs is always read through its public endpoint.
         - name: S3_ENDPOINT
           value: https://rustfs.nrp-nautilus.io
         - name: S3_KEY
@@ -57,28 +63,59 @@ spec:
           value: /config/instructions.md
         - name: MAX_ROWS
           value: "400"
-        # Bearer token callers must send (every path but /health). The private
-        # app's nginx attaches it on /api/text-query/. Secret
-        # high-seas-text-query-auth is created by hand, not kept in git.
-        - name: MCP_AUTH_TOKEN
+        # Named caller tokens: one file per caller, named for it, and the name goes on each
+        # log line. Every path but /health needs one. The private app's nginx attaches its
+        # token on /api/text-query/. The token stays in the hand-made Secret
+        # high-seas-text-query-auth (key `token`), mounted below under the caller's name. A
+        # missing or empty directory stops the server from starting.
+        - name: MCP_AUTH_TOKENS_DIR
+          value: /etc/mcp-tokens
+        # Pod limits → DuckDB memory_limit (~80%) and per-connection spill cap (~50%).
+        - name: POD_MEMORY_LIMIT
           valueFrom:
-            secretKeyRef: {name: high-seas-text-query-auth, key: token}
+            resourceFieldRef: {containerName: server, resource: limits.memory}
+        - name: POD_EPHEMERAL_LIMIT
+          valueFrom:
+            resourceFieldRef: {containerName: server, resource: limits.ephemeral-storage}
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: ["ALL"]
         resources:
-          requests: {cpu: "100m", memory: "512Mi"}
-          limits: {cpu: "1", memory: "1Gi"}
+          requests: {cpu: "100m", memory: "512Mi", ephemeral-storage: "1Gi"}
+          limits: {cpu: "1", memory: "1Gi", ephemeral-storage: "4Gi"}
         readinessProbe:
           httpGet: {path: /health, port: 8000}
-          initialDelaySeconds: 20
+          initialDelaySeconds: 5
           periodSeconds: 10
+        livenessProbe:
+          httpGet: {path: /health, port: 8000}
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 6
         volumeMounts:
-        - name: app
-          mountPath: /app
         - name: config
           mountPath: /config
           readOnly: true
+        - name: mcp-tokens
+          mountPath: /etc/mcp-tokens
+          readOnly: true
+        # DuckDB's spill directories; the root filesystem is read-only.
+        - name: tmp
+          mountPath: /tmp
       volumes:
-      - name: app
-        emptyDir: {}
       - name: config
         configMap:
           name: high-seas-text-query
+      - name: mcp-tokens
+        secret:
+          secretName: high-seas-text-query-auth
+          defaultMode: 0440
+          items:
+          - key: token
+            path: bosl-high-seas-private
+      - name: tmp
+        emptyDir:
+          sizeLimit: 4Gi
