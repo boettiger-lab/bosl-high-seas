@@ -35,10 +35,9 @@ spec:
           type: RuntimeDefault
       containers:
       - name: server
-        # TODO: pin the digest once SchmidtDSE/text-query's Build image workflow has run on
-        # main: ghcr.io/schmidtdse/text-query:<sha>@sha256:...
-        image: ghcr.io/schmidtdse/text-query:main
-        imagePullPolicy: Always
+        # Built from SchmidtDSE/text-query f9a8d5c (PR #5); pinned by digest.
+        image: ghcr.io/schmidtdse/text-query:f9a8d5c479a483967147b2c20081f6a585a9a53e@sha256:5d56d00989d760e939f351d1dd84af1510ab618ce93621cb6364d6c51948cf90
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
         env:
