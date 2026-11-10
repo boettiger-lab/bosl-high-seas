@@ -1,12 +1,16 @@
 # Literature corpus server for the private app: a prototype of SchmidtDSE/text-query.
 #
 # It reads passage text from a private bucket on rustfs (boettiger-lab namespace), so it has no
-# ingress. The private app's nginx proxies /api/text-query/ to this Service behind its password.
+# ingress of its own. The private app's nginx proxies /api/text-query/ to this Service behind its password.
 # The Deployment is in text-query-deployment.yaml, a file of its own so the weekly
 # schmidtdse age reset in geo-agent-ops can delete and re-create it without touching
-# the Service. The code is cloned from text-query `main` at pod start; the corpus
-# description below is sent to the chat agent as the server's instructions.
+# the Service. It runs the ghcr.io/schmidtdse/text-query image; the corpus description
+# below is sent to the chat agent as the server's instructions.
 #
+# Replacing the old ingress-only policy: apply this file, then
+# `kubectl -n schmidtdse delete networkpolicy high-seas-text-query-ingress`.
+#
+# The server reads rustfs through its public ingress, https://rustfs.nrp-nautilus.io.
 # The Secret high-seas-text-query (never committed) holds decision-token (Jev on OpenRouter) and
 # s3-key / s3-secret: a rustfs user that can only list and read the corpus bucket, minted and
 # rotated by geo-agent-ops. Use a host from rustfs's RUSTFS_SERVER_DOMAINS as the endpoint; any
@@ -72,14 +76,20 @@ spec:
   - port: 8000
     targetPort: 8000
 ---
-# Only the private app's pods may reach this server. It has no auth of its own:
-# the private app's nginx password is the gate, so nothing else in the cluster
-# should be able to bypass that by calling the Service directly. Health probes
-# still work, because traffic from the pod's own node is always allowed.
+# Network containment. The server runs caller-supplied SQL, so it may reach only what it
+# needs, as geo-query's servers (geo-query k8s/schmidtdse-networkpolicy.yaml).
+#
+# Ingress: only the private app's pods, whose nginx holds the password and adds the bearer
+# token. Health probes come from the node and are admitted by the CNI.
+#
+# Egress: cluster DNS, and https to public addresses: the corpus on rustfs through its
+# public ingress (rustfs.nrp-nautilus.io; NRP blocks the in-cluster route between
+# namespaces), the decision model on OpenRouter, and any https:// read in a query. No
+# in-cluster service is reachable.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: high-seas-text-query-ingress
+  name: high-seas-text-query-containment
   namespace: schmidtdse
 spec:
   podSelector:
@@ -87,6 +97,7 @@ spec:
       app: high-seas-text-query
   policyTypes:
   - Ingress
+  - Egress
   ingress:
   - from:
     - podSelector:
@@ -94,4 +105,36 @@ spec:
           app: bosl-high-seas-private
     ports:
     - port: 8000
+      protocol: TCP
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+        - 100.64.0.0/10
+        - 169.254.0.0/16
+        - 127.0.0.0/8
+    - ipBlock:
+        cidr: ::/0
+        except:
+        - fc00::/7
+        - fe80::/10
+        - ::1/128
+    ports:
+    - port: 443
       protocol: TCP
