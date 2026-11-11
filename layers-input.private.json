@@ -523,7 +523,7 @@
             ]
         },
         {
-            "collection_id": "rfmo-boundaries",
+            "collection_id": "rfmo-maritime-governance",
             "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
             "assets": [
                 {
