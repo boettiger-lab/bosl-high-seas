@@ -180,14 +180,6 @@
                     "display_name": "Exclusive Economic Zones (EEZ)",
                     "group": "Maritime Boundaries",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "rgba(0,0,0,0)",
-                        "fill-opacity": 0
-                    },
-                    "outline_style": {
-                        "line-color": "#F57F17",
-                        "line-width": 1
-                    },
                     "tooltip_fields": ["GEONAME", "SOVEREIGN1", "ISO_SOV1", "TERRITORY1", "POL_TYPE", "AREA_KM2"]
                 },
                 {
@@ -195,14 +187,6 @@
                     "display_name": "High Seas (ABNJ)",
                     "group": "Maritime Boundaries",
                     "visible": true,
-                    "default_style": {
-                        "fill-color": "#1565C0",
-                        "fill-opacity": 0.15
-                    },
-                    "outline_style": {
-                        "line-color": "#1565C0",
-                        "line-width": 0.5
-                    },
                     "tooltip_fields": ["name", "mrgid", "area_km2"]
                 }
             ]
@@ -216,14 +200,6 @@
                     "display_name": "Extended Continental Shelf (ECS)",
                     "group": "Maritime Boundaries",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "#8E24AA",
-                        "fill-opacity": 0.2
-                    },
-                    "outline_style": {
-                        "line-color": "#4A148C",
-                        "line-width": 1
-                    },
                     "tooltip_fields": ["GEONAME", "POL_TYPE", "SOVEREIGN1", "TERRITORY1", "AREA_KM2"]
                 }
             ]
@@ -238,21 +214,6 @@
                     "display_name": "Marine Protected Areas",
                     "group": "Designated Areas",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match",
-                            ["get", "IUCN_CAT"],
-                            "Ia", "#0D47A1",
-                            "Ib", "#1565C0",
-                            "II", "#1976D2",
-                            "III", "#1E88E5",
-                            "IV", "#42A5F5",
-                            "V", "#64B5F6",
-                            "VI", "#90CAF9",
-                            "#B0BEC5"
-                        ],
-                        "fill-opacity": 0.6
-                    },
                     "default_filter": [
                         "match",
                         ["get", "REALM"],
@@ -280,14 +241,6 @@
                     "display_name": "Significant Marine Areas (EBSAs)",
                     "group": "Designated Areas",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "#43A047",
-                        "fill-opacity": 0.25
-                    },
-                    "outline_style": {
-                        "line-color": "#1B5E20",
-                        "line-width": 1
-                    },
                     "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
                 }
             ]
@@ -301,14 +254,6 @@
                     "display_name": "Longhurst Provinces",
                     "group": "Biogeography",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "#00897B",
-                        "fill-opacity": 0.25
-                    },
-                    "outline_style": {
-                        "line-color": "#004D40",
-                        "line-width": 0.5
-                    },
                     "tooltip_fields": ["ProvCode", "ProvDescr"]
                 }
             ]
@@ -337,29 +282,6 @@
                     "display_name": "Seafloor Geomorphology",
                     "group": "Seafloor",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match", ["get", "feature_type"],
-                            "Seamounts", "#F57F17",
-                            "Guyots", "#F9A825",
-                            "Plateaus", "#FBC02D",
-                            "Ridges", "#BF360C",
-                            "Spreading_ridges", "#E64A19",
-                            "Rises", "#FF5722",
-                            "Trenches", "#311B92",
-                            "Hadal", "#1A237E",
-                            "Abyss", "#0D47A1",
-                            "Shelf", "#1B5E20",
-                            "Slope", "#2E7D32",
-                            "Canyons", "#4A148C",
-                            "#607D8B"
-                        ],
-                        "fill-opacity": 0.5
-                    },
-                    "outline_style": {
-                        "line-color": "#37474F",
-                        "line-width": 0.3
-                    },
                     "tooltip_fields": ["feature_type", "Geomorphic", "area_km2"]
                 }
             ]
@@ -374,13 +296,6 @@
                     "group": "Seafloor",
                     "visible": false,
                     "layer_type": "circle",
-                    "default_style": {
-                        "circle-color": "#FF6F00",
-                        "circle-radius": 3.5,
-                        "circle-stroke-color": "#FFFFFF",
-                        "circle-stroke-width": 0.5,
-                        "circle-opacity": 0.85
-                    },
                     "tooltip_fields": ["name", "activity", "max_temperature_c", "max_depth_m", "tectonic_setting", "region", "ocean"]
                 }
             ]
@@ -395,21 +310,6 @@
                     "group": "Seafloor",
                     "visible": false,
                     "layer_type": "circle",
-                    "default_style": {
-                        "circle-color": [
-                            "match", ["get", "Type"],
-                            "HOV", "#E66101",
-                            "ROV", "#5E3C99",
-                            "AUV", "#1B9E77",
-                            "Lander", "#FDB863",
-                            "Camera Tow", "#B2ABD2",
-                            "#888888"
-                        ],
-                        "circle-radius": 3,
-                        "circle-stroke-color": "#FFFFFF",
-                        "circle-stroke-width": 0.5,
-                        "circle-opacity": 0.85
-                    },
                     "tooltip_fields": ["Type", "Platform", "Institution", "Year", "Depth", "Geomorphology_Description", "Jurisdiction"]
                 }
             ]
@@ -424,8 +324,6 @@
                     "display_name": "Warm-water Coral Reefs (UNEP-WCMC)",
                     "group": "Coastal Habitats",
                     "visible": false,
-                    "default_style": { "fill-color": "#FF7F50", "fill-opacity": 0.7 },
-                    "outline_style": { "line-color": "#C0392B", "line-width": 0.5 },
                     "tooltip_fields": ["NAME", "DATA_TYPE", "VERIF", "GIS_AREA_K"]
                 }
             ]
@@ -441,8 +339,6 @@
                     "toggle_group": "Seagrass (UNEP-WCMC)",
                     "group": "Coastal Habitats",
                     "visible": false,
-                    "default_style": { "fill-color": "#2E8B57", "fill-opacity": 0.7 },
-                    "outline_style": { "line-color": "#1B5E20", "line-width": 0.5 },
                     "tooltip_fields": ["vernacular", "scientific", "habitat", "AREA_SQKM"]
                 }
             ]
@@ -459,13 +355,6 @@
                     "group": "Coastal Habitats",
                     "visible": false,
                     "layer_type": "circle",
-                    "default_style": {
-                        "circle-color": "#2E8B57",
-                        "circle-radius": 3,
-                        "circle-stroke-color": "#FFFFFF",
-                        "circle-stroke-width": 0.5,
-                        "circle-opacity": 0.85
-                    },
                     "tooltip_fields": ["scientific", "GENUS", "VERIF", "eventDate"]
                 }
             ]
@@ -479,14 +368,6 @@
                     "display_name": "RFMO Boundaries",
                     "group": "Ocean Governance",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "rgba(0,0,0,0)",
-                        "fill-opacity": 0
-                    },
-                    "outline_style": {
-                        "line-color": "#E65100",
-                        "line-width": 1.5
-                    },
                     "tooltip_fields": ["RFB", "SHAPE_AREA"]
                 },
                 {
@@ -494,14 +375,6 @@
                     "display_name": "VME Closures",
                     "group": "Ocean Governance",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": "#7B1FA2",
-                        "fill-opacity": 0.5
-                    },
-                    "outline_style": {
-                        "line-color": "#4A148C",
-                        "line-width": 1
-                    },
                     "tooltip_fields": ["VME_ID", "LOCAL_NAME", "OWNER", "YEAR"]
                 }
             ]
@@ -515,21 +388,6 @@
                     "display_name": "Important Marine Megafauna Areas (IMMegAs)",
                     "group": "Marine Megafauna",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match", ["get", "Taxon"],
-                            "Birds", "#4E79A7",
-                            "Cetaceans", "#59A14F",
-                            "Fishes", "#76B7B2",
-                            "Penguins", "#B07AA1",
-                            "Polar bears", "#9C9C9C",
-                            "Seals", "#E15759",
-                            "Sirenians", "#EDC948",
-                            "Turtles", "#F28E2B",
-                            "#BAB0AC"
-                        ],
-                        "fill-opacity": 0.35
-                    },
                     "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
@@ -544,21 +402,6 @@
                     "display_name": "Migratory Corridors (MegaMove)",
                     "group": "Marine Megafauna",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match", ["get", "Taxon"],
-                            "Birds", "#4E79A7",
-                            "Cetaceans", "#59A14F",
-                            "Fishes", "#76B7B2",
-                            "Penguins", "#B07AA1",
-                            "Polar bears", "#9C9C9C",
-                            "Seals", "#E15759",
-                            "Sirenians", "#EDC948",
-                            "Turtles", "#F28E2B",
-                            "#BAB0AC"
-                        ],
-                        "fill-opacity": 0.35
-                    },
                     "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
@@ -573,21 +416,6 @@
                     "display_name": "Residence Areas (MegaMove)",
                     "group": "Marine Megafauna",
                     "visible": false,
-                    "default_style": {
-                        "fill-color": [
-                            "match", ["get", "Taxon"],
-                            "Birds", "#4E79A7",
-                            "Cetaceans", "#59A14F",
-                            "Fishes", "#76B7B2",
-                            "Penguins", "#B07AA1",
-                            "Polar bears", "#9C9C9C",
-                            "Seals", "#E15759",
-                            "Sirenians", "#EDC948",
-                            "Turtles", "#F28E2B",
-                            "#BAB0AC"
-                        ],
-                        "fill-opacity": 0.35
-                    },
                     "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
                     "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
                 }
