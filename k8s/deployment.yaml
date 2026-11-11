@@ -55,7 +55,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: duckdb-mcp-tokens
-              key: bosl-high-seas
+              key: public
         - name: PROXY_KEY
           valueFrom:
             secretKeyRef:
