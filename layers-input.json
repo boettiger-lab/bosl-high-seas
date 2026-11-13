@@ -1418,6 +1418,8 @@
                     "legend_label": "Silicate (micromol/kg)"
                 }
             ]
-        }
+        },
+        { "collection_id": "iucn-taxonomy-2025", "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json", "assets": [] },
+        { "collection_id": "ebsa", "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json", "assets": [] }
     ]
 }
