@@ -2,7 +2,8 @@
     "_comment": "Restricted-licence layers added ONLY to the private deployment (#85). Each entry is inserted after the collection named in insert_after. Run scripts/build-private.py after editing this file or layers-input.json.",
     "mcp_servers": [
         {
-            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp"
+            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+            "prompt": "geospatial-analyst"
         },
         {
             "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
@@ -25,14 +26,6 @@
                         "display_name": "Important Marine Mammal Areas (IUCN-MMPATF)",
                         "group": "Designated Areas",
                         "visible": false,
-                        "default_style": {
-                            "fill-color": "#7E57C2",
-                            "fill-opacity": 0.3
-                        },
-                        "outline_style": {
-                            "line-color": "#4527A0",
-                            "line-width": 1
-                        },
                         "tooltip_fields": [
                             "title",
                             "criteria",
@@ -56,25 +49,6 @@
                         "display_name": "Key Biodiversity Areas, marine and coastal (KBA Partnership)",
                         "group": "Designated Areas",
                         "visible": false,
-                        "default_style": {
-                            "fill-color": [
-                                "match",
-                                [
-                                    "get",
-                                    "realm"
-                                ],
-                                "marine",
-                                "#00897B",
-                                "coastal",
-                                "#80CBC4",
-                                "#BDBDBD"
-                            ],
-                            "fill-opacity": 0.4
-                        },
-                        "outline_style": {
-                            "line-color": "#004D40",
-                            "line-width": 0.75
-                        },
                         "default_filter": [
                             "match",
                             [
@@ -87,17 +61,6 @@
                             ],
                             true,
                             false
-                        ],
-                        "legend_type": "categorical",
-                        "legend_classes": [
-                            {
-                                "label": "Marine (90% or more at sea)",
-                                "color": "#00897B"
-                            },
-                            {
-                                "label": "Coastal (10-90% at sea)",
-                                "color": "#80CBC4"
-                            }
                         ],
                         "tooltip_fields": [
                             "IntName",

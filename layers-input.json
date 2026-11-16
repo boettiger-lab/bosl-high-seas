@@ -1,1425 +1,1593 @@
 {
-    "catalog": "https://s3-west.nrp-nautilus.io/public-data/stac/catalog.json",
-    "titiler_url": "https://titiler.nrp-nautilus.io",
-    "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
-    "view": {
-        "center": [0, 0],
-        "zoom": 2.5,
-        "globe": true
-    },
-    "draw_enabled": true,
-    "upload_enabled": true,
-    "auto_approve": true,
-    "sidebar": {
-        "enabled": true,
-        "default_width": 460,
-        "title": "High Seas Explorer",
-        "chat_title": "Data Assistant"
-    },
-    "header": {
-        "enabled": true,
-        "mode": "solid",
-        "title": "High Seas Explorer",
-        "partner": {
-            "src": "bosl-logo.svg",
-            "alt": "Benioff Ocean Science Laboratory",
-            "href": "https://bosl.ucsb.edu/"
-        }
-    },
-    "theme": {
-        "mode": "dark",
-        "primary": "#1b78ab",
-        "surface": "#021f2e",
-        "text": "#e6f3fa",
-        "panel": "rgba(2, 31, 46, 0.92)",
-        "backdrop": "#01141e"
-    },
-    "default_basemap": "natgeo",
-    "custom_basemap": {
-        "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
-        "label": "Ocean"
-    },
-    "llm": {
-        "user_provided": true,
-        "default_endpoint": "https://openrouter.ai/api/v1",
-        "models": [
-            {
-                "value": "qwen/qwen3-235b-a22b",
-                "label": "Qwen3 235B"
-            },
-            {
-                "value": "moonshotai/kimi-k2",
-                "label": "Kimi K2"
-            },
-            {
-                "value": "minimax/minimax-m1",
-                "label": "MiniMax M1"
-            },
-            {
-                "value": "anthropic/claude-sonnet-5",
-                "label": "Claude Sonnet 5"
-            },
-            {
-                "value": "google/gemini-2.5-flash",
-                "label": "Gemini Flash"
-            }
-        ]
-    },
-    "links": {
-        "github": "https://github.com/boettiger-lab/bosl-high-seas",
-        "docs": "/docs.html",
-        "carbon": true
-    },
-    "welcome": {
-        "message": "Hi! I can help you explore marine protected areas, seafloor geomorphology, and fishing effort data. Try asking:",
-        "examples": [
-            "Fly to the Sargasso Sea",
-            "How much and what type of industrial fishing would be displaced by designating all EBSAs in the high seas as MPAs, closed to fishing?",
-            "How many seamounts are there in the Sargasso Sea \"Ecologically or Biologically Significant Marine Area\" that was designated on the high seas?"
-        ]
-    },
-    "collections": [
-        {
-            "collection_id": "gfw-fishing-effort",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
-            "group": "Fishing Effort",
-            "assets": [
-                {
-                    "id": "fishing-effort-cog-2024",
-                    "display_name": "Fishing Effort",
-                    "visible": false,
-                    "legend_label": "Annual fishing hours",
-                    "versions": [
-                        { "label": "2024", "asset_id": "fishing-effort-cog-2024" },
-                        { "label": "2023", "asset_id": "fishing-effort-cog-2023" },
-                        { "label": "2022", "asset_id": "fishing-effort-cog-2022" },
-                        { "label": "2021", "asset_id": "fishing-effort-cog-2021" },
-                        { "label": "2020", "asset_id": "fishing-effort-cog-2020" },
-                        { "label": "2019", "asset_id": "fishing-effort-cog-2019" },
-                        { "label": "2018", "asset_id": "fishing-effort-cog-2018" },
-                        { "label": "2017", "asset_id": "fishing-effort-cog-2017" },
-                        { "label": "2016", "asset_id": "fishing-effort-cog-2016" },
-                        { "label": "2015", "asset_id": "fishing-effort-cog-2015" },
-                        { "label": "2014", "asset_id": "fishing-effort-cog-2014" },
-                        { "label": "2013", "asset_id": "fishing-effort-cog-2013" },
-                        { "label": "2012", "asset_id": "fishing-effort-cog-2012" }
-                    ],
-                    "default_version": "2024"
-                }
-            ]
-        },
-        {
-            "collection_id": "ship-density",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ship-density/stac-collection.json",
-            "group": "Vessel Density (2015-2021)",
-            "assets": [
-                {
-                    "id": "ship-density-global-cog",
-                    "display_name": "All Vessels",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                },
-                {
-                    "id": "ship-density-commercial-cog",
-                    "display_name": "Commercial",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                },
-                {
-                    "id": "ship-density-fishing-cog",
-                    "display_name": "Fishing Vessels",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                },
-                {
-                    "id": "ship-density-oil-gas-cog",
-                    "display_name": "Oil and Gas",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                },
-                {
-                    "id": "ship-density-passenger-cog",
-                    "display_name": "Passenger",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                },
-                {
-                    "id": "ship-density-leisure-cog",
-                    "display_name": "Leisure",
-                    "visible": false,
-                    "legend_label": "AIS positions (2015-2021)"
-                }
-            ]
-        },
-        {
-            "collection_id": "iho-maritime-boundaries",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/iho/stac-collection.json",
-            "assets": [
-                {
-                    "id": "eez-pmtiles",
-                    "display_name": "Exclusive Economic Zones (EEZ)",
-                    "group": "Maritime Boundaries",
-                    "visible": false,
-                    "tooltip_fields": ["GEONAME", "SOVEREIGN1", "ISO_SOV1", "TERRITORY1", "POL_TYPE", "AREA_KM2"]
-                },
-                {
-                    "id": "high-seas-pmtiles",
-                    "display_name": "High Seas (ABNJ)",
-                    "group": "Maritime Boundaries",
-                    "visible": true,
-                    "tooltip_fields": ["name", "mrgid", "area_km2"]
-                }
-            ]
-        },
-        {
-            "collection_id": "ecs-extended-continental-shelf",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ecs/stac-collection.json",
-            "assets": [
-                {
-                    "id": "ecs-pmtiles",
-                    "display_name": "Extended Continental Shelf (ECS)",
-                    "group": "Maritime Boundaries",
-                    "visible": false,
-                    "tooltip_fields": ["GEONAME", "POL_TYPE", "SOVEREIGN1", "TERRITORY1", "AREA_KM2"]
-                }
-            ]
-        },
-        {
-            "collection_id": "wdpa",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-wdpa/wdpa/stac-collection.json",
-            "assets": [
-                {
-                    "id": "wdpa-pmtiles",
-                    "alias": "wdpa-marine",
-                    "display_name": "Marine Protected Areas",
-                    "group": "Designated Areas",
-                    "visible": false,
-                    "default_filter": [
-                        "match",
-                        ["get", "REALM"],
-                        ["Marine", "Coastal"],
-                        true,
-                        false
-                    ],
-                    "tooltip_fields": [
-                        "NAME_ENG",
-                        "DESIG_ENG",
-                        "IUCN_CAT",
-                        "NO_TAKE",
-                        "GIS_M_AREA",
-                        "STATUS"
-                    ]
-                }
-            ]
-        },
-        {
-            "collection_id": "ebsa-2023",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023/stac-collection.json",
-            "assets": [
-                {
-                    "id": "ebsa-2023-pmtiles",
-                    "display_name": "Significant Marine Areas (EBSAs)",
-                    "group": "Designated Areas",
-                    "visible": false,
-                    "tooltip_fields": ["NAME", "Workshop", "GLOBAL_ID"]
-                }
-            ]
-        },
-        {
-            "collection_id": "longhurst-provinces",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/longhurst/stac-collection.json",
-            "assets": [
-                {
-                    "id": "provinces-pmtiles",
-                    "display_name": "Longhurst Provinces",
-                    "group": "Biogeography",
-                    "visible": false,
-                    "tooltip_fields": ["ProvCode", "ProvDescr"]
-                }
-            ]
-        },
-        {
-            "collection_id": "gebco-2025",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json",
-            "assets": [
-                {
-                    "id": "gebco-2025-cog",
-                    "display_name": "Seafloor Bathymetry (GEBCO 2025)",
-                    "group": "Seafloor",
-                    "visible": false,
-                    "legend_label": "Depth (m)"
-                }
-            ]
-        },
-        {
-            "collection_id": "seafloor-geomorphology",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-geomorphology/stac-collection.json",
-            "assets": [
-                {
-                    "id": "seafloor-geomorphology-pmtiles",
-                    "display_name": "Seafloor Geomorphology",
-                    "group": "Seafloor",
-                    "visible": false,
-                    "tooltip_fields": ["feature_type", "Geomorphic", "area_km2"]
-                }
-            ]
-        },
-        {
-            "collection_id": "hydrothermal-vents",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/hydrothermal-vents/stac-collection.json",
-            "assets": [
-                {
-                    "id": "hydrothermal-vents-pmtiles",
-                    "display_name": "Hydrothermal Vents (InterRidge)",
-                    "group": "Seafloor",
-                    "visible": false,
-                    "layer_type": "circle",
-                    "tooltip_fields": ["name", "activity", "max_temperature_c", "max_depth_m", "tectonic_setting", "region", "ocean"]
-                }
-            ]
-        },
-        {
-            "collection_id": "deep-submergence-dives",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/deep-submergence-dives/stac-collection.json",
-            "assets": [
-                {
-                    "id": "deep-submergence-dives-pmtiles",
-                    "display_name": "Deep-Sea Dives (Bell et al. 2025)",
-                    "group": "Seafloor",
-                    "visible": false,
-                    "layer_type": "circle",
-                    "tooltip_fields": ["Type", "Platform", "Institution", "Year", "Depth", "Geomorphology_Description", "Jurisdiction"]
-                }
-            ]
-        },
-        {
-            "collection_id": "unep-wcmc-coral-reefs-polygons",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
-            "assets": [
-                {
-                    "id": "polygons-pmtiles",
-                    "alias": "coral-reefs",
-                    "display_name": "Warm-water Coral Reefs (UNEP-WCMC)",
-                    "group": "Coastal Habitats",
-                    "visible": false,
-                    "tooltip_fields": ["NAME", "DATA_TYPE", "VERIF", "GIS_AREA_K"]
-                }
-            ]
-        },
-        {
-            "collection_id": "unep-wcmc-seagrass-polygons",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/polygons/stac-collection.json",
-            "assets": [
-                {
-                    "id": "polygons-pmtiles",
-                    "alias": "seagrass-polygons",
-                    "display_name": "Seagrass Beds (UNEP-WCMC)",
-                    "toggle_group": "Seagrass (UNEP-WCMC)",
-                    "group": "Coastal Habitats",
-                    "visible": false,
-                    "tooltip_fields": ["vernacular", "scientific", "habitat", "AREA_SQKM"]
-                }
-            ]
-        },
-        {
-            "collection_id": "unep-wcmc-seagrass-points",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/points/stac-collection.json",
-            "assets": [
-                {
-                    "id": "points-pmtiles",
-                    "alias": "seagrass-points",
-                    "display_name": "Seagrass Point Records (UNEP-WCMC)",
-                    "toggle_group": "Seagrass (UNEP-WCMC)",
-                    "group": "Coastal Habitats",
-                    "visible": false,
-                    "layer_type": "circle",
-                    "tooltip_fields": ["scientific", "GENUS", "VERIF", "eventDate"]
-                }
-            ]
-        },
-        {
-            "collection_id": "rfmo-maritime-governance",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
-            "assets": [
-                {
-                    "id": "rfb-pmtiles",
-                    "display_name": "RFMO Boundaries",
-                    "group": "Ocean Governance",
-                    "visible": false,
-                    "tooltip_fields": ["RFB", "SHAPE_AREA"]
-                },
-                {
-                    "id": "vme-pmtiles",
-                    "display_name": "VME Closures",
-                    "group": "Ocean Governance",
-                    "visible": false,
-                    "tooltip_fields": ["VME_ID", "LOCAL_NAME", "OWNER", "YEAR"]
-                }
-            ]
-        },
-        {
-            "collection_id": "megamove-immegas",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/immegas/stac-collection.json",
-            "assets": [
-                {
-                    "id": "immegas-pmtiles",
-                    "display_name": "Important Marine Megafauna Areas (IMMegAs)",
-                    "group": "Marine Megafauna",
-                    "visible": false,
-                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
-                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
-                }
-            ]
-        },
-        {
-            "collection_id": "megamove-corridors",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/corridors/stac-collection.json",
-            "assets": [
-                {
-                    "id": "corridors-pmtiles",
-                    "display_name": "Migratory Corridors (MegaMove)",
-                    "group": "Marine Megafauna",
-                    "visible": false,
-                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
-                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
-                }
-            ]
-        },
-        {
-            "collection_id": "megamove-residencies",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/residencies/stac-collection.json",
-            "assets": [
-                {
-                    "id": "residencies-pmtiles",
-                    "display_name": "Residence Areas (MegaMove)",
-                    "group": "Marine Megafauna",
-                    "visible": false,
-                    "default_filter": ["!=", ["get", "Taxon"], "All taxa"],
-                    "tooltip_fields": ["Taxon", "area_km2", "time_frac"]
-                }
-            ]
-        },
-        {
-            "collection_id": "iucn-ranges-2025",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
-            "assets": []
-        },
-        {
-            "collection_id": "gbif-derived",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-gbif/stac-collection.json",
-            "assets": []
-        },
-        {
-            "collection_id": "obis-derived",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-obis/stac-collection.json",
-            "assets": []
-        },
-        {
-            "collection_id": "coral-reef-watch",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/stac-collection.json",
-            "assets": []
-        },
-        {
-            "collection_id": "crw-5km-daily-ssta",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/ssta/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "ssta-cog",
-                    "display_name": "Daily Sea Surface Temperature Anomaly",
-                    "visible": false,
-                    "legend_label": "°C",
-                    "control": {
-                        "bind": "frame",
-                        "frames": "ssta-cog-frames",
-                        "step": 4,
-                        "frame_ms": 320
-                    }
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-monthly-ssta-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/ssta-mean/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "ssta-mean-cog",
-                    "display_name": "Monthly Sea Surface Temperature Anomaly",
-                    "visible": false,
-                    "legend_label": "°C",
-                    "control": {
-                        "bind": "frame",
-                        "frames": "ssta-mean-cog-frames",
-                        "preload": 5,
-                        "frame_ms": 300
-                    }
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-daily-sst",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/sst/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "sst-cog",
-                    "display_name": "Sea Surface Temperature",
-                    "visible": false,
-                    "legend_label": "°C"
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-daily-dhw",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/dhw/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "dhw-cog",
-                    "display_name": "Degree Heating Weeks",
-                    "visible": false,
-                    "legend_label": "°C-weeks"
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-annual-ssta-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/ssta-mean/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "ssta-mean-cog-2025",
-                    "display_name": "Annual Mean Temperature Anomaly",
-                    "visible": false,
-                    "legend_label": "°C",
-                    "versions": [
-                        {
-                            "label": "2025",
-                            "asset_id": "ssta-mean-cog-2025"
-                        },
-                        {
-                            "label": "2024",
-                            "asset_id": "ssta-mean-cog-2024"
-                        },
-                        {
-                            "label": "2023",
-                            "asset_id": "ssta-mean-cog-2023"
-                        },
-                        {
-                            "label": "2022",
-                            "asset_id": "ssta-mean-cog-2022"
-                        },
-                        {
-                            "label": "2021",
-                            "asset_id": "ssta-mean-cog-2021"
-                        },
-                        {
-                            "label": "2020",
-                            "asset_id": "ssta-mean-cog-2020"
-                        },
-                        {
-                            "label": "2019",
-                            "asset_id": "ssta-mean-cog-2019"
-                        },
-                        {
-                            "label": "2018",
-                            "asset_id": "ssta-mean-cog-2018"
-                        },
-                        {
-                            "label": "2017",
-                            "asset_id": "ssta-mean-cog-2017"
-                        },
-                        {
-                            "label": "2016",
-                            "asset_id": "ssta-mean-cog-2016"
-                        },
-                        {
-                            "label": "2015",
-                            "asset_id": "ssta-mean-cog-2015"
-                        },
-                        {
-                            "label": "2014",
-                            "asset_id": "ssta-mean-cog-2014"
-                        },
-                        {
-                            "label": "2013",
-                            "asset_id": "ssta-mean-cog-2013"
-                        },
-                        {
-                            "label": "2012",
-                            "asset_id": "ssta-mean-cog-2012"
-                        },
-                        {
-                            "label": "2011",
-                            "asset_id": "ssta-mean-cog-2011"
-                        },
-                        {
-                            "label": "2010",
-                            "asset_id": "ssta-mean-cog-2010"
-                        },
-                        {
-                            "label": "2009",
-                            "asset_id": "ssta-mean-cog-2009"
-                        },
-                        {
-                            "label": "2008",
-                            "asset_id": "ssta-mean-cog-2008"
-                        },
-                        {
-                            "label": "2007",
-                            "asset_id": "ssta-mean-cog-2007"
-                        },
-                        {
-                            "label": "2006",
-                            "asset_id": "ssta-mean-cog-2006"
-                        },
-                        {
-                            "label": "2005",
-                            "asset_id": "ssta-mean-cog-2005"
-                        },
-                        {
-                            "label": "2004",
-                            "asset_id": "ssta-mean-cog-2004"
-                        },
-                        {
-                            "label": "2003",
-                            "asset_id": "ssta-mean-cog-2003"
-                        },
-                        {
-                            "label": "2002",
-                            "asset_id": "ssta-mean-cog-2002"
-                        },
-                        {
-                            "label": "2001",
-                            "asset_id": "ssta-mean-cog-2001"
-                        },
-                        {
-                            "label": "2000",
-                            "asset_id": "ssta-mean-cog-2000"
-                        },
-                        {
-                            "label": "1999",
-                            "asset_id": "ssta-mean-cog-1999"
-                        },
-                        {
-                            "label": "1998",
-                            "asset_id": "ssta-mean-cog-1998"
-                        },
-                        {
-                            "label": "1997",
-                            "asset_id": "ssta-mean-cog-1997"
-                        },
-                        {
-                            "label": "1996",
-                            "asset_id": "ssta-mean-cog-1996"
-                        },
-                        {
-                            "label": "1995",
-                            "asset_id": "ssta-mean-cog-1995"
-                        },
-                        {
-                            "label": "1994",
-                            "asset_id": "ssta-mean-cog-1994"
-                        },
-                        {
-                            "label": "1993",
-                            "asset_id": "ssta-mean-cog-1993"
-                        },
-                        {
-                            "label": "1992",
-                            "asset_id": "ssta-mean-cog-1992"
-                        },
-                        {
-                            "label": "1991",
-                            "asset_id": "ssta-mean-cog-1991"
-                        },
-                        {
-                            "label": "1990",
-                            "asset_id": "ssta-mean-cog-1990"
-                        },
-                        {
-                            "label": "1989",
-                            "asset_id": "ssta-mean-cog-1989"
-                        },
-                        {
-                            "label": "1988",
-                            "asset_id": "ssta-mean-cog-1988"
-                        },
-                        {
-                            "label": "1987",
-                            "asset_id": "ssta-mean-cog-1987"
-                        },
-                        {
-                            "label": "1986",
-                            "asset_id": "ssta-mean-cog-1986"
-                        },
-                        {
-                            "label": "1985",
-                            "asset_id": "ssta-mean-cog-1985"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-annual-dhw-max",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/dhw-max/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "dhw-max-cog-2025",
-                    "display_name": "Annual Maximum Degree Heating Weeks",
-                    "visible": false,
-                    "legend_label": "°C-weeks",
-                    "versions": [
-                        {
-                            "label": "2025",
-                            "asset_id": "dhw-max-cog-2025"
-                        },
-                        {
-                            "label": "2024",
-                            "asset_id": "dhw-max-cog-2024"
-                        },
-                        {
-                            "label": "2023",
-                            "asset_id": "dhw-max-cog-2023"
-                        },
-                        {
-                            "label": "2022",
-                            "asset_id": "dhw-max-cog-2022"
-                        },
-                        {
-                            "label": "2021",
-                            "asset_id": "dhw-max-cog-2021"
-                        },
-                        {
-                            "label": "2020",
-                            "asset_id": "dhw-max-cog-2020"
-                        },
-                        {
-                            "label": "2019",
-                            "asset_id": "dhw-max-cog-2019"
-                        },
-                        {
-                            "label": "2018",
-                            "asset_id": "dhw-max-cog-2018"
-                        },
-                        {
-                            "label": "2017",
-                            "asset_id": "dhw-max-cog-2017"
-                        },
-                        {
-                            "label": "2016",
-                            "asset_id": "dhw-max-cog-2016"
-                        },
-                        {
-                            "label": "2015",
-                            "asset_id": "dhw-max-cog-2015"
-                        },
-                        {
-                            "label": "2014",
-                            "asset_id": "dhw-max-cog-2014"
-                        },
-                        {
-                            "label": "2013",
-                            "asset_id": "dhw-max-cog-2013"
-                        },
-                        {
-                            "label": "2012",
-                            "asset_id": "dhw-max-cog-2012"
-                        },
-                        {
-                            "label": "2011",
-                            "asset_id": "dhw-max-cog-2011"
-                        },
-                        {
-                            "label": "2010",
-                            "asset_id": "dhw-max-cog-2010"
-                        },
-                        {
-                            "label": "2009",
-                            "asset_id": "dhw-max-cog-2009"
-                        },
-                        {
-                            "label": "2008",
-                            "asset_id": "dhw-max-cog-2008"
-                        },
-                        {
-                            "label": "2007",
-                            "asset_id": "dhw-max-cog-2007"
-                        },
-                        {
-                            "label": "2006",
-                            "asset_id": "dhw-max-cog-2006"
-                        },
-                        {
-                            "label": "2005",
-                            "asset_id": "dhw-max-cog-2005"
-                        },
-                        {
-                            "label": "2004",
-                            "asset_id": "dhw-max-cog-2004"
-                        },
-                        {
-                            "label": "2003",
-                            "asset_id": "dhw-max-cog-2003"
-                        },
-                        {
-                            "label": "2002",
-                            "asset_id": "dhw-max-cog-2002"
-                        },
-                        {
-                            "label": "2001",
-                            "asset_id": "dhw-max-cog-2001"
-                        },
-                        {
-                            "label": "2000",
-                            "asset_id": "dhw-max-cog-2000"
-                        },
-                        {
-                            "label": "1999",
-                            "asset_id": "dhw-max-cog-1999"
-                        },
-                        {
-                            "label": "1998",
-                            "asset_id": "dhw-max-cog-1998"
-                        },
-                        {
-                            "label": "1997",
-                            "asset_id": "dhw-max-cog-1997"
-                        },
-                        {
-                            "label": "1996",
-                            "asset_id": "dhw-max-cog-1996"
-                        },
-                        {
-                            "label": "1995",
-                            "asset_id": "dhw-max-cog-1995"
-                        },
-                        {
-                            "label": "1994",
-                            "asset_id": "dhw-max-cog-1994"
-                        },
-                        {
-                            "label": "1993",
-                            "asset_id": "dhw-max-cog-1993"
-                        },
-                        {
-                            "label": "1992",
-                            "asset_id": "dhw-max-cog-1992"
-                        },
-                        {
-                            "label": "1991",
-                            "asset_id": "dhw-max-cog-1991"
-                        },
-                        {
-                            "label": "1990",
-                            "asset_id": "dhw-max-cog-1990"
-                        },
-                        {
-                            "label": "1989",
-                            "asset_id": "dhw-max-cog-1989"
-                        },
-                        {
-                            "label": "1988",
-                            "asset_id": "dhw-max-cog-1988"
-                        },
-                        {
-                            "label": "1987",
-                            "asset_id": "dhw-max-cog-1987"
-                        },
-                        {
-                            "label": "1986",
-                            "asset_id": "dhw-max-cog-1986"
-                        },
-                        {
-                            "label": "1985",
-                            "asset_id": "dhw-max-cog-1985"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "collection_id": "crw-5km-daily-baa-max-7d",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/baa-max-7d/stac-collection.json",
-            "group": "Ocean Heat Stress",
-            "assets": [
-                {
-                    "id": "baa-max-7d-cog",
-                    "display_name": "Coral Bleaching Alert Area",
-                    "visible": false,
-                    "legend_label": "Highest alert level in the last 7 days"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-thetao-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "thetao-mean-cog",
-                    "display_name": "Benthic Temperature",
-                    "visible": false,
-                    "legend_label": "Temperature (degrees C)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-so-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/so-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "so-mean-cog",
-                    "display_name": "Benthic Salinity",
-                    "visible": false,
-                    "legend_label": "Salinity (PSU)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-sws-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "sws-mean-cog",
-                    "display_name": "Benthic Current Velocity",
-                    "visible": false,
-                    "legend_label": "Current speed (m/s)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-o2-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "o2-mean-cog",
-                    "display_name": "Benthic Dissolved Oxygen",
-                    "visible": false,
-                    "legend_label": "Dissolved O2 (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-ph-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "ph-mean-cog",
-                    "display_name": "Benthic pH",
-                    "visible": false,
-                    "legend_label": "pH"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-no3-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "no3-mean-cog",
-                    "display_name": "Benthic Nitrate",
-                    "visible": false,
-                    "legend_label": "Nitrate (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-po4-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "po4-mean-cog",
-                    "display_name": "Benthic Phosphate",
-                    "sidebar": false,
-                    "visible": false,
-                    "legend_label": "Phosphate (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-si-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/si-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "si-mean-cog",
-                    "display_name": "Benthic Silicate",
-                    "sidebar": false,
-                    "visible": false,
-                    "legend_label": "Silicate (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-dfe-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "dfe-mean-cog",
-                    "display_name": "Benthic Dissolved Iron",
-                    "sidebar": false,
-                    "visible": false,
-                    "legend_label": "Dissolved iron (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-depthmean-phyc-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
-            "group": "Benthic Environment (Bio-ORACLE 3.0)",
-            "assets": [
-                {
-                    "id": "phyc-mean-cog",
-                    "display_name": "Benthic Productivity",
-                    "visible": false,
-                    "legend_label": "Phytoplankton carbon (mmol/m3)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-terrain-bathymetry-mean",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
-            "group": "Seafloor Terrain (Bio-ORACLE)",
-            "assets": [
-                {
-                    "id": "bathymetry-mean-cog",
-                    "display_name": "Bathymetry (Bio-ORACLE)",
-                    "visible": false,
-                    "legend_label": "Depth (m)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-terrain-slope",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/slope/stac-collection.json",
-            "group": "Seafloor Terrain (Bio-ORACLE)",
-            "assets": [
-                {
-                    "id": "slope-cog",
-                    "display_name": "Seafloor Slope",
-                    "visible": false,
-                    "legend_label": "Slope (degrees)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-terrain-tpi",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tpi/stac-collection.json",
-            "group": "Seafloor Terrain (Bio-ORACLE)",
-            "assets": [
-                {
-                    "id": "tpi-cog",
-                    "display_name": "Topographic Position Index",
-                    "sidebar": false,
-                    "visible": false,
-                    "legend_label": "TPI (m)"
-                }
-            ]
-        },
-        {
-            "collection_id": "bio-oracle-terrain-tri",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tri/stac-collection.json",
-            "group": "Seafloor Terrain (Bio-ORACLE)",
-            "assets": [
-                {
-                    "id": "tri-cog",
-                    "display_name": "Terrain Ruggedness Index",
-                    "sidebar": false,
-                    "visible": false,
-                    "legend_label": "TRI (m)"
-                }
-            ]
-        },
-        {
-            "collection_id": "seafloor-carbon-flux-avg",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
-            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "seafloor-carbon-flux-avg-cog",
-                    "display_name": "Carbon Flux to Seafloor (decadal mean)",
-                    "visible": false,
-                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
-                }
-            ]
-        },
-        {
-            "collection_id": "seafloor-carbon-flux-min",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
-            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "seafloor-carbon-flux-min-cog",
-                    "display_name": "Carbon Flux to Seafloor (decadal minimum)",
-                    "visible": false,
-                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
-                }
-            ]
-        },
-        {
-            "collection_id": "seafloor-carbon-flux-max",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
-            "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "seafloor-carbon-flux-max-cog",
-                    "display_name": "Carbon Flux to Seafloor (decadal maximum)",
-                    "visible": false,
-                    "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-temperature-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "temperature-0m-cog",
-                    "display_name": "Temperature",
-                    "visible": false,
-                    "legend_label": "Temperature (degrees C)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-salinity-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "salinity-0m-cog",
-                    "display_name": "Salinity",
-                    "visible": false,
-                    "legend_label": "Salinity (PSS-78)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-0m-cog",
-                    "display_name": "Dissolved Oxygen",
-                    "visible": false,
-                    "legend_label": "Dissolved oxygen (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-saturation-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-saturation-0m-cog",
-                    "display_name": "Oxygen Saturation",
-                    "visible": false,
-                    "legend_label": "Oxygen saturation (%)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-aou-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "aou-0m-cog",
-                    "display_name": "Apparent Oxygen Utilization",
-                    "visible": false,
-                    "legend_label": "AOU (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-nitrate-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "nitrate-0m-cog",
-                    "display_name": "Nitrate",
-                    "visible": false,
-                    "legend_label": "Nitrate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-phosphate-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "phosphate-0m-cog",
-                    "display_name": "Phosphate",
-                    "visible": false,
-                    "legend_label": "Phosphate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-silicate-0m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-0m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 0 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "silicate-0m-cog",
-                    "display_name": "Silicate",
-                    "visible": false,
-                    "legend_label": "Silicate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-temperature-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "temperature-200m-cog",
-                    "display_name": "Temperature",
-                    "visible": false,
-                    "legend_label": "Temperature (degrees C)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-salinity-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "salinity-200m-cog",
-                    "display_name": "Salinity",
-                    "visible": false,
-                    "legend_label": "Salinity (PSS-78)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-200m-cog",
-                    "display_name": "Dissolved Oxygen",
-                    "visible": false,
-                    "legend_label": "Dissolved oxygen (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-saturation-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-saturation-200m-cog",
-                    "display_name": "Oxygen Saturation",
-                    "visible": false,
-                    "legend_label": "Oxygen saturation (%)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-aou-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "aou-200m-cog",
-                    "display_name": "Apparent Oxygen Utilization",
-                    "visible": false,
-                    "legend_label": "AOU (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-nitrate-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "nitrate-200m-cog",
-                    "display_name": "Nitrate",
-                    "visible": false,
-                    "legend_label": "Nitrate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-phosphate-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "phosphate-200m-cog",
-                    "display_name": "Phosphate",
-                    "visible": false,
-                    "legend_label": "Phosphate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-silicate-200m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-200m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 200 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "silicate-200m-cog",
-                    "display_name": "Silicate",
-                    "visible": false,
-                    "legend_label": "Silicate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-temperature-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "temperature-1000m-cog",
-                    "display_name": "Temperature",
-                    "visible": false,
-                    "legend_label": "Temperature (degrees C)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-salinity-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "salinity-1000m-cog",
-                    "display_name": "Salinity",
-                    "visible": false,
-                    "legend_label": "Salinity (PSS-78)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-1000m-cog",
-                    "display_name": "Dissolved Oxygen",
-                    "visible": false,
-                    "legend_label": "Dissolved oxygen (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-oxygen-saturation-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "oxygen-saturation-1000m-cog",
-                    "display_name": "Oxygen Saturation",
-                    "visible": false,
-                    "legend_label": "Oxygen saturation (%)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-aou-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "aou-1000m-cog",
-                    "display_name": "Apparent Oxygen Utilization",
-                    "visible": false,
-                    "legend_label": "AOU (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-nitrate-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "nitrate-1000m-cog",
-                    "display_name": "Nitrate",
-                    "visible": false,
-                    "legend_label": "Nitrate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-phosphate-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "phosphate-1000m-cog",
-                    "display_name": "Phosphate",
-                    "visible": false,
-                    "legend_label": "Phosphate (micromol/kg)"
-                }
-            ]
-        },
-        {
-            "collection_id": "woa23-silicate-1000m",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-1000m/stac-collection.json",
-            "group": "Ocean Properties (WOA23, 1000 m)",
-            "sidebar": false,
-            "assets": [
-                {
-                    "id": "silicate-1000m-cog",
-                    "display_name": "Silicate",
-                    "visible": false,
-                    "legend_label": "Silicate (micromol/kg)"
-                }
-            ]
-        },
-        { "collection_id": "iucn-taxonomy-2025", "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json", "assets": [] },
-        { "collection_id": "ebsa", "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json", "assets": [] }
+  "catalog": "https://s3-west.nrp-nautilus.io/public-data/stac/catalog.json",
+  "titiler_url": "https://titiler.nrp-nautilus.io",
+  "view": {
+    "center": [
+      0,
+      0
+    ],
+    "zoom": 2.5,
+    "globe": true
+  },
+  "auto_approve": true,
+  "sidebar": {
+    "enabled": true,
+    "default_width": 460,
+    "title": "High Seas Explorer",
+    "chat_title": "Data Assistant"
+  },
+  "header": {
+    "enabled": true,
+    "mode": "solid",
+    "title": "High Seas Explorer",
+    "partner": {
+      "src": "bosl-logo.svg",
+      "alt": "Benioff Ocean Science Laboratory",
+      "href": "https://bosl.ucsb.edu/"
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "primary": "#1b78ab",
+    "surface": "#021f2e",
+    "text": "#e6f3fa",
+    "panel": "rgba(2, 31, 46, 0.92)",
+    "backdrop": "#01141e"
+  },
+  "default_basemap": "natgeo",
+  "custom_basemap": {
+    "url": "https://services.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
+    "label": "Ocean"
+  },
+  "llm": {
+    "user_provided": true,
+    "default_endpoint": "https://openrouter.ai/api/v1",
+    "models": [
+      {
+        "value": "qwen/qwen3-235b-a22b",
+        "label": "Qwen3 235B"
+      },
+      {
+        "value": "moonshotai/kimi-k2",
+        "label": "Kimi K2"
+      },
+      {
+        "value": "minimax/minimax-m1",
+        "label": "MiniMax M1"
+      },
+      {
+        "value": "anthropic/claude-sonnet-5",
+        "label": "Claude Sonnet 5"
+      },
+      {
+        "value": "google/gemini-2.5-flash",
+        "label": "Gemini Flash"
+      }
     ]
+  },
+  "links": {
+    "github": "https://github.com/boettiger-lab/bosl-high-seas",
+    "docs": "/docs.html",
+    "carbon": true
+  },
+  "welcome": {
+    "message": "Hi! I can help you explore marine protected areas, seafloor geomorphology, and fishing effort data. Try asking:",
+    "examples": [
+      "Fly to the Sargasso Sea",
+      "How much and what type of industrial fishing would be displaced by designating all EBSAs in the high seas as MPAs, closed to fishing?",
+      "How many seamounts are there in the Sargasso Sea \"Ecologically or Biologically Significant Marine Area\" that was designated on the high seas?"
+    ]
+  },
+  "collections": [
+    {
+      "collection_id": "gfw-fishing-effort",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-gfw/stac-collection.json",
+      "group": "Fishing Effort",
+      "assets": [
+        {
+          "id": "fishing-effort-cog-2024",
+          "display_name": "Fishing Effort",
+          "visible": false,
+          "legend_label": "Annual fishing hours",
+          "versions": [
+            {
+              "label": "2024",
+              "asset_id": "fishing-effort-cog-2024"
+            },
+            {
+              "label": "2023",
+              "asset_id": "fishing-effort-cog-2023"
+            },
+            {
+              "label": "2022",
+              "asset_id": "fishing-effort-cog-2022"
+            },
+            {
+              "label": "2021",
+              "asset_id": "fishing-effort-cog-2021"
+            },
+            {
+              "label": "2020",
+              "asset_id": "fishing-effort-cog-2020"
+            },
+            {
+              "label": "2019",
+              "asset_id": "fishing-effort-cog-2019"
+            },
+            {
+              "label": "2018",
+              "asset_id": "fishing-effort-cog-2018"
+            },
+            {
+              "label": "2017",
+              "asset_id": "fishing-effort-cog-2017"
+            },
+            {
+              "label": "2016",
+              "asset_id": "fishing-effort-cog-2016"
+            },
+            {
+              "label": "2015",
+              "asset_id": "fishing-effort-cog-2015"
+            },
+            {
+              "label": "2014",
+              "asset_id": "fishing-effort-cog-2014"
+            },
+            {
+              "label": "2013",
+              "asset_id": "fishing-effort-cog-2013"
+            },
+            {
+              "label": "2012",
+              "asset_id": "fishing-effort-cog-2012"
+            }
+          ],
+          "default_version": "2024"
+        }
+      ]
+    },
+    {
+      "collection_id": "ship-density",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ship-density/stac-collection.json",
+      "group": "Vessel Density (2015-2021)",
+      "assets": [
+        {
+          "id": "ship-density-global-cog",
+          "display_name": "All Vessels",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        },
+        {
+          "id": "ship-density-commercial-cog",
+          "display_name": "Commercial",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        },
+        {
+          "id": "ship-density-fishing-cog",
+          "display_name": "Fishing Vessels",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        },
+        {
+          "id": "ship-density-oil-gas-cog",
+          "display_name": "Oil and Gas",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        },
+        {
+          "id": "ship-density-passenger-cog",
+          "display_name": "Passenger",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        },
+        {
+          "id": "ship-density-leisure-cog",
+          "display_name": "Leisure",
+          "visible": false,
+          "legend_label": "AIS positions (2015-2021)"
+        }
+      ]
+    },
+    {
+      "collection_id": "iho-maritime-boundaries",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/iho/stac-collection.json",
+      "assets": [
+        {
+          "id": "eez-pmtiles",
+          "display_name": "Exclusive Economic Zones (EEZ)",
+          "group": "Maritime Boundaries",
+          "visible": false,
+          "tooltip_fields": [
+            "GEONAME",
+            "SOVEREIGN1",
+            "ISO_SOV1",
+            "TERRITORY1",
+            "POL_TYPE",
+            "AREA_KM2"
+          ]
+        },
+        {
+          "id": "high-seas-pmtiles",
+          "display_name": "High Seas (ABNJ)",
+          "group": "Maritime Boundaries",
+          "visible": true,
+          "tooltip_fields": [
+            "name",
+            "mrgid",
+            "area_km2"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "ecs-extended-continental-shelf",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ecs/stac-collection.json",
+      "assets": [
+        {
+          "id": "ecs-pmtiles",
+          "display_name": "Extended Continental Shelf (ECS)",
+          "group": "Maritime Boundaries",
+          "visible": false,
+          "tooltip_fields": [
+            "GEONAME",
+            "POL_TYPE",
+            "SOVEREIGN1",
+            "TERRITORY1",
+            "AREA_KM2"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "wdpa",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-wdpa/wdpa/stac-collection.json",
+      "assets": [
+        {
+          "id": "wdpa-pmtiles",
+          "alias": "wdpa-marine",
+          "display_name": "Marine Protected Areas",
+          "group": "Designated Areas",
+          "visible": false,
+          "default_filter": [
+            "match",
+            [
+              "get",
+              "REALM"
+            ],
+            [
+              "Marine",
+              "Coastal"
+            ],
+            true,
+            false
+          ],
+          "tooltip_fields": [
+            "NAME_ENG",
+            "DESIG_ENG",
+            "IUCN_CAT",
+            "NO_TAKE",
+            "GIS_M_AREA",
+            "STATUS"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "ebsa-2023",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa-2023/stac-collection.json",
+      "assets": [
+        {
+          "id": "ebsa-2023-pmtiles",
+          "display_name": "Significant Marine Areas (EBSAs)",
+          "group": "Designated Areas",
+          "visible": false,
+          "tooltip_fields": [
+            "NAME",
+            "Workshop",
+            "GLOBAL_ID"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "longhurst-provinces",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/longhurst/stac-collection.json",
+      "assets": [
+        {
+          "id": "provinces-pmtiles",
+          "display_name": "Longhurst Provinces",
+          "group": "Biogeography",
+          "visible": false,
+          "tooltip_fields": [
+            "ProvCode",
+            "ProvDescr"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "gebco-2025",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/gebco-2025/stac-collection.json",
+      "assets": [
+        {
+          "id": "gebco-2025-cog",
+          "display_name": "Seafloor Bathymetry (GEBCO 2025)",
+          "group": "Seafloor",
+          "visible": false,
+          "legend_label": "Depth (m)"
+        }
+      ]
+    },
+    {
+      "collection_id": "seafloor-geomorphology",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-geomorphology/stac-collection.json",
+      "assets": [
+        {
+          "id": "seafloor-geomorphology-pmtiles",
+          "display_name": "Seafloor Geomorphology",
+          "group": "Seafloor",
+          "visible": false,
+          "tooltip_fields": [
+            "feature_type",
+            "Geomorphic",
+            "area_km2"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "hydrothermal-vents",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/hydrothermal-vents/stac-collection.json",
+      "assets": [
+        {
+          "id": "hydrothermal-vents-pmtiles",
+          "display_name": "Hydrothermal Vents (InterRidge)",
+          "group": "Seafloor",
+          "visible": false,
+          "layer_type": "circle",
+          "tooltip_fields": [
+            "name",
+            "activity",
+            "max_temperature_c",
+            "max_depth_m",
+            "tectonic_setting",
+            "region",
+            "ocean"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "deep-submergence-dives",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/deep-submergence-dives/stac-collection.json",
+      "assets": [
+        {
+          "id": "deep-submergence-dives-pmtiles",
+          "display_name": "Deep-Sea Dives (Bell et al. 2025)",
+          "group": "Seafloor",
+          "visible": false,
+          "layer_type": "circle",
+          "tooltip_fields": [
+            "Type",
+            "Platform",
+            "Institution",
+            "Year",
+            "Depth",
+            "Geomorphology_Description",
+            "Jurisdiction"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "unep-wcmc-coral-reefs-polygons",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
+      "assets": [
+        {
+          "id": "polygons-pmtiles",
+          "alias": "coral-reefs",
+          "display_name": "Warm-water Coral Reefs (UNEP-WCMC)",
+          "group": "Coastal Habitats",
+          "visible": false,
+          "tooltip_fields": [
+            "NAME",
+            "DATA_TYPE",
+            "VERIF",
+            "GIS_AREA_K"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "unep-wcmc-seagrass-polygons",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/polygons/stac-collection.json",
+      "assets": [
+        {
+          "id": "polygons-pmtiles",
+          "alias": "seagrass-polygons",
+          "display_name": "Seagrass Beds (UNEP-WCMC)",
+          "toggle_group": "Seagrass (UNEP-WCMC)",
+          "group": "Coastal Habitats",
+          "visible": false,
+          "tooltip_fields": [
+            "vernacular",
+            "scientific",
+            "habitat",
+            "AREA_SQKM"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "unep-wcmc-seagrass-points",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-seagrass/unep-wcmc-seagrass/points/stac-collection.json",
+      "assets": [
+        {
+          "id": "points-pmtiles",
+          "alias": "seagrass-points",
+          "display_name": "Seagrass Point Records (UNEP-WCMC)",
+          "toggle_group": "Seagrass (UNEP-WCMC)",
+          "group": "Coastal Habitats",
+          "visible": false,
+          "layer_type": "circle",
+          "tooltip_fields": [
+            "scientific",
+            "GENUS",
+            "VERIF",
+            "eventDate"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "rfmo-maritime-governance",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/rfmo/stac-collection.json",
+      "assets": [
+        {
+          "id": "rfb-pmtiles",
+          "display_name": "RFMO Boundaries",
+          "group": "Ocean Governance",
+          "visible": false,
+          "tooltip_fields": [
+            "RFB",
+            "SHAPE_AREA"
+          ]
+        },
+        {
+          "id": "vme-pmtiles",
+          "display_name": "VME Closures",
+          "group": "Ocean Governance",
+          "visible": false,
+          "tooltip_fields": [
+            "VME_ID",
+            "LOCAL_NAME",
+            "OWNER",
+            "YEAR"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "megamove-immegas",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/immegas/stac-collection.json",
+      "assets": [
+        {
+          "id": "immegas-pmtiles",
+          "display_name": "Important Marine Megafauna Areas (IMMegAs)",
+          "group": "Marine Megafauna",
+          "visible": false,
+          "default_filter": [
+            "!=",
+            [
+              "get",
+              "Taxon"
+            ],
+            "All taxa"
+          ],
+          "tooltip_fields": [
+            "Taxon",
+            "area_km2",
+            "time_frac"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "megamove-corridors",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/corridors/stac-collection.json",
+      "assets": [
+        {
+          "id": "corridors-pmtiles",
+          "display_name": "Migratory Corridors (MegaMove)",
+          "group": "Marine Megafauna",
+          "visible": false,
+          "default_filter": [
+            "!=",
+            [
+              "get",
+              "Taxon"
+            ],
+            "All taxa"
+          ],
+          "tooltip_fields": [
+            "Taxon",
+            "area_km2",
+            "time_frac"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "megamove-residencies",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/megamove/residencies/stac-collection.json",
+      "assets": [
+        {
+          "id": "residencies-pmtiles",
+          "display_name": "Residence Areas (MegaMove)",
+          "group": "Marine Megafauna",
+          "visible": false,
+          "default_filter": [
+            "!=",
+            [
+              "get",
+              "Taxon"
+            ],
+            "All taxa"
+          ],
+          "tooltip_fields": [
+            "Taxon",
+            "area_km2",
+            "time_frac"
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "iucn-ranges-2025",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/iucn-ranges-2025/stac-collection.json",
+      "assets": []
+    },
+    {
+      "collection_id": "gbif-derived",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-gbif/stac-collection.json",
+      "assets": []
+    },
+    {
+      "collection_id": "obis-derived",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-obis/stac-collection.json",
+      "assets": []
+    },
+    {
+      "collection_id": "coral-reef-watch",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/stac-collection.json",
+      "assets": []
+    },
+    {
+      "collection_id": "crw-5km-daily-ssta",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/ssta/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "ssta-cog",
+          "display_name": "Daily Sea Surface Temperature Anomaly",
+          "visible": false,
+          "legend_label": "°C",
+          "control": {
+            "bind": "frame",
+            "frames": "ssta-cog-frames",
+            "step": 4,
+            "frame_ms": 320
+          }
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-monthly-ssta-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/ssta-mean/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "ssta-mean-cog",
+          "display_name": "Monthly Sea Surface Temperature Anomaly",
+          "visible": false,
+          "legend_label": "°C",
+          "control": {
+            "bind": "frame",
+            "frames": "ssta-mean-cog-frames",
+            "preload": 5,
+            "frame_ms": 300
+          }
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-daily-sst",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/sst/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "sst-cog",
+          "display_name": "Sea Surface Temperature",
+          "visible": false,
+          "legend_label": "°C"
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-daily-dhw",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/dhw/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "dhw-cog",
+          "display_name": "Degree Heating Weeks",
+          "visible": false,
+          "legend_label": "°C-weeks"
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-annual-ssta-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/ssta-mean/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "ssta-mean-cog-2025",
+          "display_name": "Annual Mean Temperature Anomaly",
+          "visible": false,
+          "legend_label": "°C",
+          "versions": [
+            {
+              "label": "2025",
+              "asset_id": "ssta-mean-cog-2025"
+            },
+            {
+              "label": "2024",
+              "asset_id": "ssta-mean-cog-2024"
+            },
+            {
+              "label": "2023",
+              "asset_id": "ssta-mean-cog-2023"
+            },
+            {
+              "label": "2022",
+              "asset_id": "ssta-mean-cog-2022"
+            },
+            {
+              "label": "2021",
+              "asset_id": "ssta-mean-cog-2021"
+            },
+            {
+              "label": "2020",
+              "asset_id": "ssta-mean-cog-2020"
+            },
+            {
+              "label": "2019",
+              "asset_id": "ssta-mean-cog-2019"
+            },
+            {
+              "label": "2018",
+              "asset_id": "ssta-mean-cog-2018"
+            },
+            {
+              "label": "2017",
+              "asset_id": "ssta-mean-cog-2017"
+            },
+            {
+              "label": "2016",
+              "asset_id": "ssta-mean-cog-2016"
+            },
+            {
+              "label": "2015",
+              "asset_id": "ssta-mean-cog-2015"
+            },
+            {
+              "label": "2014",
+              "asset_id": "ssta-mean-cog-2014"
+            },
+            {
+              "label": "2013",
+              "asset_id": "ssta-mean-cog-2013"
+            },
+            {
+              "label": "2012",
+              "asset_id": "ssta-mean-cog-2012"
+            },
+            {
+              "label": "2011",
+              "asset_id": "ssta-mean-cog-2011"
+            },
+            {
+              "label": "2010",
+              "asset_id": "ssta-mean-cog-2010"
+            },
+            {
+              "label": "2009",
+              "asset_id": "ssta-mean-cog-2009"
+            },
+            {
+              "label": "2008",
+              "asset_id": "ssta-mean-cog-2008"
+            },
+            {
+              "label": "2007",
+              "asset_id": "ssta-mean-cog-2007"
+            },
+            {
+              "label": "2006",
+              "asset_id": "ssta-mean-cog-2006"
+            },
+            {
+              "label": "2005",
+              "asset_id": "ssta-mean-cog-2005"
+            },
+            {
+              "label": "2004",
+              "asset_id": "ssta-mean-cog-2004"
+            },
+            {
+              "label": "2003",
+              "asset_id": "ssta-mean-cog-2003"
+            },
+            {
+              "label": "2002",
+              "asset_id": "ssta-mean-cog-2002"
+            },
+            {
+              "label": "2001",
+              "asset_id": "ssta-mean-cog-2001"
+            },
+            {
+              "label": "2000",
+              "asset_id": "ssta-mean-cog-2000"
+            },
+            {
+              "label": "1999",
+              "asset_id": "ssta-mean-cog-1999"
+            },
+            {
+              "label": "1998",
+              "asset_id": "ssta-mean-cog-1998"
+            },
+            {
+              "label": "1997",
+              "asset_id": "ssta-mean-cog-1997"
+            },
+            {
+              "label": "1996",
+              "asset_id": "ssta-mean-cog-1996"
+            },
+            {
+              "label": "1995",
+              "asset_id": "ssta-mean-cog-1995"
+            },
+            {
+              "label": "1994",
+              "asset_id": "ssta-mean-cog-1994"
+            },
+            {
+              "label": "1993",
+              "asset_id": "ssta-mean-cog-1993"
+            },
+            {
+              "label": "1992",
+              "asset_id": "ssta-mean-cog-1992"
+            },
+            {
+              "label": "1991",
+              "asset_id": "ssta-mean-cog-1991"
+            },
+            {
+              "label": "1990",
+              "asset_id": "ssta-mean-cog-1990"
+            },
+            {
+              "label": "1989",
+              "asset_id": "ssta-mean-cog-1989"
+            },
+            {
+              "label": "1988",
+              "asset_id": "ssta-mean-cog-1988"
+            },
+            {
+              "label": "1987",
+              "asset_id": "ssta-mean-cog-1987"
+            },
+            {
+              "label": "1986",
+              "asset_id": "ssta-mean-cog-1986"
+            },
+            {
+              "label": "1985",
+              "asset_id": "ssta-mean-cog-1985"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-annual-dhw-max",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/dhw-max/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "dhw-max-cog-2025",
+          "display_name": "Annual Maximum Degree Heating Weeks",
+          "visible": false,
+          "legend_label": "°C-weeks",
+          "versions": [
+            {
+              "label": "2025",
+              "asset_id": "dhw-max-cog-2025"
+            },
+            {
+              "label": "2024",
+              "asset_id": "dhw-max-cog-2024"
+            },
+            {
+              "label": "2023",
+              "asset_id": "dhw-max-cog-2023"
+            },
+            {
+              "label": "2022",
+              "asset_id": "dhw-max-cog-2022"
+            },
+            {
+              "label": "2021",
+              "asset_id": "dhw-max-cog-2021"
+            },
+            {
+              "label": "2020",
+              "asset_id": "dhw-max-cog-2020"
+            },
+            {
+              "label": "2019",
+              "asset_id": "dhw-max-cog-2019"
+            },
+            {
+              "label": "2018",
+              "asset_id": "dhw-max-cog-2018"
+            },
+            {
+              "label": "2017",
+              "asset_id": "dhw-max-cog-2017"
+            },
+            {
+              "label": "2016",
+              "asset_id": "dhw-max-cog-2016"
+            },
+            {
+              "label": "2015",
+              "asset_id": "dhw-max-cog-2015"
+            },
+            {
+              "label": "2014",
+              "asset_id": "dhw-max-cog-2014"
+            },
+            {
+              "label": "2013",
+              "asset_id": "dhw-max-cog-2013"
+            },
+            {
+              "label": "2012",
+              "asset_id": "dhw-max-cog-2012"
+            },
+            {
+              "label": "2011",
+              "asset_id": "dhw-max-cog-2011"
+            },
+            {
+              "label": "2010",
+              "asset_id": "dhw-max-cog-2010"
+            },
+            {
+              "label": "2009",
+              "asset_id": "dhw-max-cog-2009"
+            },
+            {
+              "label": "2008",
+              "asset_id": "dhw-max-cog-2008"
+            },
+            {
+              "label": "2007",
+              "asset_id": "dhw-max-cog-2007"
+            },
+            {
+              "label": "2006",
+              "asset_id": "dhw-max-cog-2006"
+            },
+            {
+              "label": "2005",
+              "asset_id": "dhw-max-cog-2005"
+            },
+            {
+              "label": "2004",
+              "asset_id": "dhw-max-cog-2004"
+            },
+            {
+              "label": "2003",
+              "asset_id": "dhw-max-cog-2003"
+            },
+            {
+              "label": "2002",
+              "asset_id": "dhw-max-cog-2002"
+            },
+            {
+              "label": "2001",
+              "asset_id": "dhw-max-cog-2001"
+            },
+            {
+              "label": "2000",
+              "asset_id": "dhw-max-cog-2000"
+            },
+            {
+              "label": "1999",
+              "asset_id": "dhw-max-cog-1999"
+            },
+            {
+              "label": "1998",
+              "asset_id": "dhw-max-cog-1998"
+            },
+            {
+              "label": "1997",
+              "asset_id": "dhw-max-cog-1997"
+            },
+            {
+              "label": "1996",
+              "asset_id": "dhw-max-cog-1996"
+            },
+            {
+              "label": "1995",
+              "asset_id": "dhw-max-cog-1995"
+            },
+            {
+              "label": "1994",
+              "asset_id": "dhw-max-cog-1994"
+            },
+            {
+              "label": "1993",
+              "asset_id": "dhw-max-cog-1993"
+            },
+            {
+              "label": "1992",
+              "asset_id": "dhw-max-cog-1992"
+            },
+            {
+              "label": "1991",
+              "asset_id": "dhw-max-cog-1991"
+            },
+            {
+              "label": "1990",
+              "asset_id": "dhw-max-cog-1990"
+            },
+            {
+              "label": "1989",
+              "asset_id": "dhw-max-cog-1989"
+            },
+            {
+              "label": "1988",
+              "asset_id": "dhw-max-cog-1988"
+            },
+            {
+              "label": "1987",
+              "asset_id": "dhw-max-cog-1987"
+            },
+            {
+              "label": "1986",
+              "asset_id": "dhw-max-cog-1986"
+            },
+            {
+              "label": "1985",
+              "asset_id": "dhw-max-cog-1985"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collection_id": "crw-5km-daily-baa-max-7d",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/baa-max-7d/stac-collection.json",
+      "group": "Ocean Heat Stress",
+      "assets": [
+        {
+          "id": "baa-max-7d-cog",
+          "display_name": "Coral Bleaching Alert Area",
+          "visible": false,
+          "legend_label": "Highest alert level in the last 7 days"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-thetao-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "thetao-mean-cog",
+          "display_name": "Benthic Temperature",
+          "visible": false,
+          "legend_label": "Temperature (degrees C)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-so-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/so-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "so-mean-cog",
+          "display_name": "Benthic Salinity",
+          "visible": false,
+          "legend_label": "Salinity (PSU)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-sws-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "sws-mean-cog",
+          "display_name": "Benthic Current Velocity",
+          "visible": false,
+          "legend_label": "Current speed (m/s)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-o2-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "o2-mean-cog",
+          "display_name": "Benthic Dissolved Oxygen",
+          "visible": false,
+          "legend_label": "Dissolved O2 (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-ph-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "ph-mean-cog",
+          "display_name": "Benthic pH",
+          "visible": false,
+          "legend_label": "pH"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-no3-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "no3-mean-cog",
+          "display_name": "Benthic Nitrate",
+          "visible": false,
+          "legend_label": "Nitrate (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-po4-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "po4-mean-cog",
+          "display_name": "Benthic Phosphate",
+          "sidebar": false,
+          "visible": false,
+          "legend_label": "Phosphate (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-si-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/si-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "si-mean-cog",
+          "display_name": "Benthic Silicate",
+          "sidebar": false,
+          "visible": false,
+          "legend_label": "Silicate (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-dfe-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "dfe-mean-cog",
+          "display_name": "Benthic Dissolved Iron",
+          "sidebar": false,
+          "visible": false,
+          "legend_label": "Dissolved iron (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-depthmean-phyc-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
+      "group": "Benthic Environment (Bio-ORACLE 3.0)",
+      "assets": [
+        {
+          "id": "phyc-mean-cog",
+          "display_name": "Benthic Productivity",
+          "visible": false,
+          "legend_label": "Phytoplankton carbon (mmol/m3)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-terrain-bathymetry-mean",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
+      "group": "Seafloor Terrain (Bio-ORACLE)",
+      "assets": [
+        {
+          "id": "bathymetry-mean-cog",
+          "display_name": "Bathymetry (Bio-ORACLE)",
+          "visible": false,
+          "legend_label": "Depth (m)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-terrain-slope",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/slope/stac-collection.json",
+      "group": "Seafloor Terrain (Bio-ORACLE)",
+      "assets": [
+        {
+          "id": "slope-cog",
+          "display_name": "Seafloor Slope",
+          "visible": false,
+          "legend_label": "Slope (degrees)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-terrain-tpi",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tpi/stac-collection.json",
+      "group": "Seafloor Terrain (Bio-ORACLE)",
+      "assets": [
+        {
+          "id": "tpi-cog",
+          "display_name": "Topographic Position Index",
+          "sidebar": false,
+          "visible": false,
+          "legend_label": "TPI (m)"
+        }
+      ]
+    },
+    {
+      "collection_id": "bio-oracle-terrain-tri",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-bio-oracle/terrain/tri/stac-collection.json",
+      "group": "Seafloor Terrain (Bio-ORACLE)",
+      "assets": [
+        {
+          "id": "tri-cog",
+          "display_name": "Terrain Ruggedness Index",
+          "sidebar": false,
+          "visible": false,
+          "legend_label": "TRI (m)"
+        }
+      ]
+    },
+    {
+      "collection_id": "seafloor-carbon-flux-avg",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
+      "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "seafloor-carbon-flux-avg-cog",
+          "display_name": "Carbon Flux to Seafloor (decadal mean)",
+          "visible": false,
+          "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+        }
+      ]
+    },
+    {
+      "collection_id": "seafloor-carbon-flux-min",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
+      "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "seafloor-carbon-flux-min-cog",
+          "display_name": "Carbon Flux to Seafloor (decadal minimum)",
+          "visible": false,
+          "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+        }
+      ]
+    },
+    {
+      "collection_id": "seafloor-carbon-flux-max",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
+      "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "seafloor-carbon-flux-max-cog",
+          "display_name": "Carbon Flux to Seafloor (decadal maximum)",
+          "visible": false,
+          "legend_label": "Organic carbon flux (mmol C m-2 d-1)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-temperature-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "temperature-0m-cog",
+          "display_name": "Temperature",
+          "visible": false,
+          "legend_label": "Temperature (degrees C)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-salinity-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "salinity-0m-cog",
+          "display_name": "Salinity",
+          "visible": false,
+          "legend_label": "Salinity (PSS-78)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-0m-cog",
+          "display_name": "Dissolved Oxygen",
+          "visible": false,
+          "legend_label": "Dissolved oxygen (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-saturation-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-saturation-0m-cog",
+          "display_name": "Oxygen Saturation",
+          "visible": false,
+          "legend_label": "Oxygen saturation (%)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-aou-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "aou-0m-cog",
+          "display_name": "Apparent Oxygen Utilization",
+          "visible": false,
+          "legend_label": "AOU (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-nitrate-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "nitrate-0m-cog",
+          "display_name": "Nitrate",
+          "visible": false,
+          "legend_label": "Nitrate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-phosphate-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "phosphate-0m-cog",
+          "display_name": "Phosphate",
+          "visible": false,
+          "legend_label": "Phosphate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-silicate-0m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-0m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 0 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "silicate-0m-cog",
+          "display_name": "Silicate",
+          "visible": false,
+          "legend_label": "Silicate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-temperature-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "temperature-200m-cog",
+          "display_name": "Temperature",
+          "visible": false,
+          "legend_label": "Temperature (degrees C)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-salinity-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "salinity-200m-cog",
+          "display_name": "Salinity",
+          "visible": false,
+          "legend_label": "Salinity (PSS-78)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-200m-cog",
+          "display_name": "Dissolved Oxygen",
+          "visible": false,
+          "legend_label": "Dissolved oxygen (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-saturation-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-saturation-200m-cog",
+          "display_name": "Oxygen Saturation",
+          "visible": false,
+          "legend_label": "Oxygen saturation (%)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-aou-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "aou-200m-cog",
+          "display_name": "Apparent Oxygen Utilization",
+          "visible": false,
+          "legend_label": "AOU (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-nitrate-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "nitrate-200m-cog",
+          "display_name": "Nitrate",
+          "visible": false,
+          "legend_label": "Nitrate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-phosphate-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "phosphate-200m-cog",
+          "display_name": "Phosphate",
+          "visible": false,
+          "legend_label": "Phosphate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-silicate-200m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-200m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 200 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "silicate-200m-cog",
+          "display_name": "Silicate",
+          "visible": false,
+          "legend_label": "Silicate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-temperature-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/temperature-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "temperature-1000m-cog",
+          "display_name": "Temperature",
+          "visible": false,
+          "legend_label": "Temperature (degrees C)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-salinity-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/salinity-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "salinity-1000m-cog",
+          "display_name": "Salinity",
+          "visible": false,
+          "legend_label": "Salinity (PSS-78)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-1000m-cog",
+          "display_name": "Dissolved Oxygen",
+          "visible": false,
+          "legend_label": "Dissolved oxygen (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-oxygen-saturation-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "oxygen-saturation-1000m-cog",
+          "display_name": "Oxygen Saturation",
+          "visible": false,
+          "legend_label": "Oxygen saturation (%)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-aou-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/aou-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "aou-1000m-cog",
+          "display_name": "Apparent Oxygen Utilization",
+          "visible": false,
+          "legend_label": "AOU (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-nitrate-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "nitrate-1000m-cog",
+          "display_name": "Nitrate",
+          "visible": false,
+          "legend_label": "Nitrate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-phosphate-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "phosphate-1000m-cog",
+          "display_name": "Phosphate",
+          "visible": false,
+          "legend_label": "Phosphate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "woa23-silicate-1000m",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/woa23/silicate-1000m/stac-collection.json",
+      "group": "Ocean Properties (WOA23, 1000 m)",
+      "sidebar": false,
+      "assets": [
+        {
+          "id": "silicate-1000m-cog",
+          "display_name": "Silicate",
+          "visible": false,
+          "legend_label": "Silicate (micromol/kg)"
+        }
+      ]
+    },
+    {
+      "collection_id": "iucn-taxonomy-2025",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json",
+      "assets": []
+    },
+    {
+      "collection_id": "ebsa",
+      "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+      "assets": []
+    }
+  ],
+  "plugins": [
+    {
+      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/mcp.js",
+      "options": {
+        "url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+        "prompt": "geospatial-analyst"
+      }
+    },
+    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/hex.js",
+    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/draw.js",
+    {
+      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/uploads.js",
+      "options": {}
+    }
+  ]
 }

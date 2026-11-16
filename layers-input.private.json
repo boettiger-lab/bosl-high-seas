@@ -1,7 +1,6 @@
 {
     "catalog": "https://s3-west.nrp-nautilus.io/public-data/stac/catalog.json",
     "titiler_url": "https://titiler.nrp-nautilus.io",
-    "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
     "view": {
         "center": [
             0,
@@ -10,8 +9,6 @@
         "zoom": 2.5,
         "globe": true
     },
-    "draw_enabled": true,
-    "upload_enabled": true,
     "auto_approve": true,
     "sidebar": {
         "enabled": true,
@@ -1623,16 +1620,38 @@
                 }
             ]
         },
-        { "collection_id": "iucn-taxonomy-2025", "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json", "assets": [] },
-        { "collection_id": "ebsa", "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json", "assets": [] }
-    ],
-    "mcp_servers": [
         {
-            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp"
+            "collection_id": "iucn-taxonomy-2025",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json",
+            "assets": []
         },
         {
-            "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
-            "optional": true
+            "collection_id": "ebsa",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "assets": []
+        }
+    ],
+    "plugins": [
+        {
+            "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/mcp.js",
+            "options": {
+                "servers": [
+                    {
+                        "url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+                        "prompt": "geospatial-analyst"
+                    },
+                    {
+                        "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
+                        "optional": true
+                    }
+                ]
+            }
+        },
+        "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/hex.js",
+        "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/draw.js",
+        {
+            "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/uploads.js",
+            "options": {}
         }
     ]
 }
