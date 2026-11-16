@@ -1496,17 +1496,18 @@
   ],
   "plugins": [
     {
-      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/mcp.js",
+      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.2/core/plugins/mcp.js",
       "options": {
         "url": "https://duckdb-mcp.carlboettiger.info/mcp",
         "prompt": "geospatial-analyst"
       }
     },
-    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/hex.js",
-    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/draw.js",
+    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.2/core/plugins/hex.js",
+    "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.2/core/plugins/draw.js",
     {
-      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.0/core/plugins/uploads.js",
+      "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.2/core/plugins/uploads.js",
       "options": {}
     }
-  ]
+  ],
+  "export": true
 }
