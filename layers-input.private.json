@@ -1,7 +1,6 @@
 {
     "catalog": "https://s3-west.nrp-nautilus.io/public-data/stac/catalog.json",
     "titiler_url": "https://titiler.nrp-nautilus.io",
-    "mcp_url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
     "view": {
         "center": [
             0,
@@ -10,8 +9,6 @@
         "zoom": 2.5,
         "globe": true
     },
-    "draw_enabled": true,
-    "upload_enabled": true,
     "auto_approve": true,
     "sidebar": {
         "enabled": true,
@@ -619,8 +616,103 @@
             "assets": []
         },
         {
-            "collection_id": "coral-reef-watch",
-            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/stac-collection.json",
+            "collection_id": "crw-5km-daily-hs",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/hs/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-daily-baa",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/baa/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-daily-ne-pacific-blob",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-daily/ne-pacific-blob/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-sst-min",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/sst-min/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-sst-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/sst-mean/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-sst-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/sst-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-ssta-min",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/ssta-min/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-ssta-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/ssta-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-hs-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/hs-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-dhw-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/dhw-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-baa-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/baa-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-monthly-baa5-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-monthly/baa5-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-sst-min",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/sst-min/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-sst-mean",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/sst-mean/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-sst-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/sst-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-ssta-min",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/ssta-min/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-ssta-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/ssta-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-hs-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/hs-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-baa-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/baa-max/stac-collection.json",
+            "assets": []
+        },
+        {
+            "collection_id": "crw-5km-annual-baa5-max",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-coral-reef-watch/crw-5km-annual/baa5-max/stac-collection.json",
             "assets": []
         },
         {
@@ -1623,16 +1715,39 @@
                 }
             ]
         },
-        { "collection_id": "iucn-taxonomy-2025", "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json", "assets": [] },
-        { "collection_id": "ebsa", "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json", "assets": [] }
-    ],
-    "mcp_servers": [
         {
-            "url": "https://duckdb-mcp.nrp-nautilus.io/mcp"
+            "collection_id": "iucn-taxonomy-2025",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-iucn/taxonomy/stac-collection.json",
+            "assets": []
         },
         {
-            "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
-            "optional": true
+            "collection_id": "ebsa",
+            "collection_url": "https://s3-west.nrp-nautilus.io/public-high-seas/ebsa/stac-collection.json",
+            "assets": []
         }
-    ]
+    ],
+    "plugins": [
+        {
+            "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.6/core/plugins/mcp.js",
+            "options": {
+                "servers": [
+                    {
+                        "url": "https://duckdb-mcp.nrp-nautilus.io/mcp",
+                        "prompt": "geospatial-analyst"
+                    },
+                    {
+                        "url": "https://high-seas-private.nrp-nautilus.io/api/text-query/mcp",
+                        "optional": true
+                    }
+                ]
+            }
+        },
+        "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.6/core/plugins/hex.js",
+        "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.6/core/plugins/draw.js",
+        {
+            "url": "https://cdn.jsdelivr.net/gh/SchmidtDSE/glen@v4.0.6/core/plugins/uploads.js",
+            "options": {}
+        }
+    ],
+    "export": true
 }
