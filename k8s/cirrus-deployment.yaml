@@ -4,7 +4,7 @@
 #   - namespace `high-seas`, pinned to the cirrus node
 #   - the initContainer copies layers-input.cirrus.json over layers-input.json,
 #     so the browser reads STAC/parquet/pmtiles from the in-cluster MinIO mirror
-#     (minio.carlboettiger.info) and queries duckdb-mcp.carlboettiger.info
+#     (s3.carlboettiger.info) and queries duckdb-mcp.carlboettiger.info
 #   - PROXY_KEY comes from the vllm-api-key secret (see AGENTS.md for the
 #     one-time copy from the vllm namespace), not open-llm-proxy-secrets
 #

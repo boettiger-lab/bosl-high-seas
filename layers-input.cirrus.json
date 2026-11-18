@@ -1,5 +1,5 @@
 {
-  "catalog": "https://minio.carlboettiger.info/public-data/stac/catalog.json",
+  "catalog": "https://s3.carlboettiger.info/public-data/stac/catalog.json",
   "titiler_url": "https://titiler.carlboettiger.info",
   "view": {
     "center": [
@@ -81,7 +81,7 @@
   "collections": [
     {
       "collection_id": "gfw-fishing-effort",
-      "collection_url": "https://minio.carlboettiger.info/public-gfw/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-gfw/stac-collection.json",
       "group": "Fishing Effort",
       "assets": [
         {
@@ -151,7 +151,7 @@
     },
     {
       "collection_id": "ship-density",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/ship-density/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/ship-density/stac-collection.json",
       "group": "Vessel Density (2015-2021)",
       "assets": [
         {
@@ -212,7 +212,7 @@
     },
     {
       "collection_id": "iho-maritime-boundaries",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/iho/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/iho/stac-collection.json",
       "assets": [
         {
           "id": "eez-pmtiles",
@@ -259,7 +259,7 @@
     },
     {
       "collection_id": "ecs-extended-continental-shelf",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/ecs/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/ecs/stac-collection.json",
       "assets": [
         {
           "id": "ecs-pmtiles",
@@ -286,7 +286,7 @@
     },
     {
       "collection_id": "wdpa",
-      "collection_url": "https://minio.carlboettiger.info/public-wdpa/wdpa/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-wdpa/wdpa/stac-collection.json",
       "assets": [
         {
           "id": "wdpa-pmtiles",
@@ -345,7 +345,7 @@
     },
     {
       "collection_id": "ebsa-2023",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/ebsa-2023/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/ebsa-2023/stac-collection.json",
       "assets": [
         {
           "id": "ebsa-2023-pmtiles",
@@ -370,7 +370,7 @@
     },
     {
       "collection_id": "longhurst-provinces",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/longhurst/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/longhurst/stac-collection.json",
       "assets": [
         {
           "id": "provinces-pmtiles",
@@ -394,7 +394,7 @@
     },
     {
       "collection_id": "gebco-2025",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/gebco-2025/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/gebco-2025/stac-collection.json",
       "assets": [
         {
           "id": "gebco-2025-cog",
@@ -409,7 +409,7 @@
     },
     {
       "collection_id": "seafloor-geomorphology",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-geomorphology/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/seafloor-geomorphology/stac-collection.json",
       "assets": [
         {
           "id": "seafloor-geomorphology-pmtiles",
@@ -465,7 +465,7 @@
     },
     {
       "collection_id": "hydrothermal-vents",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/hydrothermal-vents/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/hydrothermal-vents/stac-collection.json",
       "assets": [
         {
           "id": "hydrothermal-vents-pmtiles",
@@ -494,7 +494,7 @@
     },
     {
       "collection_id": "deep-submergence-dives",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/deep-submergence-dives/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/deep-submergence-dives/stac-collection.json",
       "assets": [
         {
           "id": "deep-submergence-dives-pmtiles",
@@ -540,7 +540,7 @@
     },
     {
       "collection_id": "unep-wcmc-coral-reefs-polygons",
-      "collection_url": "https://minio.carlboettiger.info/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-coral-reefs/unep-wcmc-coral-reefs/polygons/stac-collection.json",
       "assets": [
         {
           "id": "polygons-pmtiles",
@@ -567,7 +567,7 @@
     },
     {
       "collection_id": "unep-wcmc-seagrass-polygons",
-      "collection_url": "https://minio.carlboettiger.info/public-seagrass/unep-wcmc-seagrass/polygons/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-seagrass/unep-wcmc-seagrass/polygons/stac-collection.json",
       "assets": [
         {
           "id": "polygons-pmtiles",
@@ -595,7 +595,7 @@
     },
     {
       "collection_id": "unep-wcmc-seagrass-points",
-      "collection_url": "https://minio.carlboettiger.info/public-seagrass/unep-wcmc-seagrass/points/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-seagrass/unep-wcmc-seagrass/points/stac-collection.json",
       "assets": [
         {
           "id": "points-pmtiles",
@@ -623,7 +623,7 @@
     },
     {
       "collection_id": "rfmo-boundaries",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/rfmo/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/rfmo/stac-collection.json",
       "assets": [
         {
           "id": "rfb-pmtiles",
@@ -667,7 +667,7 @@
     },
     {
       "collection_id": "megamove-immegas",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/megamove/immegas/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/megamove/immegas/stac-collection.json",
       "assets": [
         {
           "id": "immegas-pmtiles",
@@ -719,7 +719,7 @@
     },
     {
       "collection_id": "megamove-corridors",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/megamove/corridors/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/megamove/corridors/stac-collection.json",
       "assets": [
         {
           "id": "corridors-pmtiles",
@@ -771,7 +771,7 @@
     },
     {
       "collection_id": "megamove-residencies",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/megamove/residencies/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/megamove/residencies/stac-collection.json",
       "assets": [
         {
           "id": "residencies-pmtiles",
@@ -823,22 +823,22 @@
     },
     {
       "collection_id": "iucn-ranges-2025",
-      "collection_url": "https://minio.carlboettiger.info/public-iucn/iucn-ranges-2025/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-iucn/iucn-ranges-2025/stac-collection.json",
       "assets": []
     },
     {
       "collection_id": "gbif-derived",
-      "collection_url": "https://minio.carlboettiger.info/public-gbif/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-gbif/stac-collection.json",
       "assets": []
     },
     {
       "collection_id": "obis-derived",
-      "collection_url": "https://minio.carlboettiger.info/public-obis/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-obis/stac-collection.json",
       "assets": []
     },
     {
       "collection_id": "bio-oracle-depthmean-thetao-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/thetao-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -853,7 +853,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-so-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/so-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/so-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -868,7 +868,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-sws-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/sws-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -883,7 +883,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-o2-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/o2-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -898,7 +898,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-ph-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/ph-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -913,7 +913,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-no3-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/no3-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -928,7 +928,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-po4-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/po4-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -944,7 +944,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-si-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/si-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/si-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -960,7 +960,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-dfe-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/dfe-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -976,7 +976,7 @@
     },
     {
       "collection_id": "bio-oracle-depthmean-phyc-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/depthmean/phyc-mean/stac-collection.json",
       "group": "Benthic Environment (Bio-ORACLE 3.0)",
       "assets": [
         {
@@ -991,7 +991,7 @@
     },
     {
       "collection_id": "bio-oracle-terrain-bathymetry-mean",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/terrain/bathymetry-mean/stac-collection.json",
       "group": "Seafloor Terrain (Bio-ORACLE)",
       "assets": [
         {
@@ -1006,7 +1006,7 @@
     },
     {
       "collection_id": "bio-oracle-terrain-slope",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/terrain/slope/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/terrain/slope/stac-collection.json",
       "group": "Seafloor Terrain (Bio-ORACLE)",
       "assets": [
         {
@@ -1021,7 +1021,7 @@
     },
     {
       "collection_id": "bio-oracle-terrain-tpi",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/terrain/tpi/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/terrain/tpi/stac-collection.json",
       "group": "Seafloor Terrain (Bio-ORACLE)",
       "assets": [
         {
@@ -1037,7 +1037,7 @@
     },
     {
       "collection_id": "bio-oracle-terrain-tri",
-      "collection_url": "https://minio.carlboettiger.info/public-bio-oracle/terrain/tri/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-bio-oracle/terrain/tri/stac-collection.json",
       "group": "Seafloor Terrain (Bio-ORACLE)",
       "assets": [
         {
@@ -1053,7 +1053,7 @@
     },
     {
       "collection_id": "seafloor-carbon-flux-avg",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/seafloor-carbon-flux/avg/stac-collection.json",
       "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
       "sidebar": false,
       "assets": [
@@ -1069,7 +1069,7 @@
     },
     {
       "collection_id": "seafloor-carbon-flux-min",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/seafloor-carbon-flux/min/stac-collection.json",
       "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
       "sidebar": false,
       "assets": [
@@ -1085,7 +1085,7 @@
     },
     {
       "collection_id": "seafloor-carbon-flux-max",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/seafloor-carbon-flux/max/stac-collection.json",
       "group": "Seafloor Carbon Flux (NEMO-MEDUSA)",
       "sidebar": false,
       "assets": [
@@ -1101,7 +1101,7 @@
     },
     {
       "collection_id": "woa23-temperature-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/temperature-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1117,7 +1117,7 @@
     },
     {
       "collection_id": "woa23-salinity-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/salinity-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1133,7 +1133,7 @@
     },
     {
       "collection_id": "woa23-oxygen-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1149,7 +1149,7 @@
     },
     {
       "collection_id": "woa23-oxygen-saturation-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1165,7 +1165,7 @@
     },
     {
       "collection_id": "woa23-aou-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/aou-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1181,7 +1181,7 @@
     },
     {
       "collection_id": "woa23-nitrate-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/nitrate-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1197,7 +1197,7 @@
     },
     {
       "collection_id": "woa23-phosphate-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/phosphate-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1213,7 +1213,7 @@
     },
     {
       "collection_id": "woa23-silicate-0m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-0m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/silicate-0m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 0 m)",
       "sidebar": false,
       "assets": [
@@ -1229,7 +1229,7 @@
     },
     {
       "collection_id": "woa23-temperature-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/temperature-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1245,7 +1245,7 @@
     },
     {
       "collection_id": "woa23-salinity-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/salinity-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1261,7 +1261,7 @@
     },
     {
       "collection_id": "woa23-oxygen-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1277,7 +1277,7 @@
     },
     {
       "collection_id": "woa23-oxygen-saturation-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1293,7 +1293,7 @@
     },
     {
       "collection_id": "woa23-aou-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/aou-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1309,7 +1309,7 @@
     },
     {
       "collection_id": "woa23-nitrate-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/nitrate-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1325,7 +1325,7 @@
     },
     {
       "collection_id": "woa23-phosphate-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/phosphate-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1341,7 +1341,7 @@
     },
     {
       "collection_id": "woa23-silicate-200m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-200m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/silicate-200m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 200 m)",
       "sidebar": false,
       "assets": [
@@ -1357,7 +1357,7 @@
     },
     {
       "collection_id": "woa23-temperature-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/temperature-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/temperature-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1373,7 +1373,7 @@
     },
     {
       "collection_id": "woa23-salinity-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/salinity-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/salinity-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1389,7 +1389,7 @@
     },
     {
       "collection_id": "woa23-oxygen-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1405,7 +1405,7 @@
     },
     {
       "collection_id": "woa23-oxygen-saturation-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/oxygen-saturation-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1421,7 +1421,7 @@
     },
     {
       "collection_id": "woa23-aou-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/aou-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/aou-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1437,7 +1437,7 @@
     },
     {
       "collection_id": "woa23-nitrate-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/nitrate-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1453,7 +1453,7 @@
     },
     {
       "collection_id": "woa23-phosphate-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/phosphate-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1469,7 +1469,7 @@
     },
     {
       "collection_id": "woa23-silicate-1000m",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/woa23/silicate-1000m/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/woa23/silicate-1000m/stac-collection.json",
       "group": "Ocean Properties (WOA23, 1000 m)",
       "sidebar": false,
       "assets": [
@@ -1485,12 +1485,12 @@
     },
     {
       "collection_id": "iucn-taxonomy-2025",
-      "collection_url": "https://minio.carlboettiger.info/public-iucn/taxonomy/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-iucn/taxonomy/stac-collection.json",
       "assets": []
     },
     {
       "collection_id": "ebsa",
-      "collection_url": "https://minio.carlboettiger.info/public-high-seas/ebsa/stac-collection.json",
+      "collection_url": "https://s3.carlboettiger.info/public-high-seas/ebsa/stac-collection.json",
       "assets": []
     }
   ],

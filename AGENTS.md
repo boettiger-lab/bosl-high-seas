@@ -18,7 +18,7 @@ The table records both setups for reference:
 | Manifests | `k8s/{configmap,deployment,service,ingress}.yaml` | `k8s/cirrus-*.yaml` |
 | Namespace | `schmidtdse` | `high-seas` |
 | URL | https://high-seas.nrp-nautilus.io | https://high-seas.carlboettiger.info |
-| Layer config | `layers-input.json` (s3-west.nrp-nautilus.io) | `layers-input.cirrus.json` (minio.carlboettiger.info) |
+| Layer config | `layers-input.json` (s3-west.nrp-nautilus.io) | `layers-input.cirrus.json` (s3.carlboettiger.info) |
 | MCP server | `duckdb-mcp.nrp-nautilus.io` | `duckdb-mcp.carlboettiger.info` (`mcp` ns) |
 | LLM | open-llm-proxy → OpenRouter + NRP models | in-cluster vLLM `qwen3-6` only (`vllm` ns) |
 | Ingress | HAProxy annotations | Traefik CRDs + cert-manager + external-dns |
@@ -29,7 +29,7 @@ STAC catalog/collection URLs, so the layer file itself has to differ. While cirr
 down, keeping it in sync is optional; regenerate it before reviving cirrus:
 
 ```bash
-sed -e 's|https://s3-west\.nrp-nautilus\.io|https://minio.carlboettiger.info|g' \
+sed -e 's|https://s3-west\.nrp-nautilus\.io|https://s3.carlboettiger.info|g' \
     -e 's|https://duckdb-mcp\.nrp-nautilus\.io/mcp|https://duckdb-mcp.carlboettiger.info/mcp|g' \
     -e 's|"titiler_url": "https://titiler\.nrp-nautilus\.io"|"titiler_url": "https://titiler.carlboettiger.info"|' \
     layers-input.json > layers-input.cirrus.json
