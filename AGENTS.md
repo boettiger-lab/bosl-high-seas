@@ -72,10 +72,13 @@ ordinary `public-*` buckets, and that is accepted under the agreement.
 
 - **Never add a restricted layer to `layers-input.json`.** It goes in `private/layers.json`
   (with `insert_after`) and its licence notes in `private/system-prompt-addendum.md`.
-- **Generated files** (`layers-input.private.json`, `system-prompt.private.md`,
-  `k8s/private-{configmap,deployment}.yaml`) come from `scripts/build-private.py`. **Re-run it
-  after ANY edit to `layers-input.json`, `system-prompt.md`, `k8s/configmap.yaml` or
-  `k8s/deployment.yaml`**, and commit the output in the same PR, or the private app drifts.
+- **Generated files** (`layers-input.private.json`, `system-prompt.private.md`) come from
+  `scripts/build-private.py`. **Re-run it after ANY edit to `layers-input.json` or
+  `system-prompt.md`**, and commit the output in the same PR, or the private app drifts.
+- **The private k8s files** (`k8s/private-*.yaml`) are written by hand. Both apps' nginx configs
+  are server blocks over the shared snippets in glen-template `nginx/` (glen-ops#340), so a change
+  to the public `k8s/configmap.yaml` or `k8s/deployment.yaml` that should reach the private app
+  is made in its file too. The private model list and keys differ on purpose.
 - **Auth:** nginx `auth_basic` on every path except `/health` and `/api/llm/`. geo-agent sends LLM
   requests with `Authorization: Bearer <api_key>`, which replaces the browser's saved password, so
   `/api/llm/` instead checks a token: `APP_TOKEN`, derived at pod start from the htpasswd Secret and
