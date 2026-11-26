@@ -14,75 +14,8 @@ data:
   config.template.json: |
     {
         "mcp_server_url": "${MCP_SERVER_URL}",
-        "llm_model": "deepseek-v4-flash",
-        "llm_models": [
-            {
-                "value": "deepseek-v4-flash",
-                "label": "NRP DeepSeek V4 Flash",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "xiaomi/mimo-v2.6-pro",
-                "label": "MiMo V2.6 Pro (OpenRouter)",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "xiaomi/mimo-v2.6-flash",
-                "label": "MiMo V2.6 Flash (OpenRouter)",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "z-ai/glm-5.2",
-                "label": "GLM-5.2 (OpenRouter)",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "~deepseek/deepseek-v4-flash-latest",
-                "label": "DeepSeek V4 Flash Latest (OpenRouter)",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "qwen",
-                "label": "DSE-nimbus",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "qwen3",
-                "label": "NRP Qwen3",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "gpt-oss",
-                "label": "NRP GPT-OSS 120B",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "kimi",
-                "label": "NRP Kimi K2.5",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "minimax-m2",
-                "label": "NRP MiniMax M2.5",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            },
-            {
-                "value": "anthropic/claude-sonnet-5",
-                "label": "Claude Sonnet 5",
-                "endpoint": "/api/llm",
-                "api_key": "${APP_TOKEN}"
-            }
-        ]
+        "llm_endpoint": "/api/llm",
+        "llm_api_key": "${APP_TOKEN}"
     }
 
 ---
